@@ -7,12 +7,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { HomePageComponent } from './components/home-page/home-page.component';
 
-import {MatCardModule, MatGridListModule, MatListModule} from '@angular/material';
+import {MatCardModule, MatGridListModule, MatIconModule, MatListModule} from '@angular/material';
+import { MovieComponent } from './components/movie/movie.component';
+import { BarRatingModule } from 'ngx-bar-rating';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomePageComponent
+    HomePageComponent,
+    MovieComponent
   ],
   imports: [
     BrowserModule,
@@ -21,6 +24,8 @@ import {MatCardModule, MatGridListModule, MatListModule} from '@angular/material
     MatCardModule,
     MatListModule,
     MatGridListModule,
+    MatIconModule,
+    BarRatingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

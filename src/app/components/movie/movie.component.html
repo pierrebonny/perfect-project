@@ -1,0 +1,10 @@
+<img [src]="currentMovie.poster_path" alt="Movie poster">
+<div class="movie_infos">
+  <div class="movie_infos_head">
+    <p class="movie_title">{{currentMovie.title}}</p>
+    <mat-icon class="infos_icon">info</mat-icon>
+  </div>
+  <p>Released on {{currentMovie.release_date}}</p>
+  <p>Duration : {{currentMovie.runtime}} minutes</p>
+  <bar-rating class="rating" [readOnly]="true" [rate]="currentMovie.vote_average" [max]="10" [theme]="'fontawesome-o'"></bar-rating>
+</div>

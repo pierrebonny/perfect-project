@@ -1,8 +1,12 @@
-<div class="movies_list">
-  <mat-card *ngFor="let movie of moviesList" class="movie_card">
-    <img [src]="movie.poster_path" alt="Movie poster">
-    <mat-card-content>
-      <p>{{movie.title}}</p>
-    </mat-card-content>
-  </mat-card>
+<div class="home_page_title_div">
+  <mat-icon class="home_page_title_icon">movie</mat-icon>
+  <h1 class="home_page_title">Weekly top trending movies</h1>
 </div>
+<mat-grid-list gutterSize="0px" cols="2" rowHeight="300px" class="movies_list">
+  <mat-grid-tile *ngFor="let movie of moviesList">
+    <mat-card class="movie_card">
+      <app-movie class="movie_component" [currentMovie]="movie">
+      </app-movie>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

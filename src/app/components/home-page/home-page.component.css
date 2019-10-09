@@ -1,13 +1,30 @@
-.movie_card img {
+.movie_component {
   height: 100%;
-  width: auto;
+  width: 100%;
+  display: flex;
 }
 .movie_card {
-  height: 200px;
-  width: 50%;
+  height: calc(100% - 40px);
+  width: calc(100% - 20px);
   padding: 10px;
+  margin: 10px;
 }
-
-.movies_list {
-  flex-flow: row wrap;
+.home_page_title_div {
+  margin: 20px auto;
+  width: fit-content;
+  color: dimgray;
+}
+.home_page_title_icon {
+  background-repeat: no-repeat;
+  display: inline-block;
+  fill: currentColor;
+  height: 30px;
+  width: 30px;
+  vertical-align: top;
+  margin-right: 25px;
+  font-size: 40px;
+}
+.home_page_title {
+  display: inline;
+  text-align: center;
 }
