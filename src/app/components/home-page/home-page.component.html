@@ -1,1 +1,8 @@
-<p *ngIf="moviesList.length">{{moviesList[0].title}}</p>
+<div class="movies_list">
+  <mat-card *ngFor="let movie of moviesList" class="movie_card">
+    <img [src]="movie.poster_path" alt="Movie poster">
+    <mat-card-content>
+      <p>{{movie.title}}</p>
+    </mat-card-content>
+  </mat-card>
+</div>
