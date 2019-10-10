@@ -3,44 +3,44 @@ img {
   width: auto;
 }
 
-.movie_infos {
+.media_infos {
   margin-left: 10px;
   width: 100%;
   position: relative;
 }
 
-.movie_infos p {
+.media_infos p {
   margin-bottom: 0;
   margin-top: 0;
   color: #4B515D;
 }
-.movie_infos .list_item_icon,
-.movie_infos .list_item_label {
+.media_infos .list_item_icon,
+.media_infos .list_item_label {
   color: #00C851;
   display: inline;
   vertical-align: middle;
 }
 
-.movie_infos button {
+.media_infos button {
   color: white;
   background-color: #4B515D;
 }
 
-.movie_infos .list_item_icon,
-.movie_infos button mat-icon {
+.media_infos .list_item_icon,
+.media_infos button mat-icon {
   margin-left: 5px;
 }
 
-.movie_infos .list_item_div.must_see,
-.movie_infos .must_see_button {
+.media_infos .list_item_div.must_see,
+.media_infos .must_see_button {
   margin-top: 10px;
 }
-.movie_infos .list_item_div.seen,
-.movie_infos .already_seen_button {
+.media_infos .list_item_div.seen,
+.media_infos .already_seen_button {
   margin-top: 20px;
 }
 
-.movie_infos .movie_title {
+.media_infos .media_title {
   margin-top: 0;
   font-size: 26px;
   font-weight: bold;
@@ -48,14 +48,19 @@ img {
   margin-bottom: 10px;
 }
 
-.movie_infos .movie_infos_head {
+.media_infos .media_infos_head {
   display: flex;
   justify-content: space-between;
 }
 
-.movie_infos .movie_infos_head .infos_icon {
-  font-size: 40px;
+.media_infos .infos_icon {
+  font-size: 30px;
   color: #4B515D;
   margin-right: 15px;
-  cursor: pointer;
+}
+
+.media_infos .infos_icon.bottom {
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }

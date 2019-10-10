@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TmdbService} from '../../services/tmdb.service';
-import {Movie} from '../../types';
+import {Media} from '../../types';
 
 @Component({
   selector: 'app-home-page',
@@ -9,16 +9,16 @@ import {Movie} from '../../types';
 })
 export class HomePageComponent implements OnInit {
 
-  moviesList: Array<Movie> = [];
+  mediasList: Array<Media> = [];
 
   constructor(private  tmdbService: TmdbService) {
   }
 
   ngOnInit() {
     // Getting trending movies list to be displayed
-    this.tmdbService.getTrendingMovies().subscribe(trendingMovies => {
-      this.moviesList = trendingMovies.results;
-      console.log(this.moviesList);
+    this.tmdbService.getTrendingMedias().subscribe(trendingMovies => {
+      this.mediasList = trendingMovies.results;
+      console.log(this.mediasList);
     });
   }
 

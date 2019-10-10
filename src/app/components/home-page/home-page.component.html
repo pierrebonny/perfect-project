@@ -1,12 +1,16 @@
 <div class="home_page_title_div">
-  <mat-icon class="home_page_title_icon">movie</mat-icon>
-  <h1 class="home_page_title">Weekly top trending movies</h1>
+  <mat-icon class="home_page_title_icon">thumb_up</mat-icon>
+  <h1 class="home_page_title">Weekly top trending medias</h1>
 </div>
-<mat-grid-list gutterSize="0px" cols="2" rowHeight="300px" class="movies_list">
-  <mat-grid-tile *ngFor="let movie of moviesList">
-    <mat-card class="movie_card">
-      <app-movie class="movie_component" [currentMovie]="movie">
-      </app-movie>
+<mat-grid-list gutterSize="0px" cols="2" rowHeight="300px" class="medias_list">
+  <mat-form-field class="search_bar">
+    <input type="tel" matInput placeholder="Search by title">
+    <mat-icon class="search_icon" matSuffix>search</mat-icon>
+  </mat-form-field>
+  <mat-grid-tile *ngFor="let media of mediasList">
+    <mat-card class="media_card" (click)="mediaChild.openDetailsDialog()">
+      <app-media class="media_component" #mediaChild [currentMedia]="media">
+      </app-media>
     </mat-card>
   </mat-grid-tile>
 </mat-grid-list>

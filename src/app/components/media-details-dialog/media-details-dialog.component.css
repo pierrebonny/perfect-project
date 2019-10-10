@@ -1,19 +1,19 @@
 img {
   width: 30%;
 }
-.movie_details {
+.media_details {
   display: flex;
   position: relative;
 }
 
-.movie_details .movie_infos {
+.media_details .media_infos {
   width: 100%;
   margin-left: 10px;
   color: #4B515D;
   position: relative;
 }
 
-.movie_details .movie_infos .movie_title {
+.media_details .media_infos .media_title {
   margin-top: 0;
   font-size: 26px;
   font-weight: bold;
@@ -21,17 +21,17 @@ img {
   margin-bottom: 0;
 }
 
-.movie_details .movie_infos .director_div {
+.media_details .media_infos .director_div {
   margin-top: 5px;
   margin-bottom: 20px;
 }
-.movie_details .movie_infos .director_prefix {
+.media_details .media_infos .director_prefix {
   font-weight: bold;
   margin-right: 5px;
   display: inline;
 
 }
-.movie_details .movie_infos .director_name {
+.media_details .media_infos .director_name {
   margin-top: 5px;
   display: inline;
 }

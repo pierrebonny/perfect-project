@@ -1,13 +1,14 @@
-.movie_component {
+.media_component {
   height: 100%;
   width: 100%;
   display: flex;
 }
-.movie_card {
+.media_card {
   height: calc(100% - 40px);
   width: calc(100% - 20px);
   padding: 10px;
   margin: 10px;
+  cursor: pointer;
 }
 .home_page_title_div {
   margin: 20px auto;
@@ -29,7 +30,17 @@
   text-align: center;
 }
 
-.movies_list {
+.search_icon {
+  color: #4B515D;
+}
+
+.medias_list {
   max-width: 1150px;
   margin: 0 auto;
+}
+
+.search_bar {
+  position: absolute;
+  top: -65px;
+  right: 10px;
 }

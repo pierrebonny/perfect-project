@@ -1,0 +1,21 @@
+<div class="media_details">
+  <img [src]="mediaDetails.poster_path" alt="Media poster">
+  <div class="media_infos">
+    <p class="media_title">{{mediaDetails.title ? mediaDetails.title : mediaDetails.name}}</p>
+    <div class="director_div" *ngIf="mediaBestCredits && mediaBestCredits.directorName">
+      <p class="director_prefix">Directed by:</p> <p class="director_name">{{mediaBestCredits.directorName}}</p>
+    </div>
+    <p class="with">With:</p>
+    <ng-container *ngIf="mediaBestCredits && mediaBestCredits.actorsNames">
+      <div class="actor_name_div" *ngFor="let actorName of mediaBestCredits.actorsNames; index as i">
+        <p class="actor_name">{{actorName}}</p>
+        <p class="actor_name_comma" *ngIf="i < mediaBestCredits.actorsNames.length - 1">,</p>
+      </div>
+    </ng-container>
+    <div class="overview_div" *ngIf="mediaDetails.overview">
+      <p class="overview_prefix">Overview:</p> <p class="overview">{{mediaDetails.overview}}</p>
+    </div>
+    <app-rating *ngIf="mediaDetails.vote_average" [ratingValue]="mediaDetails.vote_average"></app-rating>
+  </div>
+  <mat-icon class="close_icon" (click)="closeDialog()">close</mat-icon>
+</div>

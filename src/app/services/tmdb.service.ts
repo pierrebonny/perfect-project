@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {APIResult, CrewMember, Movie, MovieCredits} from '../types';
+import {APIResult, CrewMember, Media, MovieCredits} from '../types';
 import { map } from 'rxjs/operators';
 import * as moment from 'moment';
 
@@ -8,7 +8,7 @@ import * as moment from 'moment';
   providedIn: 'root'
 })
 
-// service dedicated to communicate with the movie DB API
+// service dedicated to communicate with the media DB API
 export class TmdbService {
 
   baseURL = 'https://api.themoviedb.org/3';
@@ -18,16 +18,20 @@ export class TmdbService {
   }
 
   // Recovering weekly trending movies from TMDB to display home screen list
-  getTrendingMovies() {
-   return this.http.get<APIResult>(`${this.baseURL}/trending/movie/week?api_key=${this.apiKey}`).pipe(map((apiResults) => {
-      apiResults.results.forEach((result: Movie) => {
+  getTrendingMedias() {
+   return this.http.get<APIResult>(`${this.baseURL}/trending/all/week?api_key=${this.apiKey}`).pipe(map((apiResults) => {
+      apiResults.results.forEach((result: Media) => {
         if (result.poster_path) { result.poster_path = `https://image.tmdb.org/t/p/original/${result.poster_path}`; }
-        if (result.id) { this.getMovieById(result.id).subscribe((movie) => {
+        if (result.id) { this.getMediaById(result.id, result.media_type).subscribe((movie) => {
           result.runtime = movie.runtime;
         }); }
         if (result.release_date) {
           const momentDate = moment(result.release_date);
           result.release_date = momentDate.format('LL');
+        }
+        if (result.first_air_date) {
+          const momentDate = moment(result.first_air_date);
+          result.first_air_date = momentDate.format('LL');
         }
       });
       return apiResults;
@@ -35,30 +39,34 @@ export class TmdbService {
   }
 
   /**
-   * Get movie details from TMDB thanks to movie ID
+   * Get media details from TMDB thanks to media ID
    */
-  getMovieById(id: number) {
-    return this.http.get<Movie>(`${this.baseURL}/movie/${id}?api_key=${this.apiKey}`).pipe(map((movie) => {
-      if (movie.poster_path) { movie.poster_path = `https://image.tmdb.org/t/p/original/${movie.poster_path}`; }
-      if (movie.release_date) {
-        const momentDate = moment(movie.release_date);
-        movie.release_date = momentDate.format('LL');
+  getMediaById(id: number, mediaType: string) {
+    return this.http.get<Media>(`${this.baseURL}/${mediaType}/${id}?api_key=${this.apiKey}`).pipe(map((media) => {
+      if (media.poster_path) { media.poster_path = `https://image.tmdb.org/t/p/original/${media.poster_path}`; }
+      if (media.release_date) {
+        const momentDate = moment(media.release_date);
+        media.release_date = momentDate.format('LL');
       }
-      return movie;
+      if (media.first_air_date) {
+        const momentDate = moment(media.first_air_date);
+        media.first_air_date = momentDate.format('LL');
+      }
+      return media;
     }));
   }
 
   /**
-   * Get movie director and 10 best actors names
+   * Get media director and 10 best actors names
    */
-  getMovieBestCredits(id: number) {
-    return this.http.get<MovieCredits>(`${this.baseURL}/movie/${id}/credits?api_key=${this.apiKey}`)
+  getMediaBestCredits(id: number, mediaType: string) {
+    return this.http.get<MovieCredits>(`${this.baseURL}/${mediaType}/${id}/credits?api_key=${this.apiKey}`)
       .pipe(map((movieCredits: MovieCredits) => {
       const result = {
         directorName: '',
         actorsNames: []
       };
-      // filtering all crew to get movie director
+      // filtering all crew to get media director
       if (movieCredits.crew) {
         const director = movieCredits.crew.find((crewMember: CrewMember) => {
           return crewMember.job === 'Director';

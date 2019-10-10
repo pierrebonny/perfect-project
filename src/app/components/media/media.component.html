@@ -1,0 +1,39 @@
+<img [src]="currentMedia.poster_path" alt="Media poster">
+<div class="media_infos">
+  <div class="media_infos_head">
+    <p class="media_title">{{currentMedia.title ? currentMedia.title : currentMedia.name}}</p>
+    <mat-icon *ngIf="currentMedia.media_type === 'tv'; else movieIcon" class="infos_icon" (click)="openDetailsDialog()">live_tv</mat-icon>
+    <ng-template #movieIcon>
+      <mat-icon *ngIf="currentMedia.media_type === 'movie'" class="infos_icon" (click)="openDetailsDialog()">movie</mat-icon>
+    </ng-template>
+  </div>
+  <p>Released on {{currentMedia.release_date ? currentMedia.release_date : currentMedia.first_air_date}}</p>
+  <p>Duration: {{currentMedia.runtime}} minutes</p>
+  <button
+    *ngIf="!isInList('seen'); else alreadyViewedLabel"
+    (click)="addToList('seen')"
+    class="already_seen_button"
+    mat-raised-button>Add to already viewed medias
+    <mat-icon>visibility</mat-icon>
+  </button>
+  <ng-template #alreadyViewedLabel>
+    <div class="list_item_div seen">
+      <p class="list_item_label">Marked as already viewed</p>
+      <mat-icon class="list_item_icon">check</mat-icon>
+    </div>
+  </ng-template>
+  <button
+    *ngIf="!isInList('mustSee'); else mustSeeLabel"
+    (click)="addToList('mustSee')"
+    class="must_see_button"
+    mat-raised-button>Add to must see medias
+    <mat-icon>edit</mat-icon>
+  </button>
+  <ng-template #mustSeeLabel>
+    <div class="list_item_div must_see">
+      <p class="list_item_label">Marked as must see</p>
+      <mat-icon class="list_item_icon">check</mat-icon>
+    </div>
+  </ng-template>
+  <app-rating *ngIf="currentMedia.vote_average" [ratingValue]="currentMedia.vote_average"></app-rating>
+</div>
