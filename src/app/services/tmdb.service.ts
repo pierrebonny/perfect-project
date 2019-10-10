@@ -17,6 +17,7 @@ export class TmdbService {
   constructor(private http: HttpClient) {
   }
 
+  // Recovering weekly trending movies from TMDB to display home screen list
   getTrendingMovies() {
    return this.http.get<APIResult>(`${this.baseURL}/trending/movie/week?api_key=${this.apiKey}`).pipe(map((apiResults) => {
       apiResults.results.forEach((result: Movie) => {
@@ -33,6 +34,9 @@ export class TmdbService {
    }));
   }
 
+  /**
+   * Get movie details from TMDB thanks to movie ID
+   */
   getMovieById(id: number) {
     return this.http.get<Movie>(`${this.baseURL}/movie/${id}?api_key=${this.apiKey}`).pipe(map((movie) => {
       if (movie.poster_path) { movie.poster_path = `https://image.tmdb.org/t/p/original/${movie.poster_path}`; }

@@ -14,10 +14,11 @@ export class MovieDetailsDialogComponent implements OnInit {
   movieBestCredits: MovieBestCredits;
 
   constructor(private tmdbService: TmdbService, private dialogRef: MatDialogRef<MovieDetailsDialogComponent>, @Inject(MAT_DIALOG_DATA) data) {
+    // getting movie details from previous component (movie component)
     this.movieDetails = data.movie;
+    // recovering important cast and crew from TMDB
     this.tmdbService.getMovieBestCredits(this.movieDetails.id).subscribe((movieBestCredits: MovieBestCredits) => {
       this.movieBestCredits = movieBestCredits;
-      console.log(movieBestCredits);
     });
   }
 

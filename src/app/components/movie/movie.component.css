@@ -9,11 +9,43 @@ img {
   position: relative;
 }
 
+.movie_infos p {
+  margin-bottom: 0;
+  margin-top: 0;
+  color: #4B515D;
+}
+.movie_infos .list_item_icon,
+.movie_infos .list_item_label {
+  color: #00C851;
+  display: inline;
+  vertical-align: middle;
+}
+
+.movie_infos button {
+  color: white;
+  background-color: #4B515D;
+}
+
+.movie_infos .list_item_icon,
+.movie_infos button mat-icon {
+  margin-left: 5px;
+}
+
+.movie_infos .list_item_div.must_see,
+.movie_infos .must_see_button {
+  margin-top: 10px;
+}
+.movie_infos .list_item_div.seen,
+.movie_infos .already_seen_button {
+  margin-top: 20px;
+}
+
 .movie_infos .movie_title {
   margin-top: 0;
   font-size: 26px;
   font-weight: bold;
-  color: gray;
+  color: #4B515D;
+  margin-bottom: 10px;
 }
 
 .movie_infos .movie_infos_head {
@@ -23,7 +55,7 @@ img {
 
 .movie_infos .movie_infos_head .infos_icon {
   font-size: 40px;
-  color: gray;
+  color: #4B515D;
   margin-right: 15px;
   cursor: pointer;
 }

@@ -9,7 +9,7 @@ img {
 .movie_details .movie_infos {
   width: 100%;
   margin-left: 10px;
-  color: dimgray;
+  color: #4B515D;
   position: relative;
 }
 
@@ -40,7 +40,7 @@ img {
   position: absolute;
   top: 0;
   right: 20px;
-  color: dimgray;
+  color: #4B515D;
   cursor: pointer;
   font-size: 40px;
 }

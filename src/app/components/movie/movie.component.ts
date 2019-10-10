@@ -18,14 +18,38 @@ export class MovieComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * open new dialog with movie cast, crew and overview
+   */
   openDetailsDialog() {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.width = '80%';
+    dialogConfig.width = '60%';
+    // getting movie details from TMDB
     this.tmdbService.getMovieById(this.currentMovie.id).subscribe(movie => {
       dialogConfig.data = {
         movie
       };
       this.dialog.open(MovieDetailsDialogComponent, dialogConfig);
     });
+  }
+
+  /**
+   * Adding current movie id to selected list into localstorage
+   */
+  addToList(listKey: string) {
+    let list = JSON.parse(localStorage.getItem(listKey));
+    if (!list) {
+      list = [];
+    }
+    list.push(this.currentMovie.id);
+    localStorage.setItem(listKey, JSON.stringify(list));
+  }
+
+  /**
+   * Checking whether or not current movie id is in selected list in local storage
+   */
+  isInList(listKey: string) {
+    const list = JSON.parse(localStorage.getItem(listKey));
+    return list && list.includes(this.currentMovie.id);
   }
 }
