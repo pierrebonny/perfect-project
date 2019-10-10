@@ -17,11 +17,11 @@ import {
   MatFormFieldModule, MatInputModule, MatCheckboxModule, MatPaginatorModule
 } from '@angular/material';
 import { MediaComponent } from './components/media/media.component';
-import { BarRatingModule } from 'ngx-bar-rating';
 import { MediaDetailsDialogComponent } from './components/media-details-dialog/media-details-dialog.component';
 import { RatingComponent } from './components/rating/rating.component';
 import {FormsModule} from '@angular/forms';
 import { ListButtonsComponent } from './components/list-buttons/list-buttons.component';
+import {NgxStarsModule} from 'ngx-stars';
 
 @NgModule({
   declarations: [
@@ -42,12 +42,12 @@ import { ListButtonsComponent } from './components/list-buttons/list-buttons.com
     MatGridListModule,
     MatIconModule,
     MatDialogModule,
-    BarRatingModule,
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
     MatCheckboxModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    NgxStarsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

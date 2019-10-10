@@ -2,9 +2,12 @@
   display: flex;
   position: absolute;
   justify-content: center;
+  align-items: center;
   width: 100%;
   bottom: -15px;
-}
-.rating_div .rating {
   margin-right: 5px;
+}
+
+p {
+  margin-left: 5px;
 }
