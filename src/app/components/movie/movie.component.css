@@ -6,6 +6,7 @@ img {
 .movie_infos {
   margin-left: 10px;
   width: 100%;
+  position: relative;
 }
 
 .movie_infos .movie_title {
@@ -18,12 +19,6 @@ img {
 .movie_infos .movie_infos_head {
   display: flex;
   justify-content: space-between;
-}
-
-.movie_infos .rating {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
 }
 
 .movie_infos .movie_infos_head .infos_icon {

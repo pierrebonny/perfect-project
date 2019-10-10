@@ -1,0 +1,10 @@
+.rating_div {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  width: 100%;
+  bottom: 0;
+}
+.rating_div .rating {
+  margin-right: 5px;
+}

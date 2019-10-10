@@ -28,3 +28,8 @@
   display: inline;
   text-align: center;
 }
+
+.movies_list {
+  max-width: 1150px;
+  margin: 0 auto;
+}

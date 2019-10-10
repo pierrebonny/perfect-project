@@ -1,0 +1,84 @@
+img {
+  width: 30%;
+}
+.movie_details {
+  display: flex;
+  position: relative;
+}
+
+.movie_details .movie_infos {
+  width: 100%;
+  margin-left: 10px;
+  color: dimgray;
+  position: relative;
+}
+
+.movie_details .movie_infos .movie_title {
+  margin-top: 0;
+  font-size: 26px;
+  font-weight: bold;
+  margin-right: 10px;
+  margin-bottom: 0;
+}
+
+.movie_details .movie_infos .director_div {
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+.movie_details .movie_infos .director_prefix {
+  font-weight: bold;
+  margin-right: 5px;
+  display: inline;
+
+}
+.movie_details .movie_infos .director_name {
+  margin-top: 5px;
+  display: inline;
+}
+
+.close_icon {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  color: dimgray;
+  cursor: pointer;
+  font-size: 40px;
+}
+
+.actor_name_div,
+.actor_name_div .actor_name,
+.actor_name_div .actor_name_comma,
+.with {
+  display: inline-block;
+  margin: 2px 0;
+}
+.actor_name_div .actor_name_comma,
+.with {
+  margin-right: 5px;
+}
+
+.with {
+  font-weight: bold;
+}
+
+.overview_div {
+  margin-top: 20px;
+}
+
+.overview_div .overview {
+  font-style: italic;
+  display: inline;
+}
+
+.overview_div .overview_prefix {
+  font-weight: bold;
+  display: inline;
+  margin-right: 5px;
+}
+
+.rating {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: -15px;
+  left: 50%;
+}

@@ -27,6 +27,38 @@ export interface Movie {
   tagline?: string;
 }
 
+export interface CastMember {
+  cast_id?: number;
+  character?: string;
+  credit_id?: number;
+  gender?: number;
+  id?: number;
+  name?: string;
+  order?: number;
+  profile_path?: string;
+}
+
+export  interface CrewMember {
+  credit_id?: number;
+  department?: string;
+  gender?: number;
+  id?: number;
+  name?: string;
+  job?: string;
+  profile_path?: string;
+}
+
+export  interface MovieBestCredits {
+  directorName?: string;
+  actorsNames?: Array<string>;
+}
+
+export interface MovieCredits {
+  cast?: Array<CastMember>;
+  crew?: Array<CrewMember>;
+  id?: number;
+}
+
 export interface APIResult {
   page: number;
   results: Array<Movie>;

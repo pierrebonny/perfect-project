@@ -1,0 +1,4 @@
+<div class="rating_div" *ngIf="ratingValue">
+  <bar-rating class="rating" [readOnly]="true" [rate]="ratingValue" [max]="10" [theme]="'fontawesome-o'"></bar-rating>
+  <p class="rating_text">{{ratingValue}}</p>
+</div>
