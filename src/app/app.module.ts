@@ -14,12 +14,14 @@ import {
   MatListModule,
   MatDialogModule,
   MatButtonModule,
-  MatFormFieldModule, MatInputModule
+  MatFormFieldModule, MatInputModule, MatCheckboxModule, MatPaginatorModule
 } from '@angular/material';
 import { MediaComponent } from './components/media/media.component';
 import { BarRatingModule } from 'ngx-bar-rating';
 import { MediaDetailsDialogComponent } from './components/media-details-dialog/media-details-dialog.component';
 import { RatingComponent } from './components/rating/rating.component';
+import {FormsModule} from '@angular/forms';
+import { ListButtonsComponent } from './components/list-buttons/list-buttons.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { RatingComponent } from './components/rating/rating.component';
     HomePageComponent,
     MediaComponent,
     MediaDetailsDialogComponent,
-    RatingComponent
+    RatingComponent,
+    ListButtonsComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,10 @@ import { RatingComponent } from './components/rating/rating.component';
     MatDialogModule,
     BarRatingModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    FormsModule,
+    MatCheckboxModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent],

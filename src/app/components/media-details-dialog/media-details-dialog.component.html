@@ -15,6 +15,8 @@
     <div class="overview_div" *ngIf="mediaDetails.overview">
       <p class="overview_prefix">Overview:</p> <p class="overview">{{mediaDetails.overview}}</p>
     </div>
+    <app-list-buttons [currentList]="'seen'" [currentMedia]="this.mediaDetails"></app-list-buttons>
+    <app-list-buttons [currentList]="'mustSee'" [currentMedia]="this.mediaDetails"></app-list-buttons>
     <app-rating *ngIf="mediaDetails.vote_average" [ratingValue]="mediaDetails.vote_average"></app-rating>
   </div>
   <mat-icon class="close_icon" (click)="closeDialog()">close</mat-icon>

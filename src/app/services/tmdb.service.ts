@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 import {APIResult, CrewMember, Media, MovieCredits} from '../types';
-import { map } from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 import * as moment from 'moment';
 
 @Injectable({
@@ -18,8 +18,8 @@ export class TmdbService {
   }
 
   // Recovering weekly trending movies from TMDB to display home screen list
-  getTrendingMedias() {
-   return this.http.get<APIResult>(`${this.baseURL}/trending/all/week?api_key=${this.apiKey}`).pipe(map((apiResults) => {
+  getTrendingMedias(mediaType: string, currentPage: number) {
+   return this.http.get<APIResult>(`${this.baseURL}/trending/${mediaType}/week?api_key=${this.apiKey}&page=${currentPage}`).pipe(map((apiResults) => {
       apiResults.results.forEach((result: Media) => {
         if (result.poster_path) { result.poster_path = `https://image.tmdb.org/t/p/original/${result.poster_path}`; }
         if (result.id) { this.getMediaById(result.id, result.media_type).subscribe((movie) => {
@@ -33,6 +33,10 @@ export class TmdbService {
           const momentDate = moment(result.first_air_date);
           result.first_air_date = momentDate.format('LL');
         }
+      });
+      // remove trending persons
+      apiResults.results = apiResults.results.filter((result: Media) => {
+        return result.media_type === 'movie' || result.media_type === 'tv';
       });
       return apiResults;
    }));

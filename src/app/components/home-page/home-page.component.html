@@ -3,8 +3,21 @@
   <h1 class="home_page_title">Weekly top trending medias</h1>
 </div>
 <mat-grid-list gutterSize="0px" cols="2" rowHeight="300px" class="medias_list">
+  <div class="checkboxes">
+    <div class="movie_checkbox_div">
+      <mat-icon class="movie_checkbox_icon" matSuffix>movie</mat-icon>
+      <p>Movies</p>
+      <mat-checkbox [(ngModel)]="movieChecked" (change)="filterMediasByType()" checked class="movie_checkbox"></mat-checkbox>
+    </div>
+    <div class="tv_checkbox_div">
+      <mat-icon class="tv_checkbox_icon" matSuffix>live_tv</mat-icon>
+      <p>TV shows</p>
+      <mat-checkbox [(ngModel)]="tvChecked" (change)="filterMediasByType()" checked class="tv_checkbox"></mat-checkbox>
+    </div>
+  </div>
   <mat-form-field class="search_bar">
-    <input type="tel" matInput placeholder="Search by title">
+    <input matInput placeholder="Search by title" [(ngModel)]="mediaResearch" type="text" name="mediaResearch" id="mediaResearch"
+           (ngModelChange)="this.mediaResearchUpdate.next($event)">
     <mat-icon class="search_icon" matSuffix>search</mat-icon>
   </mat-form-field>
   <mat-grid-tile *ngFor="let media of mediasList">
@@ -13,4 +26,10 @@
       </app-media>
     </mat-card>
   </mat-grid-tile>
+  <mat-paginator
+    class="paginator"
+    [length]="totalPages"
+    pageSize="19"
+    (page)="changePage($event)">
+  </mat-paginator>
 </mat-grid-list>

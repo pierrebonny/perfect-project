@@ -11,9 +11,9 @@
   cursor: pointer;
 }
 .home_page_title_div {
-  margin: 20px auto;
   width: fit-content;
   color: #4B515D;
+  margin: 20px auto 70px;
 }
 .home_page_title_icon {
   background-repeat: no-repeat;
@@ -37,10 +37,47 @@
 .medias_list {
   max-width: 1150px;
   margin: 0 auto;
+  margin-top: 40px;
 }
 
 .search_bar {
   position: absolute;
-  top: -65px;
+  top: -45px;
   right: 10px;
+}
+
+.checkboxes {
+  display: flex;
+  position: absolute;
+  top: -40px;
+  left: 10px;
+  width: 100%;
+  color: #4B515D;
+}
+
+.checkboxes .tv_checkbox_div,
+.checkboxes .movie_checkbox_div {
+  display: flex;
+  align-items: center;
+  width: 15%;
+}
+
+.checkboxes p {
+  margin-right: 15px;
+  margin-left: 2px;
+}
+
+::ng-deep .mat-checkbox .mat-checkbox-frame {
+  border-color: #4B515D;
+}
+
+::ng-deep .mat-checkbox-checked .mat-checkbox-background {
+  background-color: #4B515D !important;
+}
+
+.paginator {
+  position: absolute;
+  width: calc(100% - 20px);
+  bottom: -60px;
+  left: 10px;
 }

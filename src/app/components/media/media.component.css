@@ -14,30 +14,9 @@ img {
   margin-top: 0;
   color: #4B515D;
 }
-.media_infos .list_item_icon,
-.media_infos .list_item_label {
-  color: #00C851;
-  display: inline;
-  vertical-align: middle;
-}
 
-.media_infos button {
-  color: white;
-  background-color: #4B515D;
-}
-
-.media_infos .list_item_icon,
 .media_infos button mat-icon {
   margin-left: 5px;
-}
-
-.media_infos .list_item_div.must_see,
-.media_infos .must_see_button {
-  margin-top: 10px;
-}
-.media_infos .list_item_div.seen,
-.media_infos .already_seen_button {
-  margin-top: 20px;
 }
 
 .media_infos .media_title {
@@ -55,7 +34,7 @@ img {
 
 .media_infos .infos_icon {
   font-size: 30px;
-  color: #4B515D;
+  color: #bfbfbf;
   margin-right: 15px;
 }
 
