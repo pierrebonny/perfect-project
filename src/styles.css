@@ -1,14 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~ngx-bar-rating/themes/br-fontawesome-o-theme.css';
-@import '~ngx-bar-rating/themes/br-stars-theme.css';
 
 html, body { height: 100%; background-color: #bfbfbf;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .br-fontawesome-o .br-selected:after {
-  content: '\f005';
   color: #f0d355;
 }
 .br-fontawesome-o .br-fraction:after {
-  content: '\f123';
   color: #f0d355;
 }
