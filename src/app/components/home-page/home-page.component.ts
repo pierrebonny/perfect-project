@@ -16,11 +16,16 @@ export class HomePageComponent implements OnInit {
   mediasList: Array<Media> = [];
   // full list
   fullMediasList: Array<Media> = [];
+  // research bar model
   mediaResearch: string;
   mediaResearchUpdate = new Subject<string>();
+  // Checkboxes models
   movieChecked = true;
   tvChecked = true;
+
+  // current media types selected (movie, tv shows, both of them)
   currentlyRequestedMediaType = 'all';
+
   currentPage = 1;
   totalPages = 0;
 
@@ -45,7 +50,6 @@ export class HomePageComponent implements OnInit {
 
   // get medias by type from TMDB
   filterMediasByType() {
-    this.mediaResearch = '';
     if (this.movieChecked && this.tvChecked) {
       this.currentlyRequestedMediaType = 'all';
     } else if (this.movieChecked) {
@@ -59,6 +63,7 @@ export class HomePageComponent implements OnInit {
       this.tmdbService.getTrendingMedias(this.currentlyRequestedMediaType, this.currentPage).subscribe(trendingMedias => {
         this.mediasList = trendingMedias.results;
         this.fullMediasList = trendingMedias.results;
+        this.filterMediasByUserEntry();
       });
     }
   }
@@ -70,11 +75,13 @@ export class HomePageComponent implements OnInit {
     });
   }
 
+  // on click on paginator get next or previous page from TMDB
   changePage($event: PageEvent) {
     this.currentPage = $event.pageIndex + 1;
     this.tmdbService.getTrendingMedias(this.currentlyRequestedMediaType, this.currentPage).subscribe(trendingMedias => {
       this.mediasList = trendingMedias.results;
       this.fullMediasList = trendingMedias.results;
+      // if user entered string in search bar apply it in next page
       this.filterMediasByUserEntry();
     });
   }

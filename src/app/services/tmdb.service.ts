@@ -22,9 +22,11 @@ export class TmdbService {
    return this.http.get<APIResult>(`${this.baseURL}/trending/${mediaType}/week?api_key=${this.apiKey}&page=${currentPage}`).pipe(map((apiResults) => {
       apiResults.results.forEach((result: Media) => {
         if (result.poster_path) { result.poster_path = `https://image.tmdb.org/t/p/original/${result.poster_path}`; }
+        // get movie runtime from TMDB
         if (result.id) { this.getMediaById(result.id, result.media_type).subscribe((movie) => {
           result.runtime = movie.runtime;
         }); }
+        // format dates with moment js
         if (result.release_date) {
           const momentDate = moment(result.release_date);
           result.release_date = momentDate.format('LL');

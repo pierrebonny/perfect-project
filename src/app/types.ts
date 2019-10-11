@@ -1,3 +1,9 @@
+/**
+ * Defining useful and quite complex types to be used in the app
+ * Types from TMDB (Media, CastMember, CrewMember, MovieCredits)
+ * Homemade types (APIResult, MovieBestCredits)
+ */
+
 export interface Media {
   id?: number;
   vote_average?: number;
