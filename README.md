@@ -2,7 +2,7 @@
 
 To launch project:  
 -go into root directory  
--type npm install
+-type npm install  
 -type ng serve  
 -open a browser and open localhost:4200
 
