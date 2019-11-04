@@ -7,7 +7,7 @@ import {TmdbService} from '../../services/tmdb.service';
 @Component({
   selector: 'app-media',
   templateUrl: './media.component.html',
-  styleUrls: ['./media.component.css']
+  styleUrls: ['./media.component.scss']
 })
 export class MediaComponent implements OnInit {
 
@@ -28,7 +28,7 @@ export class MediaComponent implements OnInit {
     this.tmdbService.getMediaById(this.currentMedia.id, this.currentMedia.media_type).subscribe(media => {
       dialogConfig.data = {
         mediaType: this.currentMedia.media_type,
-        media
+        media,
       };
       this.dialog.open(MediaDetailsDialogComponent, dialogConfig);
     });

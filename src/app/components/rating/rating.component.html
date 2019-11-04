@@ -1,4 +1,9 @@
 <div class="rating_div" *ngIf="ratingValue">
-  <ngx-stars [readonly]="true" [maxStars]="10" [initialStars]="ratingValue" [color]="'#f0d355'"></ngx-stars>
+  <ngx-stars
+    [readonly]="true"
+    [maxStars]="10"
+    [initialStars]="ratingValue"
+    color="#f0d355"
+  ></ngx-stars>
   <p class="rating_text">{{ratingValue}}</p>
 </div>
