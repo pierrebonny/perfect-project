@@ -80,16 +80,6 @@ export class TmdbService {
         media.poster_path = `https://image.tmdb.org/t/p/original/${media.poster_path}`;
       }
 
-      if (media.release_date) {
-        const momentDate = moment(media.release_date);
-        media.release_date = momentDate.format('LL');
-      }
-
-      if (media.first_air_date) {
-        const momentDate = moment(media.first_air_date);
-        media.first_air_date = momentDate.format('LL');
-      }
-
       return media;
     }));
   }

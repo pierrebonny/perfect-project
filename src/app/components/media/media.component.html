@@ -1,4 +1,4 @@
-<img [src]="currentMedia.poster_path" alt="Media poster">
+<img *ngIf="currentMedia.poster_path" [src]="currentMedia.poster_path" alt="Media poster">
 <div class="media_infos">
   <div class="media_infos_head">
     <p class="media_title">{{currentMedia.title ? currentMedia.title : currentMedia.name}}</p>
@@ -7,7 +7,7 @@
       <mat-icon *ngIf="currentMedia.media_type === 'movie'" class="infos_icon" (click)="openDetailsDialog()">movie</mat-icon>
     </ng-template>
   </div>
-  <p>Released on {{currentMedia.release_date ? currentMedia.release_date : currentMedia.first_air_date}}</p>
+  <p>Released on {{ (CurrentMedia.release_date ? currentMedia.release_date : currentMedia.first_air_date) | tmdbDate:'L' }}</p>
   <p>Duration: {{currentMedia.runtime}} minutes</p>
   <app-list-buttons [currentList]="'seen'" [currentMedia]="currentMedia"></app-list-buttons>
   <app-list-buttons [currentList]="'mustSee'" [currentMedia]="currentMedia"></app-list-buttons>
