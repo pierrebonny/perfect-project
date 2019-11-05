@@ -13,7 +13,7 @@ export class MediaComponent implements OnInit {
 
   @Input () currentMedia: Media;
 
-  constructor(private dialog: MatDialog, private  tmdbService: TmdbService) { }
+  constructor(private dialog: MatDialog, public tmdbService: TmdbService) { }
 
   ngOnInit() {
   }

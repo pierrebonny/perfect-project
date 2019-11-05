@@ -22,6 +22,7 @@ import { RatingComponent } from './components/rating/rating.component';
 import {FormsModule} from '@angular/forms';
 import { ListButtonsComponent } from './components/list-buttons/list-buttons.component';
 import {NgxStarsModule} from 'ngx-stars';
+import { TmdbDatePipe } from './pipes/tmdb-date/tmdb-date.pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {NgxStarsModule} from 'ngx-stars';
     MediaComponent,
     MediaDetailsDialogComponent,
     RatingComponent,
-    ListButtonsComponent
+    ListButtonsComponent,
+    TmdbDatePipe
   ],
   imports: [
     BrowserModule,

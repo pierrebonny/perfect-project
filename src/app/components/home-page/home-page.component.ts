@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {TmdbService} from '../../services/tmdb.service';
-import {Media} from '../../types';
-import {Subject} from 'rxjs';
-import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
-import {PageEvent} from '@angular/material';
+import { Component, OnInit } from '@angular/core';
+import { TmdbService } from '../../services/tmdb.service';
+import { Media } from '../../types';
+import { Subject, Subscription, of, interval } from 'rxjs';
+import { debounceTime, distinctUntilChanged, take } from 'rxjs/operators';
+import { PageEvent } from '@angular/material';
 
 @Component({
   selector: 'app-home-page',
@@ -28,8 +28,9 @@ export class HomePageComponent implements OnInit {
 
   currentPage = 1;
   totalPages = 0;
+  private subscriptions = new Subscription();
 
-  constructor(private  tmdbService: TmdbService) {
+  constructor(private tmdbService: TmdbService) {
     // create event to call tmdb when user tries to filter media list
     this.mediaResearchUpdate.pipe(
       debounceTime(400),
@@ -40,12 +41,29 @@ export class HomePageComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Getting trending medias list to be displayed
-    this.tmdbService.getTrendingMedias(this.currentlyRequestedMediaType, this.currentPage).subscribe(trendingMedias => {
-      this.mediasList = trendingMedias.results;
-      this.fullMediasList = trendingMedias.results;
-      this.totalPages = trendingMedias.total_pages;
+    // Cold vs Hot Observable example
+    of(1, 2, 3).subscribe({
+      next: value => console.log(value),
+      complete: () => console.log('complete'),
     });
+    interval(1000).pipe(take(4)).subscribe({
+      next: value => console.log(value),
+      complete: () => console.log('complete'),
+    });
+
+    // Getting trending medias list to be displayed
+    const subscription = this.tmdbService.getTrendingMedias(this.currentlyRequestedMediaType, this.currentPage)
+      .subscribe(trendingMedias => {
+        this.mediasList = trendingMedias.results;
+        this.fullMediasList = trendingMedias.results;
+        this.totalPages = trendingMedias.total_pages;
+      });
+
+    this.subscriptions.add(subscription);
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 
   // get medias by type from TMDB

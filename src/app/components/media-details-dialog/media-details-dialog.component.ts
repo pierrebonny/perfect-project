@@ -14,7 +14,7 @@ export class MediaDetailsDialogComponent implements OnInit {
   mediaType: string;
   mediaBestCredits: MovieBestCredits;
 
-  constructor(private tmdbService: TmdbService, private dialogRef: MatDialogRef<MediaDetailsDialogComponent>, @Inject(MAT_DIALOG_DATA) data) {
+  constructor(public tmdbService: TmdbService, private dialogRef: MatDialogRef<MediaDetailsDialogComponent>, @Inject(MAT_DIALOG_DATA) data) {
     // getting media details from previous component (media component)
     this.mediaDetails = data.media;
     this.mediaType = data.mediaType;
