@@ -64,7 +64,7 @@ export class TmdbService {
 
   private filterMovieAndTv(apiResults: APIResult) {
     apiResults.results = apiResults.results.filter((result: Media) => {
-      return result.media_type === 'person';// || result.media_type === 'tv';
+      return result.media_type === 'movie' || result.media_type === 'tv';
     });
   }
 }

@@ -41,16 +41,6 @@ export class HomePageComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Cold vs Hot Observable example
-    of(1, 2, 3).subscribe({
-      next: value => console.log(value),
-      complete: () => console.log('complete'),
-    });
-    interval(1000).pipe(take(4)).subscribe({
-      next: value => console.log(value),
-      complete: () => console.log('complete'),
-    });
-
     // Getting trending medias list to be displayed
     const subscription = this.tmdbService.getTrendingMedias(this.currentlyRequestedMediaType, this.currentPage)
       .subscribe(trendingMedias => {
