@@ -1,16 +1,20 @@
 <button
+type="button"
   *ngIf="!isInList(); else alreadyAddedLabel"
   (click)="addToList($event)"
-  [ngClass]="'not_added_button '+this.currentList"
-  mat-raised-button>{{buttonLabels[this.currentList].before}}
-  <mat-icon>{{icons[this.currentList]}}</mat-icon>
+  [ngClass]="this.currentList"
+  class="not_added_button"
+  mat-raised-button>{{ buttonLabels[this.currentList].before }}
+  <mat-icon>{{ icons[this.currentList] }}</mat-icon>
 </button>
 <ng-template #alreadyAddedLabel>
   <div class="list_item_div">
     <button
+    type="button"
       (click)="addToList($event)"
-      [ngClass]="'already_added_button ' + this.currentList"
-      mat-raised-button>{{buttonLabels[this.currentList].after}}
+      [ngClass]="this.currentList"
+      class="already_added_button"
+      mat-raised-button>{{ buttonLabels[this.currentList].after }}
       <mat-icon>check</mat-icon>
     </button>
   </div>

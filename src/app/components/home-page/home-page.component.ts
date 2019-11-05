@@ -24,7 +24,7 @@ export class HomePageComponent implements OnInit {
   tvChecked = true;
 
   // current media types selected (movie, tv shows, both of them)
-  currentlyRequestedMediaType = 'all';
+  private currentlyRequestedMediaType = 'all';
 
   currentPage = 1;
   totalPages = 0;
@@ -49,33 +49,31 @@ export class HomePageComponent implements OnInit {
   }
 
   // get medias by type from TMDB
-  filterMediasByType() {
-    if (this.movieChecked && this.tvChecked) {
-      this.currentlyRequestedMediaType = 'all';
-    } else if (this.movieChecked) {
-      this.currentlyRequestedMediaType = 'movie';
-    } else if (this.tvChecked) {
-      this.currentlyRequestedMediaType = 'tv';
-    } else {
-      this.mediasList = [];
-    }
-    if (this.movieChecked || this.tvChecked) {
-      this.tmdbService.getTrendingMedias(this.currentlyRequestedMediaType, this.currentPage).subscribe(trendingMedias => {
+  public filterMediasByType() {
+    this.currentlyRequestedMediaType = this.getTypeFilter();
+
+    this.tmdbService.getTrendingMedias(this.currentlyRequestedMediaType, this.currentPage)
+      .subscribe(trendingMedias => {
         this.mediasList = trendingMedias.results;
         this.fullMediasList = trendingMedias.results;
+        this.totalPages = trendingMedias.total_pages;
         this.filterMediasByUserEntry();
       });
-    }
   }
-  // filtering all current page medias by keeping only ones starting by user entry string
+  /**
+   * filtering all current page medias by keeping only ones starting by user entry string
+   */
   filterMediasByUserEntry() {
-    this.mediasList = this.fullMediasList.filter((media: Media) => {
-      return media.title && media.title.toLowerCase().startsWith(this.mediaResearch.toLowerCase())
-        || media.name && media.name.toLowerCase().startsWith(this.mediaResearch.toLowerCase());
+    this.tmdbService.getMediaByName(this.mediaResearch).subscribe(medias => {
+      this.mediasList = medias.results;
+      this.fullMediasList = medias.results;
+      this.totalPages = medias.total_pages;
     });
   }
 
-  // on click on paginator get next or previous page from TMDB
+  /**
+   * on click on paginator get next or previous page from TMDB
+   */
   changePage($event: PageEvent) {
     this.currentPage = $event.pageIndex + 1;
     this.tmdbService.getTrendingMedias(this.currentlyRequestedMediaType, this.currentPage).subscribe(trendingMedias => {
@@ -84,5 +82,21 @@ export class HomePageComponent implements OnInit {
       // if user entered string in search bar apply it in next page
       this.filterMediasByUserEntry();
     });
+  }
+
+  private getTypeFilter(): string {
+    if (this.movieChecked && this.tvChecked) {
+      return 'all';
+    }
+
+    if (this.movieChecked) {
+      return 'movie';
+    }
+
+    if (this.tvChecked) {
+      return  'tv';
+    }
+
+    return null;
   }
 }

@@ -22,6 +22,7 @@ import { RatingComponent } from './components/rating/rating.component';
 import {FormsModule} from '@angular/forms';
 import { ListButtonsComponent } from './components/list-buttons/list-buttons.component';
 import {NgxStarsModule} from 'ngx-stars';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import {NgxStarsModule} from 'ngx-stars';
     MatCheckboxModule,
     MatPaginatorModule,
     NgxStarsModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

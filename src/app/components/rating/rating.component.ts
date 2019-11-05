@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-rating',
@@ -7,13 +7,8 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 
 // Component used to improve reuse of external rating component
-export class RatingComponent implements OnInit {
+export class RatingComponent {
 
   @Input () ratingValue: number;
-
-  constructor() { }
-
-  ngOnInit() {
-  }
 
 }
