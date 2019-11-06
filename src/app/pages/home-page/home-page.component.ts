@@ -1,33 +1,33 @@
-import {Component, OnInit} from '@angular/core';
-import {TmdbService} from '../../services/tmdb.service';
-import {Media} from '../../types';
-import {Subject} from 'rxjs';
-import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
-import {PageEvent} from '@angular/material';
+import { Subject, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Media } from '../../types';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { TmdbService } from '../../services/tmdb.service';
+import { PageEvent, MatPaginator } from '@angular/material';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css']
 })
-export class HomePageComponent implements OnInit {
+export class HomePageComponent implements OnInit, OnDestroy {
+
+  @ViewChild('paginator', { static: false }) paginator: MatPaginator;
 
   // displayed list
   mediasList: Array<Media> = [];
-  // full list
-  fullMediasList: Array<Media> = [];
+
   // research bar model
   mediaResearch: string;
   mediaResearchUpdate = new Subject<string>();
-  // Checkboxes models
-  movieChecked = true;
-  tvChecked = true;
 
-  // current media types selected (movie, tv shows, both of them)
-  private currentlyRequestedMediaType = 'all';
+  // radioboxes model
+  currentMediaType = 'movie';
 
   currentPage = 1;
   totalPages = 0;
+
+  private subscriptions = new Subscription();
 
   constructor(private  tmdbService: TmdbService) {
     // create event to call tmdb when user tries to filter media list
@@ -41,34 +41,22 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit() {
     // Getting trending medias list to be displayed
-    this.tmdbService.getTrendingMedias(this.currentlyRequestedMediaType, this.currentPage).subscribe(trendingMedias => {
+    const subscription = this.tmdbService.getTrendingMedias(this.currentMediaType, this.currentPage).subscribe(trendingMedias => {
       this.mediasList = trendingMedias.results;
-      this.fullMediasList = trendingMedias.results;
       this.totalPages = trendingMedias.total_pages;
     });
-  }
 
-  // get medias by type from TMDB
-  public filterMediasByType() {
-    this.currentlyRequestedMediaType = this.getTypeFilter();
-
-    this.tmdbService.getTrendingMedias(this.currentlyRequestedMediaType, this.currentPage)
-      .subscribe(trendingMedias => {
-        this.mediasList = trendingMedias.results;
-        this.fullMediasList = trendingMedias.results;
-        this.totalPages = trendingMedias.total_pages;
-        this.filterMediasByUserEntry();
-      });
+    this.subscriptions.add(subscription);
   }
   /**
    * filtering all current page medias by keeping only ones starting by user entry string
    */
   filterMediasByUserEntry() {
-    this.tmdbService.getMediaByName(this.mediaResearch).subscribe(medias => {
+    const subscription = this.tmdbService.getMediaByName(this.currentMediaType).subscribe(medias => {
       this.mediasList = medias.results;
-      this.fullMediasList = medias.results;
       this.totalPages = medias.total_pages;
     });
+    this.subscriptions.add(subscription);
   }
 
   /**
@@ -76,27 +64,26 @@ export class HomePageComponent implements OnInit {
    */
   changePage($event: PageEvent) {
     this.currentPage = $event.pageIndex + 1;
-    this.tmdbService.getTrendingMedias(this.currentlyRequestedMediaType, this.currentPage).subscribe(trendingMedias => {
+    const subscription = this.tmdbService.getTrendingMedias(this.currentMediaType, this.currentPage).subscribe(trendingMedias => {
       this.mediasList = trendingMedias.results;
-      this.fullMediasList = trendingMedias.results;
-      // if user entered string in search bar apply it in next page
-      this.filterMediasByUserEntry();
     });
+    this.subscriptions.add(subscription);
   }
 
-  private getTypeFilter(): string {
-    if (this.movieChecked && this.tvChecked) {
-      return 'all';
-    }
+  /**
+   * When user click on any radio button change media type displayed
+   */
+  mediaChange() {
+    this.currentPage = 1;
+    this.paginator.pageIndex = 0;
+    const subscription = this.tmdbService.getTrendingMedias(this.currentMediaType, this.currentPage).subscribe(trendingMedias => {
+      this.mediasList = trendingMedias.results;
+      this.totalPages = trendingMedias.total_pages;
+    });
+    this.subscriptions.add(subscription);
+  }
 
-    if (this.movieChecked) {
-      return 'movie';
-    }
-
-    if (this.tvChecked) {
-      return  'tv';
-    }
-
-    return null;
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 }

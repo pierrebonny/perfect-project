@@ -12,7 +12,7 @@ import {
   MatListModule,
   MatDialogModule,
   MatButtonModule,
-  MatFormFieldModule, MatInputModule, MatCheckboxModule, MatPaginatorModule
+  MatFormFieldModule, MatInputModule, MatRadioModule, MatPaginatorModule
 } from '@angular/material';
 
 import { HomePageComponent } from './pages/home-page/home-page.component';
@@ -25,6 +25,7 @@ import {NgxStarsModule} from 'ngx-stars';
 import { AppRoutingModule } from './app-routing.module';
 import { MediaGridComponent } from './components/media-grid/media-grid.component';
 import { TmdbDatePipe } from './pipes/tmdb-date/tmdb -date.pipe';
+import { TmdbImgPathPipe } from './pipes/tmdb-img-path/tmdb-img-path.pipe';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { TmdbDatePipe } from './pipes/tmdb-date/tmdb -date.pipe';
     ListButtonsComponent,
     MediaGridComponent,
     TmdbDatePipe,
+    TmdbImgPathPipe,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,7 @@ import { TmdbDatePipe } from './pipes/tmdb-date/tmdb -date.pipe';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    MatCheckboxModule,
+    MatRadioModule,
     MatPaginatorModule,
     NgxStarsModule,
     AppRoutingModule,

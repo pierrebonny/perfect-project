@@ -1,5 +1,5 @@
 <div class="media_details">
-  <img [src]="mediaDetails.poster_path" alt="Media poster">
+  <img *ngIf="mediaDetails.poster_path" [src]="mediaDetails.poster_path | tmdbImgPath" alt="Media poster">
   <div class="media_infos">
     <p class="media_title">{{mediaDetails.title ? mediaDetails.title : mediaDetails.name}}</p>
     <div class="director_div" *ngIf="mediaBestCredits && mediaBestCredits.directorName">

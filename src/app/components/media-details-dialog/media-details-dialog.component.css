@@ -1,5 +1,6 @@
 img {
   width: 30%;
+  height: 100%;
 }
 .media_details {
   display: flex;

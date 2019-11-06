@@ -1,5 +1,5 @@
 import * as moment from 'moment';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { APIResult, CrewMember, Media, MovieCredits } from '../types';
@@ -18,34 +18,9 @@ export class TmdbService {
 
   constructor(private http: HttpClient) {}
 
-  private formatMediasInfos(apiResults: APIResult) {
-    apiResults.results.forEach((result: Media) => {
-      if (result.poster_path) {
-        result.poster_path = `https://image.tmdb.org/t/p/original/${result.poster_path}`;
-      }
-
-      // get movie runtime from TMDB
-      if (result.id) {
-        this.getMediaById(result.id, result.media_type)
-          .subscribe((movie) => {
-            result.runtime = movie.runtime;
-          });
-      }
-
-      // format dates with moment js
-      if (result.release_date) {
-        const momentDate = moment(result.release_date);
-        result.release_date = momentDate.format('LL');
-      }
-
-      if (result.first_air_date) {
-        const momentDate = moment(result.first_air_date);
-        result.first_air_date = momentDate.format('LL');
-      }
-    });
-  }
-
-  // Recovering weekly trending movies from TMDB to display home screen list
+  /**
+   * Recovering weekly trending movies from TMDB to display home screen list
+   */
   public getTrendingMedias(mediaType: string, currentPage: number): Observable<APIResult> {
     if (!mediaType) {
       return of({
@@ -56,32 +31,14 @@ export class TmdbService {
       });
     }
 
-    return this.http.get<APIResult>(`${this.baseURL}/trending/${mediaType}/week?api_key=${this.apiKey}&page=${currentPage}`)
-      .pipe(
-        map((apiResults) => {
-          this.formatMediasInfos(apiResults);
-
-          // remove trending persons
-          apiResults.results = apiResults.results.filter((result: Media) => {
-            return result.media_type === 'movie' || result.media_type === 'tv';
-          });
-
-          return apiResults;
-        })
-      );
+    return this.http.get<APIResult>(`${this.baseURL}/trending/${mediaType}/week?api_key=${this.apiKey}&page=${currentPage}`);
   }
 
   /**
    * Get media details from TMDB thanks to media ID
    */
   public getMediaById(id: number, mediaType: string) {
-    return this.http.get<Media>(`${this.baseURL}/${mediaType}/${id}?api_key=${this.apiKey}`).pipe(map((media) => {
-      if (media.poster_path) {
-        media.poster_path = `https://image.tmdb.org/t/p/original/${media.poster_path}`;
-      }
-
-      return media;
-    }));
+    return this.http.get<Media>(`${this.baseURL}/${mediaType}/${id}?api_key=${this.apiKey}`);
   }
 
   /**
@@ -119,16 +76,16 @@ export class TmdbService {
       );
   }
 
+  /**
+   * Find any media by it's name
+   */
   public getMediaByName(mediaName: string) {
     return this.http.get<APIResult>(`${this.baseURL}/search/multi?api_key=${this.apiKey}&include_adult=false&query=${mediaName}`)
       .pipe(
-        map((apiResults: APIResult) => {
-          this.formatMediasInfos(apiResults);
+        tap((apiResults: APIResult) => {
           apiResults.results = apiResults.results.filter((result: Media) => {
             return result.media_type === 'movie' || result.media_type === 'tv';
           });
-
-          return apiResults;
         })
       );
   }

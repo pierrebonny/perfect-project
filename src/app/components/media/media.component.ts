@@ -1,17 +1,20 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { Media } from '../../types';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { MediaDetailsDialogComponent } from '../media-details-dialog/media-details-dialog.component';
 import { TmdbService } from '../../services/tmdb.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-media',
   templateUrl: './media.component.html',
   styleUrls: ['./media.component.css']
 })
-export class MediaComponent {
+export class MediaComponent implements OnDestroy {
 
   @Input () currentMedia: Media;
+
+  private subscriptions = new Subscription();
 
   constructor(private dialog: MatDialog, private  tmdbService: TmdbService) {}
 
@@ -19,15 +22,22 @@ export class MediaComponent {
    * open new dialog with media cast, crew and overview
    */
   openDetailsDialog() {
+
     const dialogConfig = new MatDialogConfig();
     dialogConfig.width = '80%';
-    // getting media details from TMDB
-    this.tmdbService.getMediaById(this.currentMedia.id, this.currentMedia.media_type).subscribe(media => {
+
+    // getting media 10 best actors and director's name
+    const subscription = this.tmdbService.getMediaById(this.currentMedia.id, this.currentMedia.media_type).subscribe(media => {
       dialogConfig.data = {
         mediaType: this.currentMedia.media_type,
         media,
       };
       this.dialog.open(MediaDetailsDialogComponent, dialogConfig);
     });
+    this.subscriptions.add(subscription);
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 }
