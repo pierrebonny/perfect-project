@@ -1,23 +1,9 @@
-<div class="home_page_title_div">
-  <mat-icon class="home_page_title_icon">thumb_up</mat-icon>
-  <h1 class="home_page_title">Weekly top trending medias</h1>
-</div>
-<div class="medias_list">
-    <mat-radio-group (change)="mediaChange()" [(ngModel)]="currentMediaType" class="radio-group">
-      <mat-radio-button class="radio-button"  color="primary" value="movie">Movies</mat-radio-button>
-      <mat-radio-button class="radio-button" color="primary" value="tv">TV Shows</mat-radio-button>
-    </mat-radio-group>
-    <mat-form-field class="search_bar">
-      <input matInput placeholder="Search by title" [(ngModel)]="mediaResearch" type="text" name="mediaResearch" id="mediaResearch"
-        (ngModelChange)="this.mediaResearchUpdate.next($event)">
-      <mat-icon class="search_icon" matSuffix>search</mat-icon>
-    </mat-form-field>
-    <app-media-grid [mediasList]="this.mediasList"></app-media-grid>
-    <mat-paginator
-      #paginator
-      class="paginator"
-      [length]="totalPages"
-      pageSize="19"
-      (page)="changePage($event)">
-    </mat-paginator>
-</div>
+<app-main-page-layout
+  [mediasList]="mediasList$ | async"
+  (mediaChanged)="changeType($event)"
+  (pageChanged)="changePage($event)"
+  [totalResults]="totalResults">
+  <ng-container title [ngSwitch]="this.changeType$ | async">
+    <h1 class="home-page-title">Weekly top trending medias</h1>
+  </ng-container>
+</app-main-page-layout>

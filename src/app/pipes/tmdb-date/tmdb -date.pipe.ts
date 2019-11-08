@@ -7,7 +7,7 @@ import * as moment from 'moment';
 })
 export class TmdbDatePipe implements PipeTransform {
 
-  transform(dateStr: string, format = 'LL'): string {
+  transform(dateStr: string, format = 'YYYY'): string {
     const momentDate = moment(dateStr);
     return momentDate.format(format);
   }

@@ -13,6 +13,7 @@ import { Subscription } from 'rxjs';
 export class MediaComponent implements OnDestroy {
 
   @Input () currentMedia: Media;
+  @Input () mediaType: string;
 
   private subscriptions = new Subscription();
 
@@ -22,14 +23,13 @@ export class MediaComponent implements OnDestroy {
    * open new dialog with media cast, crew and overview
    */
   openDetailsDialog() {
-
     const dialogConfig = new MatDialogConfig();
     dialogConfig.width = '80%';
 
     // getting media 10 best actors and director's name
-    const subscription = this.tmdbService.getMediaById(this.currentMedia.id, this.currentMedia.media_type).subscribe(media => {
+    const subscription = this.tmdbService.getMediaById(this.currentMedia.id, this.mediaType).subscribe(media => {
       dialogConfig.data = {
-        mediaType: this.currentMedia.media_type,
+        mediaType: this.mediaType,
         media,
       };
       this.dialog.open(MediaDetailsDialogComponent, dialogConfig);

@@ -62,13 +62,10 @@ export class TmdbService {
             }
           }
 
-          // getting best actors until 10
           if (movieCredits.cast) {
-            let i = 0;
-            while (i < 10 && movieCredits.cast[i]) {
-              result.actorsNames.push(movieCredits.cast[i].name);
-              i++;
-            }
+            result.actorsNames = movieCredits.cast
+            .slice(0, Math.min(10, movieCredits.cast.length)) // getting up to 10 actors
+            .map(actorName => actorName.name); // getting actors names only
           }
 
           return result;
@@ -79,14 +76,9 @@ export class TmdbService {
   /**
    * Find any media by it's name
    */
-  public getMediaByName(mediaName: string) {
-    return this.http.get<APIResult>(`${this.baseURL}/search/multi?api_key=${this.apiKey}&include_adult=false&query=${mediaName}`)
-      .pipe(
-        tap((apiResults: APIResult) => {
-          apiResults.results = apiResults.results.filter((result: Media) => {
-            return result.media_type === 'movie' || result.media_type === 'tv';
-          });
-        })
-      );
+  public getMediaByName(mediaName: string, mediaType: string, page: number = 1) {
+    return this.http.get<APIResult>(
+      `${this.baseURL}/search/${mediaType}?api_key=${this.apiKey}&page=${page}&include_adult=false&query=${mediaName}`
+    );
   }
 }

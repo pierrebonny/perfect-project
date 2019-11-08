@@ -1,9 +1,9 @@
-.media_component {
+.media-component {
   height: 100%;
   width: 100%;
   display: flex;
 }
-.media_card {
+.media-card {
   height: calc(100% - 40px);
   width: calc(100% - 20px);
   padding: 10px;

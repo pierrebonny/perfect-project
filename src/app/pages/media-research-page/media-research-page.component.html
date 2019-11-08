@@ -1,0 +1,22 @@
+<app-main-page-layout
+  [mediasList]="mediasList$ | async"
+  (mediaChanged)="changeType($event)"
+  (pageChanged)="changePage($event)"
+  [totalResults]="totalResults">
+  <ng-container title [ngSwitch]="this.changeType$ | async">
+    <h1 *ngSwitchCase="'movie'" class="media-research-page-title">Search any movie</h1>
+    <h1 *ngSwitchCase="'tv'" class="media-research-page-title">Search any tv show</h1>
+  </ng-container>
+  <mat-form-field search-bar color="primary" class="search-bar">
+    <input
+    matInput
+    placeholder="Search by title"
+    [(ngModel)]="mediaResearch"
+    type="text"
+    name="mediaResearch"
+    id="mediaResearch"
+    (ngModelChange)="this.mediaResearchUpdate.next($event)"
+    >
+    <mat-icon class="search-icon" matSuffix>search</mat-icon>
+  </mat-form-field>
+</app-main-page-layout>

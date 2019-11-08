@@ -1,0 +1,35 @@
+<div class="title-div">
+  <mat-icon class="title-icon">search</mat-icon>
+  <ng-content select="[title]"></ng-content>
+</div>
+<div class="medias-list">
+  <mat-radio-group (change)="mediaChange($event)" value="movie" class="radio-group">
+    <div class="radio-button-div">
+        <mat-radio-button class="radio-button" color="primary" value="movie">Movies</mat-radio-button>
+        <mat-icon>movie</mat-icon>
+    </div>
+    <div class="radio-button-div">
+        <mat-radio-button class="radio-button" color="primary" value="tv">TV Shows</mat-radio-button>
+        <mat-icon>live_tv</mat-icon>
+    </div>
+  </mat-radio-group>
+  <ng-content select="[search-bar]">
+  </ng-content>
+  <ng-container *ngIf="mediasList else warningDiv">
+    <app-media-grid
+      *ngIf="mediasList && mediasList.length else warningDiv"
+      [mediasList]="mediasList"
+      [mediasType]="this.mediaChanged | async"
+      ></app-media-grid>
+  </ng-container>
+  <ng-template #warningDiv>
+      <h2 class="warning">No result found</h2>
+  </ng-template>
+  <mat-paginator
+      #paginator
+      class="paginator"
+      [length]="totalResults"
+      pageSize="20"
+      (page)="changePage($event)">
+    </mat-paginator>
+</div>

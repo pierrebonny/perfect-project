@@ -1,0 +1,10 @@
+.search-bar {
+  position: absolute;
+  top: -65px;
+  right: 10px;
+}
+
+.media-research-page-title {
+  display: inline;
+  text-align: center;
+}

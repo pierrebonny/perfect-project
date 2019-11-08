@@ -9,5 +9,6 @@ import { Media } from '../../types';
 export class MediaGridComponent {
 
   @Input () mediasList: Array<Media>;
+  @Input () mediasType: string;
 
 }

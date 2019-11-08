@@ -2,19 +2,19 @@ img {
   width: 30%;
   height: 100%;
 }
-.media_details {
+.media-details {
   display: flex;
   position: relative;
 }
 
-.media_details .media_infos {
+.media-details .media-infos {
   width: 100%;
   margin-left: 10px;
   color: #4B515D;
   position: relative;
 }
 
-.media_details .media_infos .media_title {
+.media-details .media-infos .media-title {
   margin-top: 0;
   font-size: 26px;
   font-weight: bold;
@@ -22,22 +22,22 @@ img {
   margin-bottom: 0;
 }
 
-.media_details .media_infos .director_div {
+.media-details .media-infos .director-div {
   margin-top: 5px;
   margin-bottom: 20px;
 }
-.media_details .media_infos .director_prefix {
+.media-details .media-infos .director-prefix {
   font-weight: bold;
   margin-right: 5px;
   display: inline;
 
 }
-.media_details .media_infos .director_name {
+.media-details .media-infos .director-name {
   margin-top: 5px;
   display: inline;
 }
 
-.close_icon {
+.close-icon {
   position: absolute;
   top: 0;
   right: 20px;
@@ -46,14 +46,14 @@ img {
   font-size: 40px;
 }
 
-.actor_name_div,
-.actor_name_div .actor_name,
-.actor_name_div .actor_name_comma,
+.actor-name-div,
+.actor-name-div .actor-name,
+.actor-name-div .actor-name-comma,
 .with {
   display: inline-block;
   margin: 2px 0;
 }
-.actor_name_div .actor_name_comma,
+.actor-name-div .actor-name-comma,
 .with {
   margin-right: 5px;
 }
@@ -62,16 +62,16 @@ img {
   font-weight: bold;
 }
 
-.overview_div {
+.overview-div {
   margin-top: 20px;
 }
 
-.overview_div .overview {
+.overview-div .overview {
   font-style: italic;
   display: inline;
 }
 
-.overview_div .overview_prefix {
+.overview-div .overview-prefix {
   font-weight: bold;
   display: inline;
   margin-right: 5px;

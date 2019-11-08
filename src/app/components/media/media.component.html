@@ -1,14 +1,13 @@
 <img *ngIf="currentMedia.poster_path" [src]="currentMedia.poster_path | tmdbImgPath" alt="Media poster">
-<div class="media_infos">
-  <div class="media_infos_head">
-    <p class="media_title">{{currentMedia.title ? currentMedia.title : currentMedia.name}}</p>
-    <mat-icon *ngIf="currentMedia.media_type === 'tv'; else movieIcon" class="infos_icon" (click)="openDetailsDialog()">live_tv</mat-icon>
+<div class="media-infos">
+  <div class="media-infos-head">
+    <p class="media-title">{{currentMedia.title ? currentMedia.title : currentMedia.name}}</p>
+    <mat-icon *ngIf="currentMedia.media_type === 'tv'; else movieIcon" class="infos-icon" (click)="openDetailsDialog()">live_tv</mat-icon>
     <ng-template #movieIcon>
-      <mat-icon *ngIf="currentMedia.media_type === 'movie'" class="infos_icon" (click)="openDetailsDialog()">movie</mat-icon>
+      <mat-icon *ngIf="currentMedia.media_type === 'movie'" class="infos-icon" (click)="openDetailsDialog()">movie</mat-icon>
     </ng-template>
   </div>
-  <p>Released on {{ (currentMedia.release_date ? currentMedia.release_date : currentMedia.first_air_date) | tmdbDate:'ll' }}</p>
-  <p>Duration: {{currentMedia.runtime}} minutes</p>
+  <p>Released on {{ (currentMedia.release_date ? currentMedia.release_date : currentMedia.first_air_date) | tmdbDate:'YYYY' }}</p>
   <app-list-buttons [currentList]="'seen'" [currentMedia]="currentMedia"></app-list-buttons>
   <app-list-buttons [currentList]="'mustSee'" [currentMedia]="currentMedia"></app-list-buttons>
   <app-rating *ngIf="currentMedia.vote_average" [ratingValue]="currentMedia.vote_average"></app-rating>

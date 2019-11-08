@@ -1,7 +1,7 @@
 <mat-grid-list gutterSize="0px" cols="2" rowHeight="300px">
   <mat-grid-tile *ngFor="let media of mediasList">
-    <mat-card class="media_card" (click)="mediaChild.openDetailsDialog()">
-      <app-media class="media_component" #mediaChild [currentMedia]="media">
+    <mat-card class="media-card" (click)="mediaChild.openDetailsDialog()">
+      <app-media class="media-component" #mediaChild [currentMedia]="media" [mediaType]="mediasType">
       </app-media>
     </mat-card>
   </mat-grid-tile>
