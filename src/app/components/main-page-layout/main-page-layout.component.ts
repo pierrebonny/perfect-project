@@ -15,11 +15,16 @@ export class MainPageLayoutComponent {
 
   @Input () totalResults: number;
 
+  public mediasType = 'movie';
+
   @Output() mediaChanged = new EventEmitter<string>();
   @Output() pageChanged = new EventEmitter<number>();
 
+  constructor() {}
+
   public mediaChange(type: { value: string }) {
     this.mediaChanged.emit(type.value);
+    this.mediasType = type.value;
     this.reset();
   }
 

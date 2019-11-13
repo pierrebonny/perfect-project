@@ -1,8 +1,8 @@
 import { Subscription } from 'rxjs';
 import { Component, Inject, OnDestroy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { Media, MovieBestCredits } from '../../types';
-import { TmdbService } from '../../services/tmdb.service';
+import { Media, MediaBestCredits } from '../../types';
+import { TmdbService } from '../../services/tmdb/tmdb.service';
 
 @Component({
   selector: 'app-media-details-dialog',
@@ -13,7 +13,7 @@ export class MediaDetailsDialogComponent implements OnDestroy {
 
   mediaDetails: Media;
   mediaType: string;
-  mediaBestCredits: MovieBestCredits;
+  mediaBestCredits: MediaBestCredits;
   private subscriptions = new Subscription();
 
   constructor(
@@ -35,8 +35,8 @@ export class MediaDetailsDialogComponent implements OnDestroy {
      * Recovering important cast and crew from TMDB
      */
     const subscription = this.tmdbService.getMediaBestCredits(this.mediaDetails.id, this.mediaType)
-      .subscribe((movieBestCredits: MovieBestCredits) => {
-        this.mediaBestCredits = movieBestCredits;
+      .subscribe((mediaBestCredits: MediaBestCredits) => {
+        this.mediaBestCredits = mediaBestCredits;
       });
     this.subscriptions.add(subscription);
   }

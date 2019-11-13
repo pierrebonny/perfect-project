@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Media} from '../../types';
+import { Component, Input, OnInit } from '@angular/core';
+import { Media } from '../../types';
+import { LocalStorageService } from 'src/app/services/localstorage/localStorage.service';
 
 @Component({
   selector: 'app-list-buttons',
@@ -9,7 +10,6 @@ import {Media} from '../../types';
 export class ListButtonsComponent implements OnInit {
 
   @Input () currentMedia: Media;
-  @Input () currentList: string;
 
   // variable labels and icons name depending on currentList value;
   buttonLabels = {
@@ -23,43 +23,38 @@ export class ListButtonsComponent implements OnInit {
     }
   };
 
-  icons = {
-    seen: 'visibility',
-    mustSee: 'edit'
-  };
+  public seen = false;
+  public mustSee = false;
 
-  constructor() { }
+  constructor(private localStorageService: LocalStorageService) {}
 
   ngOnInit() {
+    this.localStorageService.isInList('seen', this.currentMedia.id.toString());
+    this.localStorageService.isInList('mustSee', this.currentMedia.id.toString());
   }
 
 
   /**
    * Adding current media id to selected list into localstorage
+   * Disabling other button if needed
    */
-  addToList($event) {
-    $event.stopPropagation();
-    let list = JSON.parse(localStorage.getItem(this.currentList));
+  updateList(type: string) {
+    // updating button status
+    this[type] = !this[type];
+    // getting list from local storage
+    let list = this.localStorageService.getList(type);
+    const otherType = type === 'seen' ? 'mustSee' : 'seen';
     if (!list) {
       list = [];
     }
-    if (list.includes(this.currentMedia.id)) {
-      const index = list.indexOf(this.currentMedia.id);
-      if (index > -1) {
-        list.splice(index, 1);
-      }
+    const index = list.indexOf(this.currentMedia.id.toString());
+    if (index >= 0) {
+      this.localStorageService.removeItem(type, this.currentMedia.id.toString());
+      return;
     } else {
-      list.push(this.currentMedia.id);
+      this.localStorageService.addItem(type, this.currentMedia.id.toString());
+      this[otherType] = false;
+      this.localStorageService.removeItem(otherType, this.currentMedia.id.toString());
     }
-    localStorage.setItem(this.currentList, JSON.stringify(list));
   }
-
-  /**
-   * Checking whether or not current media id is in selected list in local storage
-   */
-  isInList() {
-    const list = JSON.parse(localStorage.getItem(this.currentList));
-    return list && list.includes(this.currentMedia.id);
-  }
-
 }

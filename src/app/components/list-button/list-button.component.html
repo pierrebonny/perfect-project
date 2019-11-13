@@ -1,0 +1,9 @@
+<div class="list-item-div">
+  <button
+    type="button"
+    (click)="onButtonClick($event, buttonType)"
+    [ngClass]="buttonType"
+    [class]="isSelected ? 'already-added' : 'not-added'"
+    mat-stroked-button>{{ buttonType }}
+  </button>
+</div>

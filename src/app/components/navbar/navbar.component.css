@@ -1,0 +1,61 @@
+.navbar {
+  background-color: #121212;
+  padding-left: 139px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px #505050 solid;
+}
+
+.title {
+  color: #ffffff;
+  font-family: roboto;
+  font-size: 35px;
+  margin: 16px 45px 16px 0;
+  font-weight: normal;
+}
+
+md-tab-group {
+  background-color: pink;
+}
+
+.mat-tab-body-wrapper {
+  color: white;
+  background-color: red;
+}
+/deep/ .mat-tab-label.mat-tab-label-active {
+  color: white;
+  opacity: 1;
+}
+/deep/ .mat-tab-label {
+  color: white;
+  font-size: 16px;
+  position: relative;
+}
+
+/deep/ .mat-ink-bar {
+  background-color: transparent!important;
+  height: 9px!important;
+}
+
+/deep/ .mat-ink-bar:after {
+  content: "";
+  position: absolute;
+  top: 14px;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  width: 0;
+  height: 0;
+  border-bottom: solid 9px #ffffff;
+  border-left: solid 8px transparent;
+  border-right: solid 8px transparent;
+}
+/deep/ .mat-tab-header {
+  overflow: inherit !important;
+}
+/deep/ .mat-tab-label-container {
+  overflow: inherit !important;
+}
+/deep/ .mat-ripple {
+  overflow: inherit !important;
+}

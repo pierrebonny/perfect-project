@@ -7,8 +7,7 @@
       <mat-icon *ngIf="currentMedia.media_type === 'movie'" class="infos-icon" (click)="openDetailsDialog()">movie</mat-icon>
     </ng-template>
   </div>
-  <p>Released on {{ (currentMedia.release_date ? currentMedia.release_date : currentMedia.first_air_date) | tmdbDate:'YYYY' }}</p>
-  <app-list-buttons [currentList]="'seen'" [currentMedia]="currentMedia"></app-list-buttons>
-  <app-list-buttons [currentList]="'mustSee'" [currentMedia]="currentMedia"></app-list-buttons>
+  <div><p class="release-date" i18n="@@releaseDate">Released on</p> {{ (currentMedia.release_date ? currentMedia.release_date : currentMedia.first_air_date) | tmdbDate:'YYYY' }}</div>
+  <app-list-buttons [currentMedia]="currentMedia"></app-list-buttons>
   <app-rating *ngIf="currentMedia.vote_average" [ratingValue]="currentMedia.vote_average"></app-rating>
 </div>

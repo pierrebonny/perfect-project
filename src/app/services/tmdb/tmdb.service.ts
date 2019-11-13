@@ -1,8 +1,7 @@
-import * as moment from 'moment';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { APIResult, CrewMember, Media, MovieCredits } from '../types';
+import { APIResult, Media, MovieCredits } from '../../types';
 import { of, Observable } from 'rxjs';
 
 /**

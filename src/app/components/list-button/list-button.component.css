@@ -1,0 +1,27 @@
+.not-added {
+  color: white;
+  background-color: #4B515D;
+}
+
+.already-added {
+  color: white;
+  background-color: #00C851;
+}
+
+.list-item_icon {
+  margin-left: 5px;
+}
+
+.list-item_icon,
+.list-item_label {
+  color: #00C851;
+  display: inline;
+  vertical-align: middle;
+}
+
+button {
+  width: 103px;
+  height: 35px;
+  z-index: 10;
+  margin-right: 11px;
+}

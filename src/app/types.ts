@@ -1,7 +1,7 @@
 /**
  * Defining useful and quite complex types to be used in the app
- * Types from TMDB (Media, CastMember, CrewMember, MovieCredits)
- * Homemade types (APIResult, MovieBestCredits)
+ * Types from TMDB (Media, CastMember, CrewMember, MediaCredits)
+ * Homemade types (APIResult, MediaBestCredits)
  */
 
 export interface Media {
@@ -38,7 +38,7 @@ export  interface CrewMember {
   profile_path?: string;
 }
 
-export  interface MovieBestCredits {
+export  interface MediaBestCredits {
   directorName?: string;
   actorsNames?: Array<string>;
 }

@@ -12,7 +12,11 @@ import {
   MatListModule,
   MatDialogModule,
   MatButtonModule,
-  MatFormFieldModule, MatInputModule, MatRadioModule, MatPaginatorModule
+  MatTabsModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatRadioModule,
+  MatPaginatorModule
 } from '@angular/material';
 
 import { HomePageComponent } from './pages/home-page/home-page.component';
@@ -28,6 +32,9 @@ import { TmdbDatePipe } from './pipes/tmdb-date/tmdb -date.pipe';
 import { TmdbImgPathPipe } from './pipes/tmdb-img-path/tmdb-img-path.pipe';
 import { MediaResearchPageComponent } from './pages/media-research-page/media-research-page.component';
 import { MainPageLayoutComponent } from './components/main-page-layout/main-page-layout.component';
+import { ListButtonComponent } from './components/list-button/list-button.component';
+import { HookComponent } from './components/hook/hook.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +49,9 @@ import { MainPageLayoutComponent } from './components/main-page-layout/main-page
     TmdbImgPathPipe,
     MediaResearchPageComponent,
     MainPageLayoutComponent,
+    ListButtonComponent,
+    HookComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,6 +65,7 @@ import { MainPageLayoutComponent } from './components/main-page-layout/main-page
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
+    MatTabsModule,
     FormsModule,
     MatRadioModule,
     MatPaginatorModule,

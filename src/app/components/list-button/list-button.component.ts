@@ -1,0 +1,23 @@
+import { Component, Input, EventEmitter, Output } from '@angular/core';
+
+@Component({
+  selector: 'app-list-button',
+  templateUrl: './list-button.component.html',
+  styleUrls: ['./list-button.component.css']
+})
+export class ListButtonComponent {
+
+  @Input () buttonType: string;
+  @Input () mediaId: string;
+  @Input () isSelected: boolean;
+
+  @Output() buttonClicked = new EventEmitter<string>();
+
+  constructor() { }
+
+  public onButtonClick($event, type: string) {
+    $event.stopPropagation();
+    this.buttonClicked.emit(type);
+  }
+
+}

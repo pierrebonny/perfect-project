@@ -5,11 +5,11 @@
 <div class="medias-list">
   <mat-radio-group (change)="mediaChange($event)" value="movie" class="radio-group">
     <div class="radio-button-div">
-        <mat-radio-button class="radio-button" color="primary" value="movie">Movies</mat-radio-button>
+        <mat-radio-button class="radio-button" color="primary" value="movie" i18n="@@movies">Movies</mat-radio-button>
         <mat-icon>movie</mat-icon>
     </div>
     <div class="radio-button-div">
-        <mat-radio-button class="radio-button" color="primary" value="tv">TV Shows</mat-radio-button>
+        <mat-radio-button class="radio-button" color="primary" value="tv" i18n="@@tvShows">TV Shows</mat-radio-button>
         <mat-icon>live_tv</mat-icon>
     </div>
   </mat-radio-group>
@@ -19,11 +19,11 @@
     <app-media-grid
       *ngIf="mediasList && mediasList.length else warningDiv"
       [mediasList]="mediasList"
-      [mediasType]="this.mediaChanged | async"
+      [mediasType]="this.mediasType"
       ></app-media-grid>
   </ng-container>
   <ng-template #warningDiv>
-      <h2 class="warning">No result found</h2>
+      <h2 class="warning" i18n="@@noResult">No result found</h2>
   </ng-template>
   <mat-paginator
       #paginator

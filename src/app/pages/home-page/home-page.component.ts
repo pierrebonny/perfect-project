@@ -1,8 +1,8 @@
-import { Subject, Observable, of, combineLatest, BehaviorSubject } from 'rxjs';
+import { Subject, Observable, BehaviorSubject } from 'rxjs';
 import { switchMap, map, startWith } from 'rxjs/operators';
 import { Media } from 'src/app/types';
 import { Component, AfterViewInit, ViewChild } from '@angular/core';
-import { TmdbService } from 'src/app/services/tmdb.service';
+import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import { MainPageLayoutComponent } from 'src/app/components/main-page-layout/main-page-layout.component';
 
 @Component({
@@ -15,13 +15,13 @@ export class HomePageComponent implements AfterViewInit {
 
   @ViewChild(MainPageLayoutComponent, { static: false }) layoutComponent: MainPageLayoutComponent;
 
-  mediasList$: Observable<Media[]>;
+  public mediasList$: Observable<Media[]>;
 
-  currentPage = 1;
-  totalResults = 0;
+  private currentPage = 1;
+  public totalResults = 0;
 
   private changePage$ = new Subject<number>();
-  private changeType$ = new BehaviorSubject<string>('movie');
+  public changeType$ = new BehaviorSubject<string>('movie');
 
   constructor(private  tmdbService: TmdbService) {}
 

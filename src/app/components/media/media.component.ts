@@ -2,7 +2,7 @@ import { Component, Input, OnDestroy } from '@angular/core';
 import { Media } from '../../types';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { MediaDetailsDialogComponent } from '../media-details-dialog/media-details-dialog.component';
-import { TmdbService } from '../../services/tmdb.service';
+import { TmdbService } from '../../services/tmdb/tmdb.service';
 import { Subscription } from 'rxjs';
 
 @Component({

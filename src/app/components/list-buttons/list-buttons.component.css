@@ -1,30 +1,4 @@
-.seen {
-  margin-top: 20px;
-}
-
-.mustSee {
-  margin-top: 10px;
-}
-
-.not_added_button {
-  color: white;
-  background-color: #4B515D;
-  width: 100%;
-}
-
-.already_added_button {
-  color: white;
-  background-color: #00C851;
-  width: 100%;
-}
-
-.list_item_icon {
-  margin-left: 5px;
-}
-
-.list_item_icon,
-.list_item_label {
-  color: #00C851;
-  display: inline;
-  vertical-align: middle;
+.buttons-div {
+  display: flex;
+  align-items: center;
 }
