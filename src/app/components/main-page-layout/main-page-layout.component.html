@@ -1,35 +1,39 @@
-<div class="title-div">
-  <mat-icon class="title-icon">search</mat-icon>
-  <ng-content select="[title]"></ng-content>
-</div>
-<div class="medias-list">
-  <mat-radio-group (change)="mediaChange($event)" value="movie" class="radio-group">
-    <div class="radio-button-div">
-        <mat-radio-button class="radio-button" color="primary" value="movie" i18n="@@movies">Movies</mat-radio-button>
-        <mat-icon>movie</mat-icon>
+<div class="layout-content">
+    <div class="media-type-selection" [ngClass]="additionalClass">
+        <button
+          class="media-type_button"
+          [ngClass]="mediasType.value === 'movie' ? 'on' : ''"
+          (click)="mediaChange({ value: 'movie', label: 'Movies' })"
+          i18n="@@main-page-layout.movies"
+        >Movies</button>
+        <button
+          class="media-type_button"
+          [ngClass]="mediasType.value === 'tv' ? 'on' : ''"
+          (click)="mediaChange({ value: 'tv', label: 'TV Shows' })"
+          i18n="@@main-page-layout.tv"
+        >TV Shows</button>
+        <ng-content select="[search-bar]">
+        </ng-content>
     </div>
-    <div class="radio-button-div">
-        <mat-radio-button class="radio-button" color="primary" value="tv" i18n="@@tvShows">TV Shows</mat-radio-button>
-        <mat-icon>live_tv</mat-icon>
+    <ng-content select="[hook]">
+      </ng-content>
+    <div class="medias-list" [ngClass]="additionalClass">
+      <ng-container *ngIf="mediasList else warningDiv">
+        <app-media-grid
+          *ngIf="mediasList && mediasList.length else warningDiv"
+          [mediasList]="mediasList"
+          [mediasType]="this.mediasType"
+          ></app-media-grid>
+      </ng-container>
+      <ng-template #warningDiv>
+          <h2 class="warning" i18n="@@main-page-layout.no-result">No result found</h2>
+      </ng-template>
+      <mat-paginator
+          #paginator
+          class="paginator"
+          [length]="totalResults"
+          pageSize="20"
+          (page)="changePage($event)">
+        </mat-paginator>
     </div>
-  </mat-radio-group>
-  <ng-content select="[search-bar]">
-  </ng-content>
-  <ng-container *ngIf="mediasList else warningDiv">
-    <app-media-grid
-      *ngIf="mediasList && mediasList.length else warningDiv"
-      [mediasList]="mediasList"
-      [mediasType]="this.mediasType"
-      ></app-media-grid>
-  </ng-container>
-  <ng-template #warningDiv>
-      <h2 class="warning" i18n="@@noResult">No result found</h2>
-  </ng-template>
-  <mat-paginator
-      #paginator
-      class="paginator"
-      [length]="totalResults"
-      pageSize="20"
-      (page)="changePage($event)">
-    </mat-paginator>
 </div>

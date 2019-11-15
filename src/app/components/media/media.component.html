@@ -1,13 +1,15 @@
-<img *ngIf="currentMedia.poster_path" [src]="currentMedia.poster_path | tmdbImgPath" alt="Media poster">
-<div class="media-infos">
-  <div class="media-infos-head">
-    <p class="media-title">{{currentMedia.title ? currentMedia.title : currentMedia.name}}</p>
-    <mat-icon *ngIf="currentMedia.media_type === 'tv'; else movieIcon" class="infos-icon" (click)="openDetailsDialog()">live_tv</mat-icon>
-    <ng-template #movieIcon>
-      <mat-icon *ngIf="currentMedia.media_type === 'movie'" class="infos-icon" (click)="openDetailsDialog()">movie</mat-icon>
-    </ng-template>
+<p class="media-vote">{{currentMedia.vote_average ? currentMedia.vote_average : ''}}</p>
+<img class="poster_img" *ngIf="currentMedia.poster_path; else warningTemplate" [src]="currentMedia.poster_path | tmdbImgPath" alt="Media poster">
+<ng-template #warningTemplate>
+  <div class="empty-poster">
+    <img class="empty-poster_img" src="./../../../assets/Icon-emptyposter.svg">
   </div>
-  <div><p class="release-date" i18n="@@releaseDate">Released on</p> {{ (currentMedia.release_date ? currentMedia.release_date : currentMedia.first_air_date) | tmdbDate:'YYYY' }}</div>
+</ng-template>
+<div class="media-infos">
+  <p class="media-type">{{ mediaType.label }}</p>
+  <h2 class="media-title">{{currentMedia.title ? currentMedia.title : currentMedia.name}}</h2>
+  <p class="release-date"><b i18n="@@media.release-date">Released on</b> {{ (currentMedia.release_date ? currentMedia.release_date : currentMedia.first_air_date) | tmdbDate:'YYYY' }}</p>
+  <div class="overview" *ngIf="currentMedia.overview">{{currentMedia.overview}}</div>
+  <a class="details-link" (click)="openDetailsDialog()" i18n="@@media.details-link">See details</a>
   <app-list-buttons [currentMedia]="currentMedia"></app-list-buttons>
-  <app-rating *ngIf="currentMedia.vote_average" [ratingValue]="currentMedia.vote_average"></app-rating>
 </div>

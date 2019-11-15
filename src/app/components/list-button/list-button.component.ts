@@ -7,7 +7,8 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
 })
 export class ListButtonComponent {
 
-  @Input () buttonType: string;
+  @Input () label: string;
+  @Input () listName: string;
   @Input () mediaId: string;
   @Input () isSelected: boolean;
 
@@ -15,9 +16,9 @@ export class ListButtonComponent {
 
   constructor() { }
 
-  public onButtonClick($event, type: string) {
+  public onButtonClick($event) {
     $event.stopPropagation();
-    this.buttonClicked.emit(type);
+    this.buttonClicked.emit(this.listName);
   }
 
 }

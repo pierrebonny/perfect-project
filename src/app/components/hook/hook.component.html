@@ -1,23 +1,27 @@
-<div class="hook">
-    <img *ngIf="(currentMedia$ | async)?.backdrop_path" [src]="(currentMedia$ | async)?.backdrop_path | tmdbImgPath">
-    <div class="media-view">
-      <p class="media-type">{{ this.mediaType.toUpperCase() }}</p>
-      <h1 class="title">{{ (this.currentMedia$ | async)?.title ? (this.currentMedia$ | async)?.title : (this.currentMedia$ | async)?.name }}</h1>
-      <p class="overview">{{ (this.currentMedia$ | async)?.overview }}</p>
-      <p><b i18n="@@releaseDate">Released on: </b> {{ (this.currentMedia$ | async)?.release_date }}</p>
-      <p><b i18n="@@duration">Duration: </b> {{ (this.currentMedia$ | async)?.runtime }} minutes</p>
-      <p><b i18n="@@directorName">Directed by: </b> {{ (this.currentMediaCredits$ | async)?.directorName }}</p>
-      <div class="cast">
-        <p class="with" i18n="@@with">With:</p>
-        <ng-container *ngIf="(this.currentMediaCredits$ | async) && (this.currentMediaCredits$ | async)?.actorsNames as actorsNames">
-          <div class="actor-name-div" *ngFor="let actorName of actorsNames; index as i">
-            <p class="actor-name">{{actorName}}</p>
-            <p class="actor-name-comma" *ngIf="i < actorsNames.length - 1">,</p>
+<ng-container *ngIf="currentMedia$ | async as currentMedia">
+  <ng-container *ngIf="currentMediaCredits$ | async as currentMediaCredits">
+      <div class="hook">
+          <img *ngIf="currentMedia.backdrop_path" [src]="currentMedia.backdrop_path | tmdbImgPath">
+          <div class="hook_media-view">
+            <p class="media-type">{{ this.mediaType.label }}</p>
+            <h1 class="title">{{ currentMedia.title ? currentMedia.title : currentMedia.name }}<p class="popularity">{{ currentMedia.vote_average }}</p></h1>
+            <p class="overview">{{ currentMedia.overview }}</p>
+            <p><b i18n="@@hook.release-date">Released on: </b> {{ (currentMedia.release_date ? currentMedia.release_date : currentMedia.first_air_date)| tmdbDate:'YYYY' }}</p>
+            <p><b i18n="@@hook.duration">Duration: </b> {{ currentMedia.runtime ? currentMedia.runtime : currentMedia.episode_run_time }} minutes</p>
+            <p><b i18n="@@hook.directorName" *ngIf="currentMediaCredits.directorName">Directed by: </b> {{ currentMediaCredits.directorName }}</p>
+            <div class="cast">
+              <p class="with" i18n="@@hook.with">With:</p>
+              <ng-container *ngIf="currentMediaCredits.actorsNames as actorsNames">
+                <div class="actor-name-div" *ngFor="let actorName of actorsNames; index as i">
+                  <p class="actor-name">{{actorName}}</p>
+                  <p class="actor-name-comma" *ngIf="i < actorsNames.length - 1">,</p>
+                </div>
+              </ng-container>
+            </div>
           </div>
-        </ng-container>
-      </div>
-    </div>
-    <ng-container *ngIf="(currentMedia$ | async) as currentMedia">
-      <app-list-buttons [currentMedia]="currentMedia"></app-list-buttons>
-    </ng-container>
-</div>
+          <ng-container *ngIf="currentMedia">
+            <app-list-buttons [currentMedia]="currentMedia"></app-list-buttons>
+          </ng-container>
+        </div>
+  </ng-container>
+</ng-container>

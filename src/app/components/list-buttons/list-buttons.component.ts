@@ -1,44 +1,52 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Media } from '../../types';
 import { LocalStorageService } from 'src/app/services/localstorage/localStorage.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-list-buttons',
   templateUrl: './list-buttons.component.html',
   styleUrls: ['./list-buttons.component.css']
 })
-export class ListButtonsComponent implements OnInit {
+export class ListButtonsComponent implements OnInit, OnDestroy {
 
   @Input () currentMedia: Media;
-
-  // variable labels and icons name depending on currentList value;
-  buttonLabels = {
-    seen: {
-      before: 'Add to viewed medias',
-      after: 'Already viewed'
-    },
-    mustSee: {
-      before: 'Add to must see medias',
-      after: 'Must see'
-    }
-  };
 
   public seen = false;
   public mustSee = false;
 
+  private subscriptions = new Subscription();
+
   constructor(private localStorageService: LocalStorageService) {}
 
   ngOnInit() {
-    this.localStorageService.isInList('seen', this.currentMedia.id.toString());
-    this.localStorageService.isInList('mustSee', this.currentMedia.id.toString());
+    // Setting buttons state depending on localstorage lists
+    this.seen = this.localStorageService.isInList('seen', this.currentMedia.id.toString());
+    this.mustSee =  this.localStorageService.isInList('mustSee', this.currentMedia.id.toString());
+
+    /* Subscribing to observable used to be notified when some button state changed
+    elsewhere in the app and update current component button if needed (affecting same media) */
+    const subscription = this.localStorageService.localStorageNotifier
+      .subscribe((value: { id: number, listName: string, isAdding: boolean }) => {
+        if (value.id !== this.currentMedia.id) {
+          return;
+        }
+
+        this[value.listName] = value.isAdding;
+      });
+    this.subscriptions.add(subscription);
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 
 
   /**
-   * Adding current media id to selected list into localstorage
-   * Disabling other button if needed
+   * Adding or removing current media id to selected list into localstorage
+   * Changing other button state if needed
    */
-  updateList(type: string) {
+  public updateList(type: string) {
     // updating button status
     this[type] = !this[type];
     // getting list from local storage
@@ -49,12 +57,12 @@ export class ListButtonsComponent implements OnInit {
     }
     const index = list.indexOf(this.currentMedia.id.toString());
     if (index >= 0) {
-      this.localStorageService.removeItem(type, this.currentMedia.id.toString());
+      this.localStorageService.removeItem(type, this.currentMedia.id);
       return;
     } else {
-      this.localStorageService.addItem(type, this.currentMedia.id.toString());
+      this.localStorageService.addItem(type, this.currentMedia.id);
       this[otherType] = false;
-      this.localStorageService.removeItem(otherType, this.currentMedia.id.toString());
+      this.localStorageService.removeItem(otherType, this.currentMedia.id);
     }
   }
 }

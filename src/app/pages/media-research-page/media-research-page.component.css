@@ -1,10 +1,39 @@
-.search-bar {
-  position: absolute;
-  top: -65px;
-  right: 10px;
-}
-
 .media-research-page-title {
   display: inline;
   text-align: center;
+}
+
+.search-bar {
+  width: 287px;
+  height: 35px;
+  background-color: #000000;
+  border: 1px solid #505050;
+  border-radius: 25px;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.search-bar input {
+  background-color: transparent;
+  color: white;
+  border: none;
+  width: calc(100% - 45px);
+  height: 100%;
+  border-radius: 25px;
+  margin-left: 15px;
+}
+
+.search-bar input:focus {
+  outline: none;
+}
+
+.search-bar input::placeholder {
+  color: #505050;
+}
+
+.search-icon {
+  color: whitesmoke;
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }

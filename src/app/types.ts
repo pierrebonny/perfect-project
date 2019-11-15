@@ -11,10 +11,12 @@ export interface Media {
   release_date?: string;
   overview?: string;
   poster_path?: string;
+  backdrop_path?: string;
   media_type?: string;
   name?: string;
   runtime?: number;
   first_air_date?: string;
+  episode_run_time?: string;
 }
 
 export interface CastMember {
@@ -54,4 +56,9 @@ export interface APIResult {
   results: Array<Media>;
   total_pages: number;
   total_results: number;
+}
+
+export interface ComponentModel {
+  label: string;
+  value: string;
 }

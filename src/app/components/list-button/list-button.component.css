@@ -1,11 +1,13 @@
 .not-added {
   color: white;
-  background-color: #4B515D;
+  background-color: #121212;
+  border: 1px solid #505050;
 }
 
 .already-added {
-  color: white;
-  background-color: #00C851;
+  color: black;
+  background-color: #ffffff;
+  border: none;
 }
 
 .list-item_icon {
@@ -14,7 +16,6 @@
 
 .list-item_icon,
 .list-item_label {
-  color: #00C851;
   display: inline;
   vertical-align: middle;
 }
@@ -23,5 +24,11 @@ button {
   width: 103px;
   height: 35px;
   z-index: 10;
+  border-radius: 4px;
   margin-right: 11px;
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
 }

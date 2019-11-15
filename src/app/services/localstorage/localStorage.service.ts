@@ -1,7 +1,5 @@
-import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { APIResult, Media, MovieCredits } from '../../types';
-import { of, Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 
 /**
  * Service dedicated to communicate with the media DB API
@@ -10,6 +8,8 @@ import { of, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LocalStorageService {
+
+  public localStorageNotifier = new Subject<{ id: number, listName: string, isAdding: boolean }>();
 
   /**
    * Getting list from localstorage
@@ -21,10 +21,11 @@ export class LocalStorageService {
   /**
    * Removing current media id from localstorage list
    */
-  public removeItem(listName: string, mediaId: string): void {
+  public removeItem(listName: string, mediaId: number): void {
     const list = this.getList(listName);
-    list.splice(list.indexOf(mediaId, 1));
+    list.splice(list.indexOf(mediaId.toString(), 1));
     localStorage.setItem(listName, JSON.stringify(list));
+    this.localStorageNotifier.next({id: mediaId, listName, isAdding: false});
   }
 
   /**
@@ -41,10 +42,11 @@ export class LocalStorageService {
   /**
    * Adding current media id from localstorage list
    */
-  public addItem(listName: string, mediaId: string): void {
+  public addItem(listName: string, mediaId: number): void {
     const list = this.getList(listName);
-    list.push(mediaId);
+    list.push(mediaId.toString());
     localStorage.setItem(listName, JSON.stringify(list));
+    this.localStorageNotifier.next({id: mediaId, listName, isAdding: true});
   }
 
 }

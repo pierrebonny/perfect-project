@@ -2,22 +2,21 @@
   [mediasList]="mediasList$ | async"
   (mediaChanged)="changeType($event)"
   (pageChanged)="changePage($event)"
-  [totalResults]="totalResults">
-  <ng-container title [ngSwitch]="this.changeType$ | async">
-    <h1 *ngSwitchCase="'movie'" class="media-research-page-title" i18n="@@mediaResearchTitleMovie">Search any movie</h1>
-    <h1 *ngSwitchCase="'tv'" class="media-research-page-title" i18n="@@mediaResearchTitleTvShow">Search any tv show</h1>
-  </ng-container>
-  <mat-form-field search-bar color="primary" class="search-bar">
+  [totalResults]="totalResults"
+  additionalClass="margin">
+  <div search-bar color="primary" class="search-bar">
     <input
     matInput
     placeholder="Search by title"
-    i18n-placeholder="@@researchPlaceHolder"
+    i18n-placeholder="@@media-research.research-placeHolder"
     [(ngModel)]="mediaResearch"
     type="text"
     name="mediaResearch"
     id="mediaResearch"
     (ngModelChange)="this.mediaResearchUpdate.next($event)"
+    onfocus="this.placeholder = ''"
+    onblur="this.placeholder = 'Search by title'"
     >
     <mat-icon class="search-icon" matSuffix>search</mat-icon>
-  </mat-form-field>
+  </div>
 </app-main-page-layout>

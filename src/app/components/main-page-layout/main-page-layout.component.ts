@@ -1,5 +1,5 @@
 import { Component, Input, EventEmitter, Output, ViewChild } from '@angular/core';
-import { Media } from 'src/app/types';
+import { Media, ComponentModel } from 'src/app/types';
 import { PageEvent, MatPaginator } from '@angular/material';
 
 @Component({
@@ -12,19 +12,19 @@ export class MainPageLayoutComponent {
   @ViewChild('paginator', { static: false }) paginator: MatPaginator;
 
   @Input () mediasList: Media[];
-
   @Input () totalResults: number;
+  @Input () additionalClass: string;
 
-  public mediasType = 'movie';
+  public mediasType: ComponentModel = { value: 'movie', label: 'Movies' };
 
-  @Output() mediaChanged = new EventEmitter<string>();
+  @Output() mediaChanged = new EventEmitter<ComponentModel>();
   @Output() pageChanged = new EventEmitter<number>();
 
   constructor() {}
 
-  public mediaChange(type: { value: string }) {
-    this.mediaChanged.emit(type.value);
-    this.mediasType = type.value;
+  public mediaChange(type: ComponentModel ) {
+    this.mediaChanged.emit(type);
+    this.mediasType = type;
     this.reset();
   }
 

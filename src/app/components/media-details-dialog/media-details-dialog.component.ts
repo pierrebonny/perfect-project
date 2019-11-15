@@ -1,7 +1,7 @@
 import { Subscription } from 'rxjs';
 import { Component, Inject, OnDestroy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { Media, MediaBestCredits } from '../../types';
+import { Media, MediaBestCredits, ComponentModel } from '../../types';
 import { TmdbService } from '../../services/tmdb/tmdb.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { TmdbService } from '../../services/tmdb/tmdb.service';
 export class MediaDetailsDialogComponent implements OnDestroy {
 
   mediaDetails: Media;
-  mediaType: string;
+  mediaType: ComponentModel;
   mediaBestCredits: MediaBestCredits;
   private subscriptions = new Subscription();
 
@@ -23,7 +23,7 @@ export class MediaDetailsDialogComponent implements OnDestroy {
 
     @Inject(MAT_DIALOG_DATA)
     data: {
-      mediaType: string;
+      mediaType: ComponentModel;
       media: Media;
     }) {
 
@@ -34,7 +34,7 @@ export class MediaDetailsDialogComponent implements OnDestroy {
     /**
      * Recovering important cast and crew from TMDB
      */
-    const subscription = this.tmdbService.getMediaBestCredits(this.mediaDetails.id, this.mediaType)
+    const subscription = this.tmdbService.getMediaBestCredits(this.mediaDetails.id, this.mediaType.value)
       .subscribe((mediaBestCredits: MediaBestCredits) => {
         this.mediaBestCredits = mediaBestCredits;
       });

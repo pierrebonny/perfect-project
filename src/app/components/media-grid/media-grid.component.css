@@ -4,9 +4,11 @@
   display: flex;
 }
 .media-card {
-  height: calc(100% - 40px);
-  width: calc(100% - 20px);
-  padding: 10px;
-  margin: 10px;
-  cursor: pointer;
+  height: calc(100% - 34px);
+  width: calc(100% - 34px);
+}
+
+.mat-card {
+  background-color: #121212;
+  border: 1px solid #505050;
 }

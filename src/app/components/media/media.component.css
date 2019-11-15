@@ -1,18 +1,54 @@
-img {
+.media-vote {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  color: white;
+  margin: 0;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.poster_img {
   height: 100%;
   width: auto;
 }
 
+.empty-poster {
+  height: 272px;
+  width: 210px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #50505040;
+  border-radius: 4px;
+}
+
+.empty-poster_img {
+  color: #50505040;
+  width: 50px;
+  height: 50px;
+}
+
 .media-infos {
-  margin-left: 10px;
-  width: 100%;
+  margin-left: 27px;
   position: relative;
+  color: #ffffff;
+  font-size: 13px;
 }
 
 .media-infos p {
   margin-bottom: 0;
   margin-top: 0;
-  color: #4B515D;
+}
+
+.media-infos .media-type {
+  font-size: 11px;
+  color: #918E8E;
+  margin-bottom: 15px;
+}
+.media-infos .details-link {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .media-infos button mat-icon {
@@ -21,21 +57,8 @@ img {
 
 .media-infos .media-title {
   margin-top: 0;
-  font-size: 26px;
+  font-size: 16px;
   font-weight: bold;
-  color: #4B515D;
-  margin-bottom: 10px;
-}
-
-.media-infos .media-infos-head {
-  display: flex;
-  justify-content: space-between;
-}
-
-.media-infos .infos-icon {
-  font-size: 30px;
-  color: #bfbfbf;
-  margin-right: 15px;
 }
 
 .media-infos .infos-icon.bottom {
@@ -46,4 +69,20 @@ img {
 
 .media-infos .release-date {
   display: inline;
+}
+
+.media-infos .overview {
+  font-size: 12px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-height: 55px;
+  margin-right: 41px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+.media-infos app-list-buttons {
+  position: absolute;
+  left: 0;
+  bottom: 0;
 }

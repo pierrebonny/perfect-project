@@ -1,6 +1,6 @@
 import { Subject, Observable, BehaviorSubject } from 'rxjs';
-import { switchMap, map, startWith } from 'rxjs/operators';
-import { Media } from 'src/app/types';
+import { switchMap, map, startWith, shareReplay } from 'rxjs/operators';
+import { Media, ComponentModel } from 'src/app/types';
 import { Component, AfterViewInit, ViewChild } from '@angular/core';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import { MainPageLayoutComponent } from 'src/app/components/main-page-layout/main-page-layout.component';
@@ -21,7 +21,7 @@ export class HomePageComponent implements AfterViewInit {
   public totalResults = 0;
 
   private changePage$ = new Subject<number>();
-  public changeType$ = new BehaviorSubject<string>('movie');
+  public changeType$ = new BehaviorSubject<ComponentModel>({value: 'movie', label: 'Movies'});
 
   constructor(private  tmdbService: TmdbService) {}
 
@@ -29,9 +29,10 @@ export class HomePageComponent implements AfterViewInit {
     this.mediasList$ = this.changeType$
       .pipe(
         switchMap((type) => {
-          this.layoutComponent.reset();
+          if (this.layoutComponent) {this.layoutComponent.reset(); }
           return this.updateMediasListPage(type);
         }),
+        shareReplay(1)
       );
     this.getTrendingMedias(1, 'movie');
   }
@@ -44,16 +45,16 @@ export class HomePageComponent implements AfterViewInit {
     this.changePage$.next(currentPageIndex);
   }
 
-  public changeType(type: string) {
+  public changeType(type: ComponentModel) {
     this.currentPage = 1;
     this.changeType$.next(type);
   }
 
-  public updateMediasListPage(type: string): Observable<Media[]> {
+  public updateMediasListPage(type: ComponentModel): Observable<Media[]> {
     return this.changePage$
       .pipe(
         startWith(0),
-        switchMap((currentPage) => this.getTrendingMedias(currentPage, type))
+        switchMap((currentPage) => this.getTrendingMedias(currentPage, type.value))
       );
   }
 

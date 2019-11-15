@@ -1,12 +1,12 @@
 <ng-container *ngIf="mediasList$ | async as mediasList">
-    <app-hook  [mediaType]="this.changeType$ | async" [topMedia]="mediasList[0]"></app-hook>
+    <app-main-page-layout
+      [mediasList]="mediasList"
+      (mediaChanged)="changeType($event)"
+      (pageChanged)="changePage($event)"
+      [totalResults]="totalResults"
+      additionalClass="">
+      <ng-container hook>
+          <app-hook  [mediaType]="this.changeType$ | async" [topMedia]="mediasList[0]"></app-hook>
+      </ng-container>
+    </app-main-page-layout>
 </ng-container>
-<app-main-page-layout
-  [mediasList]="mediasList$ | async"
-  (mediaChanged)="changeType($event)"
-  (pageChanged)="changePage($event)"
-  [totalResults]="totalResults">
-  <ng-container title [ngSwitch]="this.changeType$ | async">
-    <h1 class="home-page-title" i18n="@@topTrendingTitle">Weekly top trending medias</h1>
-  </ng-container>
-</app-main-page-layout>

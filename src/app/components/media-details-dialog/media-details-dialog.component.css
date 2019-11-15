@@ -1,30 +1,59 @@
-img {
-  width: 30%;
-  height: 100%;
+.poster {
+  width: auto;
+  height: 445px;
+  margin: 71px 43px 71px 91px;
+  z-index: 10;
 }
 .media-details {
   display: flex;
   position: relative;
+  background-color: #121212;
+}
+
+.backdrop {
+  min-width: 100%;
+  max-height: 100%;
+  position: absolute;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  opacity: 0.15;
 }
 
 .media-details .media-infos {
   width: 100%;
   margin-left: 10px;
-  color: #4B515D;
+  color: #ffffff;
   position: relative;
+  margin-top: 71px;
+  font-size: 13px;
+  padding-right: 32px;
+}
+
+.media-details .media-infos .media-type {
+  font-size: 11px;
+  color: #918E8E;
+  margin-bottom: 15px;
 }
 
 .media-details .media-infos .media-title {
   margin-top: 0;
-  font-size: 26px;
+  font-size: 36px;
   font-weight: bold;
   margin-right: 10px;
   margin-bottom: 0;
 }
 
+.media-details .media-infos .media-title .popularity {
+  font-size: 22px;
+  font-weight: bold;
+  display: inline;
+  vertical-align: middle;
+  margin-left: 44px;
+}
+
 .media-details .media-infos .director-div {
-  margin-top: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 13px;
 }
 .media-details .media-infos .director-prefix {
   font-weight: bold;
@@ -39,11 +68,11 @@ img {
 
 .close-icon {
   position: absolute;
-  top: 0;
-  right: 20px;
-  color: #4B515D;
+  top: 15px;
+  right: 15px;
+  color: #ffffff;
   cursor: pointer;
-  font-size: 40px;
+  font-size: 25px;
 }
 
 .actor-name-div,
@@ -51,7 +80,7 @@ img {
 .actor-name-div .actor-name-comma,
 .with {
   display: inline-block;
-  margin: 2px 0;
+  margin: 0;
 }
 .actor-name-div .actor-name-comma,
 .with {
@@ -62,24 +91,13 @@ img {
   font-weight: bold;
 }
 
-.overview-div {
-  margin-top: 20px;
-}
-
-.overview-div .overview {
+.overview {
   font-style: italic;
-  display: inline;
+  max-width: 526px;
 }
 
-.overview-div .overview-prefix {
-  font-weight: bold;
-  display: inline;
-  margin-right: 5px;
-}
-
-.rating {
+.media-infos app-list-buttons {
   position: absolute;
-  bottom: 0;
-  margin-bottom: -15px;
-  left: 50%;
+  left: 0;
+  bottom: 71px;
 }

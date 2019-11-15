@@ -11,7 +11,6 @@ import {
   MatIconModule,
   MatListModule,
   MatDialogModule,
-  MatButtonModule,
   MatTabsModule,
   MatFormFieldModule,
   MatInputModule,
@@ -22,10 +21,8 @@ import {
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { MediaComponent } from './components/media/media.component';
 import { MediaDetailsDialogComponent } from './components/media-details-dialog/media-details-dialog.component';
-import { RatingComponent } from './components/rating/rating.component';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { ListButtonsComponent } from './components/list-buttons/list-buttons.component';
-import {NgxStarsModule} from 'ngx-stars';
 import { AppRoutingModule } from './app-routing.module';
 import { MediaGridComponent } from './components/media-grid/media-grid.component';
 import { TmdbDatePipe } from './pipes/tmdb-date/tmdb -date.pipe';
@@ -42,7 +39,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     HomePageComponent,
     MediaComponent,
     MediaDetailsDialogComponent,
-    RatingComponent,
     ListButtonsComponent,
     MediaGridComponent,
     TmdbDatePipe,
@@ -56,7 +52,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatButtonModule,
     HttpClientModule,
     MatCardModule,
     MatListModule,
@@ -69,7 +64,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     FormsModule,
     MatRadioModule,
     MatPaginatorModule,
-    NgxStarsModule,
     AppRoutingModule,
   ],
   providers: [],

@@ -1,6 +1,6 @@
 import { Subject, Observable, of, combineLatest, BehaviorSubject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, map, startWith } from 'rxjs/operators';
-import { Media } from 'src/app/types';
+import { Media, ComponentModel } from 'src/app/types';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import { MainPageLayoutComponent } from 'src/app/components/main-page-layout/main-page-layout.component';
@@ -25,7 +25,7 @@ export class MediaResearchPageComponent implements OnInit {
   public totalResults = 0;
 
   private changePage$ = new Subject<number>();
-  public changeType$ = new BehaviorSubject<string>('movie');
+  public changeType$ = new BehaviorSubject<ComponentModel>({value: 'movie', label: 'Movies'});
 
   constructor(private tmdbService: TmdbService) {}
 
@@ -39,7 +39,7 @@ export class MediaResearchPageComponent implements OnInit {
       ]).pipe(
         switchMap(([_, type]) => {
           this.layoutComponent.reset();
-          return this.updateMediasListPage(type);
+          return this.updateMediasListPage(type.value);
         }),
       );
   }
@@ -52,7 +52,7 @@ export class MediaResearchPageComponent implements OnInit {
     this.changePage$.next(currentPageIndex);
   }
 
-  public changeType(type: string) {
+  public changeType(type: ComponentModel) {
     this.currentPage = 1;
     this.changeType$.next(type);
   }

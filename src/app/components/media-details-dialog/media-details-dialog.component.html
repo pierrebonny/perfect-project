@@ -1,24 +1,23 @@
 <div class="media-details">
-  <img *ngIf="mediaDetails.poster_path" [src]="mediaDetails.poster_path | tmdbImgPath" alt="Media poster">
+  <img class="backdrop" [src]="mediaDetails.backdrop_path | tmdbImgPath">
+  <img class="poster" *ngIf="mediaDetails.poster_path" [src]="mediaDetails.poster_path | tmdbImgPath" alt="Media poster">
   <div class="media-infos">
-    <p class="media-title">{{mediaDetails.title ? mediaDetails.title : mediaDetails.name}}</p>
-    <p><b i18n="@@releaseDate">Released on:</b> {{ (mediaDetails.release_date ? mediaDetails.release_date : mediaDetails.first_air_date) | tmdbDate:'YYYY' }}</p>
-    <p><b i18n="@@duration">Duration:</b> {{mediaDetails.runtime}} minutes</p>
+    <p class="media-type">{{ mediaType.label }}</p>
+    <h1 class="media-title">{{ mediaDetails.title ? mediaDetails.title : mediaDetails.name }}<p class="popularity">{{ mediaDetails.vote_average }}</p></h1>
+    <p><b i18n="@@media-details.release-date">Released on:</b> {{ (mediaDetails.release_date ? mediaDetails.release_date : mediaDetails.first_air_date) | tmdbDate:'YYYY' }}</p>
+    <p><b i18n="@@media-details.duration">Duration:</b> {{ mediaDetails.runtime ? mediaDetails.runtime : mediaDetails.episode_run_time }} minutes</p>
     <div class="director-div" *ngIf="mediaBestCredits && mediaBestCredits.directorName">
-      <p class="director-name"><b i18n="@@directorName">Directed by:</b> {{mediaBestCredits.directorName}}</p>
+      <p class="director-name"><b i18n="@@media-details.director-name">Directed by:</b> {{mediaBestCredits.directorName}}</p>
     </div>
-    <p class="with" i18n="@@with">With:</p>
     <ng-container *ngIf="mediaBestCredits && mediaBestCredits.actorsNames">
+      <p class="with" i18n="@@media-details.with">With:</p>
       <div class="actor-name-div" *ngFor="let actorName of mediaBestCredits.actorsNames; index as i">
         <p class="actor-name">{{actorName}}</p>
         <p class="actor-name-comma" *ngIf="i < mediaBestCredits.actorsNames.length - 1">,</p>
       </div>
     </ng-container>
-    <div class="overview-div" *ngIf="mediaDetails.overview">
-      <p class="overview-prefix" i18n="@@overview">Overview:</p> <p class="overview">{{mediaDetails.overview}}</p>
-    </div>
+    <p class="overview">{{mediaDetails.overview}}</p>
     <app-list-buttons [currentMedia]="this.mediaDetails"></app-list-buttons>
-    <app-rating *ngIf="mediaDetails.vote_average" [ratingValue]="mediaDetails.vote_average"></app-rating>
   </div>
   <mat-icon class="close-icon" (click)="closeDialog()">close</mat-icon>
 </div>
