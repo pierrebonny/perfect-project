@@ -28,12 +28,6 @@
       <ng-template #warningDiv>
           <h2 class="layout__warning" i18n="@@main-page-layout.no-result">No result found</h2>
       </ng-template>
-      <mat-paginator
-          #paginator
-          class="layout__paginator"
-          [length]="totalResults"
-          pageSize="20"
-          (page)="changePage($event)">
-        </mat-paginator>
+      <app-pagination #paginator [totalPages]="totalPages" [currentPageIndex]="1" (pageChanged)="changePage($event)"></app-pagination>
     </div>
 </div>

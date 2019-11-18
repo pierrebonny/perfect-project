@@ -4,6 +4,24 @@
   margin: 71px 43px 71px 91px;
   z-index: 10;
 }
+
+.media-details__poster-placeholder {
+  height: 445px;
+  min-width: 297px;
+  margin: 71px 43px 71px 91px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid $color-img-placeholder;
+  border-radius: 4px;
+}
+
+.media-details__poster-placeholder-img {
+  color: $color-img-placeholder;
+  width: 50px;
+  height: 50px;
+}
+
 .media-details {
   display: flex;
   position: relative;

@@ -1,0 +1,39 @@
+.pagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 64px;
+  font-size: 12px;
+  color: #505050;
+  margin-bottom: 77px;
+}
+
+.pagination__page {
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.pagination__page.active {
+  color: white;
+}
+
+.pagination__arrow.left {
+  border-right: solid 4px #4E4E4E;
+  border-bottom: solid 5px transparent;
+  border-top: solid 5px transparent;
+}
+
+.pagination__arrow.right {
+  border-left: solid 4px #4E4E4E;
+  border-bottom: solid 5px transparent;
+  border-top: solid 5px transparent;
+}
+
+.pagination__arrow {
+  cursor: pointer;
+}
+
+.pagination__three-points {
+  margin: 0 10px;
+}

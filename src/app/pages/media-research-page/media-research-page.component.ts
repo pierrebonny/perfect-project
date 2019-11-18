@@ -22,7 +22,7 @@ export class MediaResearchPageComponent implements OnInit {
   public mediasList$: Observable<Media[]>;
 
   private currentPage = 1;
-  public totalResults = 0;
+  public totalPages: number;
 
   private changePage$ = new Subject<number>();
   public changeType$ = new BehaviorSubject<ComponentModel>({value: 'movie', label: 'Movies'});
@@ -60,7 +60,7 @@ export class MediaResearchPageComponent implements OnInit {
   public updateMediasListPage(type: string): Observable<Media[]> {
     return this.changePage$
       .pipe(
-        startWith(0),
+        startWith(1),
         switchMap((currentPage) => this.filterMediasByUserEntry(currentPage, type))
       );
   }
@@ -70,14 +70,14 @@ export class MediaResearchPageComponent implements OnInit {
    */
   private filterMediasByUserEntry(currentPage: number, type: string): Observable<Media[]> {
     if (!(this.mediaResearch && this.mediaResearch.length)) {
-      this.totalResults = 0;
+      this.totalPages = 0;
       return of([]);
     }
 
-    return this.tmdbService.getMediaByName(this.mediaResearch, type, currentPage + 1)
+    return this.tmdbService.getMediaByName(this.mediaResearch, type, currentPage)
       .pipe(
         map(medias => {
-          this.totalResults = medias.total_results;
+          this.totalPages = medias.total_pages;
           return medias.results;
         })
       );

@@ -1,0 +1,16 @@
+<div *ngIf="totalPages > 0" class="pagination">
+  <div class="pagination__arrow left" (click)="changePage(currentPageIndex - 1)"></div>
+  <div [class]="'pagination__page ' + (currentPageIndex === 1 ? 'active' : '')" (click)="changePage(1)">1</div>
+  <div *ngIf="totalPages > 2 && currentPageIndex > 6" class="pagination__three-points">...</div>
+  <ng-container *ngIf="totalPages > 2">
+      <div
+      *ngFor="let pageIndex of displayedPagesIndex"
+      [class]="'pagination__page ' + (pageIndex === currentPageIndex ? 'active' : '')"
+      (click)="changePage(pageIndex)">
+      {{ pageIndex }}
+    </div>
+  </ng-container>
+  <div *ngIf="totalPages > 6 && currentPageIndex < totalPages - 1" class="pagination__three-points">...</div>
+  <div *ngIf="totalPages > 1" [class]="'pagination__page ' + (currentPageIndex === totalPages ? 'active' : '')" (click)="changePage(totalPages)">{{ totalPages }}</div>
+  <div class="pagination__arrow right" (click)="changePage(currentPageIndex + 1)"></div>
+</div>

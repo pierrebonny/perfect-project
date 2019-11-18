@@ -3,7 +3,7 @@
       [mediasList]="mediasList"
       (mediaChanged)="changeType($event)"
       (pageChanged)="changePage($event)"
-      [totalResults]="totalResults"
+      [totalPages]="totalPages"
       additionalClass="">
       <ng-container hook>
           <app-hook  [mediaType]="this.changeType$ | async" [topMedia]="mediasList[0]"></app-hook>
