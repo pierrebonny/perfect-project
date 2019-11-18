@@ -18,7 +18,7 @@ export class HomePageComponent implements AfterViewInit {
   public mediasList$: Observable<Media[]>;
 
   private currentPage = 1;
-  public totalResults = 0;
+  public totalPages = 0;
 
   private changePage$ = new Subject<number>();
   public changeType$ = new BehaviorSubject<ComponentModel>({value: 'movie', label: 'Movies'});
@@ -53,7 +53,7 @@ export class HomePageComponent implements AfterViewInit {
   public updateMediasListPage(type: ComponentModel): Observable<Media[]> {
     return this.changePage$
       .pipe(
-        startWith(0),
+        startWith(1),
         switchMap((currentPage) => this.getTrendingMedias(currentPage, type.value))
       );
   }
@@ -62,10 +62,10 @@ export class HomePageComponent implements AfterViewInit {
    * getting trending medias list by type and page
    */
   private getTrendingMedias(currentPage: number, type: string): Observable<Media[]> {
-    return this.tmdbService.getTrendingMedias(type, currentPage + 1)
+    return this.tmdbService.getTrendingMedias(type, currentPage)
       .pipe(
         map(medias => {
-          this.totalResults = medias.total_results;
+          this.totalPages = medias.total_pages;
           return medias.results;
         })
       );

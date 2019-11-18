@@ -1,9 +1,19 @@
 <div class="media-details">
-  <img class="media-details__backdrop" [src]="mediaDetails.backdrop_path | tmdbImgPath">
-  <img class="media-details__poster" *ngIf="mediaDetails.poster_path" [src]="mediaDetails.poster_path | tmdbImgPath" alt="Media poster">
+  <img *ngIf="mediaDetails.backdrop_path" class="media-details__backdrop" [src]="mediaDetails.backdrop_path | tmdbImgPath">
+  <img
+    class="media-details__poster"
+    *ngIf="mediaDetails.poster_path else warningTemplate"
+    [src]="mediaDetails.poster_path | tmdbImgPath"
+    alt="Media poster"
+  >
+  <ng-template #warningTemplate>
+      <div class="media-details__poster-placeholder">
+        <img class="media-details__poster-placeholder-img" src="./../../../assets/Icon-emptyposter.svg">
+      </div>
+    </ng-template>
   <div class="media-details__infos">
     <p class="media-details__type">{{ mediaType.label }}</p>
-    <h1 class="media-details__title">{{ mediaDetails.title ? mediaDetails.title : mediaDetails.name }}<p class="media-details__popularity">{{ mediaDetails.vote_average }}</p></h1>
+    <h1 class="media-details__title">{{ mediaDetails.title ? mediaDetails.title : mediaDetails.name }}<p *ngIf="mediaDetails.vote_average" class="media-details__popularity">{{ mediaDetails.vote_average }}</p></h1>
     <div class="media-details__release-date"><strong i18n="@@media-details.release-date">Released on:</strong> {{ (mediaDetails.release_date ? mediaDetails.release_date : mediaDetails.first_air_date) | tmdbDate:'YYYY' }}</div>
     <div class="media-details__duration"><strong i18n="@@media-details.duration">Duration:</strong> {{ mediaDetails.runtime ? mediaDetails.runtime : mediaDetails.episode_run_time }} minutes</div>
     <div class="media-details__director-name" *ngIf="mediaBestCredits && mediaBestCredits.directorName">

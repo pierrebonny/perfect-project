@@ -37,18 +37,26 @@
           <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="media-details.director-name" datatype="html">
+      <trans-unit id="hook.directorName" datatype="html">
         <source>Directed by:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/media-details-dialog/media-details-dialog.component.html</context>
           <context context-type="linenumber">10</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/hook/hook.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
       </trans-unit>
-      <trans-unit id="media-details.with" datatype="html">
+      <trans-unit id="hook.with" datatype="html">
         <source>With:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/media-details-dialog/media-details-dialog.component.html</context>
-          <context context-type="linenumber">13</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/hook/hook.component.html</context>
+          <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
       <trans-unit id="media.release-date" datatype="html">
@@ -69,49 +77,35 @@
         <source>Ever seen</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/list-buttons/list-buttons.component.html</context>
-          <context context-type="linenumber">4</context>
+          <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
       <trans-unit id="list-buttons.to-see" datatype="html">
         <source>To see</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/list-buttons/list-buttons.component.html</context>
-          <context context-type="linenumber">12</context>
+          <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
       <trans-unit id="media-research.research-placeHolder" datatype="html">
         <source>Search by title</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/media-research-page/media-research-page.component.html</context>
-          <context context-type="linenumber">10</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="hook.release-date" datatype="html">
-        <source>Released on: </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/hook/hook.component.html</context>
-          <context context-type="linenumber">9</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="hook.duration" datatype="html">
-        <source>Duration: </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/hook/hook.component.html</context>
-          <context context-type="linenumber">10</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="hook.directorName" datatype="html">
-        <source>Directed by: </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/hook/hook.component.html</context>
           <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="hook.with" datatype="html">
-        <source>With:</source>
+      <trans-unit id="hook.release-date" datatype="html">
+        <source>Released on:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/hook/hook.component.html</context>
-          <context context-type="linenumber">13</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="hook.duration" datatype="html">
+        <source>Duration:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/hook/hook.component.html</context>
+          <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
       <trans-unit id="navbar.top-trending" datatype="html">

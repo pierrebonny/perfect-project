@@ -15,7 +15,7 @@
 
 .media__poster-placeholder {
   height: 272px;
-  width: 210px;
+  min-width: 184px;
   display: flex;
   justify-content: center;
   align-items: center;

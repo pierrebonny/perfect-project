@@ -32,6 +32,7 @@ import { MainPageLayoutComponent } from './components/main-page-layout/main-page
 import { ListButtonComponent } from './components/list-button/list-button.component';
 import { HookComponent } from './components/hook/hook.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     ListButtonComponent,
     HookComponent,
     NavbarComponent,
+    PaginationComponent,
   ],
   imports: [
     BrowserModule,

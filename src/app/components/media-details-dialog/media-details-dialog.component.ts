@@ -11,9 +11,9 @@ import { TmdbService } from '../../services/tmdb/tmdb.service';
 })
 export class MediaDetailsDialogComponent implements OnDestroy {
 
-  mediaDetails: Media;
-  mediaType: ComponentModel;
-  mediaBestCredits: MediaBestCredits;
+  public mediaDetails: Media;
+  public mediaType: ComponentModel;
+  public mediaBestCredits: MediaBestCredits;
   private subscriptions = new Subscription();
 
   constructor(
@@ -41,7 +41,7 @@ export class MediaDetailsDialogComponent implements OnDestroy {
     this.subscriptions.add(subscription);
   }
 
-  closeDialog() {
+  public closeDialog() {
     this.dialogRef.close();
   }
 
