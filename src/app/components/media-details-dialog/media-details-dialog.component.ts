@@ -7,7 +7,7 @@ import { TmdbService } from '../../services/tmdb/tmdb.service';
 @Component({
   selector: 'app-media-details-dialog',
   templateUrl: './media-details-dialog.component.html',
-  styleUrls: ['./media-details-dialog.component.css']
+  styleUrls: ['./media-details-dialog.component.scss']
 })
 export class MediaDetailsDialogComponent implements OnDestroy {
 

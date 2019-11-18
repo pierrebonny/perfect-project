@@ -1,0 +1,75 @@
+.hook {
+  background-color: $color-background;
+  padding-left: 186px;
+  padding-top: 156px;
+  position: relative;
+  height: 613px;
+
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: transparent linear-gradient(270deg, #00000000 0%, $color-background 100%) 0% 0% no-repeat padding-box;
+    content: '';
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+  }
+}
+
+.hook__backdrop {
+  min-width: 100%;
+  max-height: 100%;
+  position: absolute;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+}
+
+.hook__media-view {
+  color: white;
+  font-size: 13px;
+  position: relative;
+  width: 50%;
+  z-index: 10;
+  margin-bottom: 17px;
+}
+
+.hook__media-type {
+  color: #918E8E;
+  font-size: 11px;
+}
+
+.hook__title {
+  font-size: 72px;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+.hook__overview {
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+
+.hook__release-date,
+.hook__duration,
+.hook__director-name {
+  margin-bottom: 10px;
+}
+
+.hook__info-label {
+  font-weight: bold;
+  margin-right: 3px;
+}
+
+.hook__popularity {
+  font-size: 22px;
+  font-weight: bold;
+  display: inline;
+  vertical-align: middle;
+  margin-left: 44px;
+}
+
+.hook__cast {
+  width: 575px;
+}

@@ -1,9 +1,9 @@
-<div class="list-item-div">
+<div class="list-button__list-item">
   <button
     type="button"
     (click)="onButtonClick($event)"
     [ngClass]="listName"
-    [class]="isSelected ? 'already-added' : 'not-added'"
+    [class]="'list-button__button ' + 'list-button__button--' + (isSelected ? 'already-added' : 'not-added')"
     >{{ label }}
   </button>
 </div>

@@ -8,7 +8,7 @@ import { MainPageLayoutComponent } from 'src/app/components/main-page-layout/mai
 @Component({
   selector: 'app-media-research-page',
   templateUrl: './media-research-page.component.html',
-  styleUrls: ['./media-research-page.component.css']
+  styleUrls: ['./media-research-page.component.scss']
 })
 
 export class MediaResearchPageComponent implements OnInit {

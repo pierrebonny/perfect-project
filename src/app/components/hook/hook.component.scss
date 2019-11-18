@@ -1,49 +1,4 @@
-.hook {
-  height: 613px;
-  position: relative;
-  background-color: #121212;
-  padding-left: 186px;
-  padding-top: 156px;
-}
-
-.hook::after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: transparent linear-gradient(270deg, #00000000 0%, #121212 100%) 0% 0% no-repeat padding-box;
-  content: '';
-  width: 100%;
-  height: 100%;
-  opacity: 1;
-}
-
-img {
-  min-width: 100%;
-  max-height: 100%;
-  position: absolute;
-  object-fit: cover;
-  top: 0;
-  left: 0;
-}
-
 .hook_media-view {
-  color: white;
-  font-size: 13px;
-  position: relative;
-  width: 50%;
-  z-index: 10;
-  margin-bottom: 17px;
-  .media-type {
-    color: #918E8E;
-    font-size: 11px;
-  }
-  .actor-name-div,
-  .actor-name-div .actor-name,
-  .actor-name-div .actor-name-comma,
-  .with {
-    display: inline-block;
-    margin: 0;
-  }
   .actor-name-div .actor-name-comma,
   .with {
     margin-right: 5px;
@@ -55,28 +10,5 @@ img {
 
   p, h1 {
     margin: 10px 0;
-  }
-
-  .popularity {
-    font-size: 22px;
-    font-weight: bold;
-    display: inline;
-    vertical-align: middle;
-    margin-left: 44px;
-  }
-
-  .title {
-    font-size: 72px;
-    font-weight: bold;
-    margin-bottom: 25px;
-  }
-
-  .cast {
-    width: 575px;
-  }
-
-  .overview {
-    font-size: 12px;
-    margin-bottom: 20px;
   }
 }

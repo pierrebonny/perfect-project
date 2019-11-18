@@ -1,19 +1,14 @@
-.media-research-page-title {
-  display: inline;
-  text-align: center;
-}
-
-.search-bar {
+.media-research-page__search-bar {
   width: 287px;
   height: 35px;
   background-color: #000000;
-  border: 1px solid #505050;
+  border: 1px solid $color-borders;
   border-radius: 25px;
   vertical-align: middle;
   display: inline-block;
 }
 
-.search-bar input {
+.media-research-page__input {
   background-color: transparent;
   color: white;
   border: none;
@@ -23,15 +18,15 @@
   margin-left: 15px;
 }
 
-.search-bar input:focus {
+.media-research-page__input:focus {
   outline: none;
 }
 
-.search-bar input::placeholder {
-  color: #505050;
+.media-research-page__input::placeholder {
+  color: $color-borders;
 }
 
-.search-icon {
+.media-research-page__search-icon {
   color: whitesmoke;
   position: absolute;
   top: 5px;

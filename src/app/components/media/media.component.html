@@ -1,15 +1,15 @@
-<p class="media-vote">{{currentMedia.vote_average ? currentMedia.vote_average : ''}}</p>
-<img class="poster_img" *ngIf="currentMedia.poster_path; else warningTemplate" [src]="currentMedia.poster_path | tmdbImgPath" alt="Media poster">
+<p class="media__vote">{{currentMedia.vote_average ? currentMedia.vote_average : ''}}</p>
+<img class="media__poster" *ngIf="currentMedia.poster_path; else warningTemplate" [src]="currentMedia.poster_path | tmdbImgPath" alt="Media poster">
 <ng-template #warningTemplate>
-  <div class="empty-poster">
-    <img class="empty-poster_img" src="./../../../assets/Icon-emptyposter.svg">
+  <div class="media__poster-placeholder">
+    <img class="media__poster-placeholder-img" src="./../../../assets/Icon-emptyposter.svg">
   </div>
 </ng-template>
-<div class="media-infos">
-  <p class="media-type">{{ mediaType.label }}</p>
-  <h2 class="media-title">{{currentMedia.title ? currentMedia.title : currentMedia.name}}</h2>
-  <p class="release-date"><b i18n="@@media.release-date">Released on</b> {{ (currentMedia.release_date ? currentMedia.release_date : currentMedia.first_air_date) | tmdbDate:'YYYY' }}</p>
-  <div class="overview" *ngIf="currentMedia.overview">{{currentMedia.overview}}</div>
-  <a class="details-link" (click)="openDetailsDialog()" i18n="@@media.details-link">See details</a>
-  <app-list-buttons [currentMedia]="currentMedia"></app-list-buttons>
+<div class="media__infos">
+  <p class="media__type">{{ mediaType.label }}</p>
+  <h2 class="media__title">{{currentMedia.title ? currentMedia.title : currentMedia.name}}</h2>
+  <p class="media__release-date"><strong i18n="@@media.release-date">Released on</strong> {{ (currentMedia.release_date ? currentMedia.release_date : currentMedia.first_air_date) | tmdbDate:'YYYY' }}</p>
+  <div class="media__overview" *ngIf="currentMedia.overview">{{currentMedia.overview}}</div>
+  <a class="media__details-link" (click)="openDetailsDialog()" i18n="@@media.details-link">See details</a>
+  <app-list-buttons class="media__buttons" [currentMedia]="currentMedia"></app-list-buttons>
 </div>

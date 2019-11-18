@@ -1,7 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "./vendors/custom-app-theme";
-@import "./vendors/material-components-override";
+@import "base/reset";
+@import "abstracts/index";
+@import "vendors/material-components-override";
+@import "components/index";
 
-html, body { height: 100%; background-color: #121212;}
+html, body { height: 100%; background-color: $color-background;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -1,4 +1,4 @@
-.poster {
+.media-details__poster {
   width: auto;
   height: 445px;
   margin: 71px 43px 71px 91px;
@@ -7,10 +7,10 @@
 .media-details {
   display: flex;
   position: relative;
-  background-color: #121212;
+  background-color: $color-background;
 }
 
-.backdrop {
+.media-details__backdrop {
   min-width: 100%;
   max-height: 100%;
   position: absolute;
@@ -20,31 +20,31 @@
   opacity: 0.15;
 }
 
-.media-details .media-infos {
+.media-details__infos {
   width: 100%;
   margin-left: 10px;
-  color: #ffffff;
+  color: $color-common-text;
   position: relative;
   margin-top: 71px;
   font-size: 13px;
   padding-right: 32px;
 }
 
-.media-details .media-infos .media-type {
+.media-details__type {
   font-size: 11px;
   color: #918E8E;
   margin-bottom: 15px;
 }
 
-.media-details .media-infos .media-title {
+.media-details__title {
   margin-top: 0;
   font-size: 36px;
   font-weight: bold;
   margin-right: 10px;
-  margin-bottom: 0;
+  margin-bottom: 15px;
 }
 
-.media-details .media-infos .media-title .popularity {
+.media-details__popularity {
   font-size: 22px;
   font-weight: bold;
   display: inline;
@@ -52,51 +52,47 @@
   margin-left: 44px;
 }
 
-.media-details .media-infos .director-div {
-  margin-bottom: 13px;
-}
-.media-details .media-infos .director-prefix {
+.media-details__director-prefix {
   font-weight: bold;
   margin-right: 5px;
   display: inline;
 
 }
-.media-details .media-infos .director-name {
-  margin-top: 5px;
+.media-details__director-name {
   display: inline;
 }
 
-.close-icon {
+.media-details__close-icon {
   position: absolute;
   top: 15px;
   right: 15px;
-  color: #ffffff;
+  color: $color-common-text;
   cursor: pointer;
   font-size: 25px;
 }
 
-.actor-name-div,
-.actor-name-div .actor-name,
-.actor-name-div .actor-name-comma,
-.with {
-  display: inline-block;
-  margin: 0;
-}
-.actor-name-div .actor-name-comma,
-.with {
-  margin-right: 5px;
+.media-details__release-date,
+.media-details__duration {
+  margin-bottom: 10px;
 }
 
-.with {
+.media-details__cast {
+  width: 575px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.media-details__info-label {
   font-weight: bold;
+  margin-right: 3px;
 }
 
-.overview {
+.media-details__overview {
   font-style: italic;
   max-width: 526px;
 }
 
-.media-infos app-list-buttons {
+.media-details__buttons {
   position: absolute;
   left: 0;
   bottom: 71px;

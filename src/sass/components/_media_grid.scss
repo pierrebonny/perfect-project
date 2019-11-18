@@ -1,0 +1,11 @@
+.media-grid__media {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+.media-grid__card {
+  height: calc(100% - 34px);
+  width: calc(100% - 34px);
+  background-color: $color-background;
+  border: 1px solid $color-borders;
+}

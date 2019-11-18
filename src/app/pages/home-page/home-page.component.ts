@@ -8,7 +8,7 @@ import { MainPageLayoutComponent } from 'src/app/components/main-page-layout/mai
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.css']
+  styleUrls: ['./home-page.component.scss']
 })
 
 export class HomePageComponent implements AfterViewInit {

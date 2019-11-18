@@ -5,7 +5,7 @@ import { PageEvent, MatPaginator } from '@angular/material';
 @Component({
   selector: 'app-main-page-layout',
   templateUrl: './main-page-layout.component.html',
-  styleUrls: ['./main-page-layout.component.css']
+  styleUrls: ['./main-page-layout.component.scss']
 })
 export class MainPageLayoutComponent {
 

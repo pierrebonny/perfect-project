@@ -4,8 +4,9 @@
   (pageChanged)="changePage($event)"
   [totalResults]="totalResults"
   additionalClass="margin">
-  <div search-bar color="primary" class="search-bar">
+  <div search-bar color="primary" class="media-research-page__search-bar">
     <input
+    class="media-research-page__input"
     matInput
     placeholder="Search by title"
     i18n-placeholder="@@media-research.research-placeHolder"
@@ -17,6 +18,6 @@
     onfocus="this.placeholder = ''"
     onblur="this.placeholder = 'Search by title'"
     >
-    <mat-icon class="search-icon" matSuffix>search</mat-icon>
+    <mat-icon class="media-research-page__search-icon" matSuffix>search</mat-icon>
   </div>
 </app-main-page-layout>

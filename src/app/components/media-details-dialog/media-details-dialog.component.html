@@ -1,23 +1,23 @@
 <div class="media-details">
-  <img class="backdrop" [src]="mediaDetails.backdrop_path | tmdbImgPath">
-  <img class="poster" *ngIf="mediaDetails.poster_path" [src]="mediaDetails.poster_path | tmdbImgPath" alt="Media poster">
-  <div class="media-infos">
-    <p class="media-type">{{ mediaType.label }}</p>
-    <h1 class="media-title">{{ mediaDetails.title ? mediaDetails.title : mediaDetails.name }}<p class="popularity">{{ mediaDetails.vote_average }}</p></h1>
-    <p><b i18n="@@media-details.release-date">Released on:</b> {{ (mediaDetails.release_date ? mediaDetails.release_date : mediaDetails.first_air_date) | tmdbDate:'YYYY' }}</p>
-    <p><b i18n="@@media-details.duration">Duration:</b> {{ mediaDetails.runtime ? mediaDetails.runtime : mediaDetails.episode_run_time }} minutes</p>
-    <div class="director-div" *ngIf="mediaBestCredits && mediaBestCredits.directorName">
-      <p class="director-name"><b i18n="@@media-details.director-name">Directed by:</b> {{mediaBestCredits.directorName}}</p>
+  <img class="media-details__backdrop" [src]="mediaDetails.backdrop_path | tmdbImgPath">
+  <img class="media-details__poster" *ngIf="mediaDetails.poster_path" [src]="mediaDetails.poster_path | tmdbImgPath" alt="Media poster">
+  <div class="media-details__infos">
+    <p class="media-details__type">{{ mediaType.label }}</p>
+    <h1 class="media-details__title">{{ mediaDetails.title ? mediaDetails.title : mediaDetails.name }}<p class="media-details__popularity">{{ mediaDetails.vote_average }}</p></h1>
+    <div class="media-details__release-date"><strong i18n="@@media-details.release-date">Released on:</strong> {{ (mediaDetails.release_date ? mediaDetails.release_date : mediaDetails.first_air_date) | tmdbDate:'YYYY' }}</div>
+    <div class="media-details__duration"><strong i18n="@@media-details.duration">Duration:</strong> {{ mediaDetails.runtime ? mediaDetails.runtime : mediaDetails.episode_run_time }} minutes</div>
+    <div class="media-details__director-name" *ngIf="mediaBestCredits && mediaBestCredits.directorName">
+      <span class="media-details__info-label" i18n="@@hook.directorName" >Directed by:</span>
+      {{ mediaBestCredits.directorName }}
     </div>
-    <ng-container *ngIf="mediaBestCredits && mediaBestCredits.actorsNames">
-      <p class="with" i18n="@@media-details.with">With:</p>
-      <div class="actor-name-div" *ngFor="let actorName of mediaBestCredits.actorsNames; index as i">
-        <p class="actor-name">{{actorName}}</p>
-        <p class="actor-name-comma" *ngIf="i < mediaBestCredits.actorsNames.length - 1">,</p>
-      </div>
-    </ng-container>
-    <p class="overview">{{mediaDetails.overview}}</p>
-    <app-list-buttons [currentMedia]="this.mediaDetails"></app-list-buttons>
+    <div class="media-details__cast">
+      <span class="media-details__info-label" i18n="@@hook.with">With:</span>
+      <ng-container *ngIf="mediaBestCredits && mediaBestCredits.actorsNames as actorsNames">
+        <span class="media-details__actor" *ngFor="let actorName of actorsNames; let last = last">{{ actorName }}<ng-container *ngIf="!last">, </ng-container></span>
+      </ng-container>
+    </div>
+    <p class="media-details__overview">{{ mediaDetails.overview }}</p>
+    <app-list-buttons class="media-details__buttons" [currentMedia]="this.mediaDetails"></app-list-buttons>
   </div>
-  <mat-icon class="close-icon" (click)="closeDialog()">close</mat-icon>
+  <mat-icon class="media-details__close-icon" (click)="closeDialog()">close</mat-icon>
 </div>

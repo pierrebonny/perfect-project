@@ -1,24 +1,15 @@
 .navbar {
-  background-color: #121212;
+  background-color: $color-background;
   padding-left: 139px;
   display: flex;
   align-items: center;
   border-bottom: 1px #505050 solid;
 }
 
-.title {
-  color: #ffffff;
+.navbar__title {
+  color: $color-common-text;
   font-family: roboto;
   font-size: 35px;
   margin: 16px 45px 16px 0;
   font-weight: normal;
-}
-
-md-tab-group {
-  background-color: pink;
-}
-
-.mat-tab-body-wrapper {
-  color: white;
-  background-color: red;
 }

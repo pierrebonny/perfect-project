@@ -1,4 +1,4 @@
-.media-vote {
+.media__vote {
   position: absolute;
   top: 8px;
   right: 12px;
@@ -8,70 +8,55 @@
   font-size: 22px;
 }
 
-.poster_img {
+.media__poster {
   height: 100%;
   width: auto;
 }
 
-.empty-poster {
+.media__poster-placeholder {
   height: 272px;
   width: 210px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #50505040;
+  border: 1px solid $color-img-placeholder;
   border-radius: 4px;
 }
 
-.empty-poster_img {
-  color: #50505040;
+.media__poster-placeholder-img {
+  color: $color-img-placeholder;
   width: 50px;
   height: 50px;
 }
 
-.media-infos {
+.media__infos {
   margin-left: 27px;
   position: relative;
-  color: #ffffff;
+  color: $color-common-text;
   font-size: 13px;
 }
 
-.media-infos p {
-  margin-bottom: 0;
-  margin-top: 0;
-}
-
-.media-infos .media-type {
+.media__type {
   font-size: 11px;
   color: #918E8E;
   margin-bottom: 15px;
 }
-.media-infos .details-link {
+.media__details-link {
   text-decoration: underline;
   cursor: pointer;
 }
 
-.media-infos button mat-icon {
-  margin-left: 5px;
-}
-
-.media-infos .media-title {
+.media__title {
   margin-top: 0;
   font-size: 16px;
   font-weight: bold;
 }
 
-.media-infos .infos-icon.bottom {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-}
-
-.media-infos .release-date {
+.media__release-date {
   display: inline;
 }
 
-.media-infos .overview {
+.media__overview {
   font-size: 12px;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -81,7 +66,7 @@
   margin-top: 15px;
 }
 
-.media-infos app-list-buttons {
+.media__buttons {
   position: absolute;
   left: 0;
   bottom: 0;

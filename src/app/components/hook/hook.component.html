@@ -1,27 +1,34 @@
+<div class="hook">
 <ng-container *ngIf="currentMedia$ | async as currentMedia">
   <ng-container *ngIf="currentMediaCredits$ | async as currentMediaCredits">
-      <div class="hook">
-          <img *ngIf="currentMedia.backdrop_path" [src]="currentMedia.backdrop_path | tmdbImgPath">
-          <div class="hook_media-view">
-            <p class="media-type">{{ this.mediaType.label }}</p>
-            <h1 class="title">{{ currentMedia.title ? currentMedia.title : currentMedia.name }}<p class="popularity">{{ currentMedia.vote_average }}</p></h1>
-            <p class="overview">{{ currentMedia.overview }}</p>
-            <p><b i18n="@@hook.release-date">Released on: </b> {{ (currentMedia.release_date ? currentMedia.release_date : currentMedia.first_air_date)| tmdbDate:'YYYY' }}</p>
-            <p><b i18n="@@hook.duration">Duration: </b> {{ currentMedia.runtime ? currentMedia.runtime : currentMedia.episode_run_time }} minutes</p>
-            <p><b i18n="@@hook.directorName" *ngIf="currentMediaCredits.directorName">Directed by: </b> {{ currentMediaCredits.directorName }}</p>
-            <div class="cast">
-              <p class="with" i18n="@@hook.with">With:</p>
-              <ng-container *ngIf="currentMediaCredits.actorsNames as actorsNames">
-                <div class="actor-name-div" *ngFor="let actorName of actorsNames; index as i">
-                  <p class="actor-name">{{actorName}}</p>
-                  <p class="actor-name-comma" *ngIf="i < actorsNames.length - 1">,</p>
-                </div>
-              </ng-container>
-            </div>
-          </div>
-          <ng-container *ngIf="currentMedia">
-            <app-list-buttons [currentMedia]="currentMedia"></app-list-buttons>
+      <img class="hook__backdrop" *ngIf="currentMedia.backdrop_path" [src]="currentMedia.backdrop_path | tmdbImgPath">
+      <div class="hook__media-view">
+        <div class="hook__media-type">{{ this.mediaType.label }}</div>
+        <h1 class="hook__title">{{ currentMedia.title ? currentMedia.title : currentMedia.name }}<p class="hook__popularity">{{ currentMedia.vote_average }}</p></h1>
+        <p class="hook__overview">{{ currentMedia.overview }}</p>
+        <div class="hook__release-date">
+          <span class="hook__info-label" i18n="@@hook.release-date">Released on:</span>
+          {{ (currentMedia.release_date ? currentMedia.release_date : currentMedia.first_air_date)| tmdbDate:'YYYY' }}
+        </div>
+        <div class="hook__duration">
+          <span class="hook__info-label" i18n="@@hook.duration">Duration:</span>
+          {{ currentMedia.runtime ? currentMedia.runtime : currentMedia.episode_run_time }} minutes
+        </div>
+        <div class="hook__director-name">
+          <span class="hook__info-label" i18n="@@hook.directorName" *ngIf="currentMediaCredits.directorName">Directed by:</span>
+          {{ currentMediaCredits.directorName }}
+        </div>
+
+        <div class="hook__cast">
+          <span class="hook__info-label" i18n="@@hook.with">With:</span>
+          <ng-container *ngIf="currentMediaCredits.actorsNames as actorsNames">
+            <span class="hook__actor" *ngFor="let actorName of actorsNames; let last = last">{{ actorName }}<ng-container *ngIf="!last">, </ng-container></span>
           </ng-container>
         </div>
+      </div>
+      <ng-container *ngIf="currentMedia">
+        <app-list-buttons class="hook__actions" [currentMedia]="currentMedia"></app-list-buttons>
+      </ng-container>
+    </ng-container>
   </ng-container>
-</ng-container>
+</div>
