@@ -1,6 +1,6 @@
 import { Component, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { switchMap } from 'rxjs/operators';
-import { Media, MediaBestCredits, ComponentModel } from 'src/app/types';
+import { Media, MediaBestCredits } from 'src/app/types';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import { Observable } from 'rxjs';
 
@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 export class HookComponent implements OnChanges {
 
   @Input () topMedia: Media;
-  @Input () mediaType: ComponentModel;
+  @Input () mediaType: string;
 
   public currentMedia$: Observable<Media>;
   public currentMediaCredits$: Observable<MediaBestCredits>;
@@ -29,8 +29,8 @@ export class HookComponent implements OnChanges {
   }
 
   public updateComponent() {
-    this.currentMedia$ = this.tmdbService.getMediaById(this.topMedia.id, this.mediaType.value);
-    this.currentMediaCredits$ = this.tmdbService.getMediaBestCredits(this.topMedia.id, this.mediaType.value);
+    this.currentMedia$ = this.tmdbService.getMediaById(this.topMedia.id, this.mediaType);
+    this.currentMediaCredits$ = this.tmdbService.getMediaBestCredits(this.topMedia.id, this.mediaType);
   }
 
 }

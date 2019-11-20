@@ -1,11 +1,11 @@
 .list-button__button--not-added {
-  color: white;
+  color: $color-common-text;
   background-color: $color-background;
   border: 1px solid $color-borders;
 }
 
 .list-button__button--already-added {
-  color: black;
+  color: $color-background;
   background-color: $color-common-text;
   border: none;
 }

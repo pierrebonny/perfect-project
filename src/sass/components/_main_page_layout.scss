@@ -17,7 +17,7 @@
   z-index: 10;
   border-radius: 4px;
   background-color: $color-background;
-  color: white;
+  color: $color-common-text;
   border: 1px solid $color-borders;
   margin-right: 11px;
   cursor: pointer;
@@ -45,7 +45,7 @@
 
 .layout__warning {
   padding-top: 25%;
-  color: #4B515D;
+  color: $color-borders;
   text-align: center;
 }
 
@@ -55,4 +55,22 @@
   bottom: -56px;
   width: calc(100% - 20px);
   visibility: hidden;
+}
+
+.results-count {
+  position: absolute;
+  top: -77px;
+  right: 0;
+  display: flex;
+  font-size: 16px;
+  font-weight: lighter;
+  color: $color-common-text;
+}
+
+.results-count__count {
+  margin-right: 3px;
+}
+
+.user-list__media-type {
+  margin-right: 3px;
 }

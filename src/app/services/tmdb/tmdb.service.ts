@@ -1,7 +1,7 @@
 import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { APIResult, Media, MovieCredits } from '../../types';
+import { APIResult, Media, MediaCredits, MediaBestCredits } from '../../types';
 import { of, Observable } from 'rxjs';
 
 /**
@@ -44,30 +44,10 @@ export class TmdbService {
    * Get media director and 10 best actors names
    */
   public getMediaBestCredits(id: number, mediaType: string) {
-    return this.http.get<MovieCredits>(`${this.baseURL}/${mediaType}/${id}/credits?api_key=${this.apiKey}`)
+    return this.http.get<MediaCredits>(`${this.baseURL}/${mediaType}/${id}/credits?api_key=${this.apiKey}`)
       .pipe(
-        map((movieCredits: MovieCredits) => {
-          const result = {
-            directorName: '',
-            actorsNames: [],
-          };
-
-          // filtering all crew to get media director
-          if (movieCredits.crew) {
-            const director = movieCredits.crew.find(crewMember => crewMember.job === 'Director');
-
-            if (director) {
-              result.directorName = director.name;
-            }
-          }
-
-          if (movieCredits.cast) {
-            result.actorsNames = movieCredits.cast
-            .slice(0, Math.min(10, movieCredits.cast.length)) // getting up to 10 actors
-            .map(actorName => actorName.name); // getting actors names only
-          }
-
-          return result;
+        map((mediaCredits: MediaCredits) => {
+          return this.parseMediaCredits(mediaCredits);
         })
       );
   }
@@ -79,5 +59,25 @@ export class TmdbService {
     return this.http.get<APIResult>(
       `${this.baseURL}/search/${mediaType}?api_key=${this.apiKey}&page=${page}&include_adult=false&query=${mediaName}`
     );
+  }
+
+
+  private parseMediaCredits(mediaCredits: MediaCredits): MediaBestCredits {
+    const result: MediaBestCredits = {};
+    // filtering all crew to get media director
+    if (mediaCredits.crew) {
+      const director = mediaCredits.crew.find(crewMember => crewMember.job === 'Director');
+
+      if (director) {
+        result.directorName = director.name;
+      }
+    }
+
+    if (mediaCredits.cast) {
+      result.actorsNames = mediaCredits.cast
+      .slice(0, Math.min(10, mediaCredits.cast.length)) // getting up to 10 actors
+      .map(actorName => actorName.name); // getting actors names only
+    }
+    return result;
   }
 }

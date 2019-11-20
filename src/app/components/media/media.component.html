@@ -6,10 +6,13 @@
   </div>
 </ng-template>
 <div class="media__infos">
-  <p class="media__type">{{ mediaType.label }}</p>
+    <div *ngIf="mediaType === 'movie'; else tvLabel" class="media__type" i18n="@@media.movies">Movies</div>
+    <ng-template #tvLabel>
+        <div class="media__type" i18n="@@media.tv">TV Shows</div>
+    </ng-template>
   <h2 class="media__title">{{currentMedia.title ? currentMedia.title : currentMedia.name}}</h2>
   <p class="media__release-date"><strong i18n="@@media.release-date">Released on</strong> {{ (currentMedia.release_date ? currentMedia.release_date : currentMedia.first_air_date) | tmdbDate:'YYYY' }}</p>
   <div class="media__overview" *ngIf="currentMedia.overview">{{currentMedia.overview}}</div>
   <a class="media__details-link" (click)="openDetailsDialog()" i18n="@@media.details-link">See details</a>
-  <app-list-buttons class="media__buttons" [currentMedia]="currentMedia"></app-list-buttons>
+  <app-list-buttons class="media__buttons" [mediaType]="mediaType" [currentMedia]="currentMedia"></app-list-buttons>
 </div>

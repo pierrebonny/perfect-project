@@ -2,7 +2,7 @@
   position: absolute;
   top: 8px;
   right: 12px;
-  color: white;
+  color: $color-common-text;
   margin: 0;
   font-weight: bold;
   font-size: 22px;
@@ -38,7 +38,7 @@
 
 .media__type {
   font-size: 11px;
-  color: #918E8E;
+  color: $color-media-type;
   margin-bottom: 15px;
 }
 .media__details-link {

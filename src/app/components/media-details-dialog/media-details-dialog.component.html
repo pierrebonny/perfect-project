@@ -12,7 +12,10 @@
       </div>
     </ng-template>
   <div class="media-details__infos">
-    <p class="media-details__type">{{ mediaType.label }}</p>
+      <div *ngIf="mediaType === 'movie'; else tvLabel" class="media-details__type" i18n="@@media-details.movies">Movies</div>
+      <ng-template #tvLabel>
+          <div class="media-details__type" i18n="@@media-details.tv">TV Shows</div>
+      </ng-template>
     <h1 class="media-details__title">{{ mediaDetails.title ? mediaDetails.title : mediaDetails.name }}<p *ngIf="mediaDetails.vote_average" class="media-details__popularity">{{ mediaDetails.vote_average }}</p></h1>
     <div class="media-details__release-date"><strong i18n="@@media-details.release-date">Released on:</strong> {{ (mediaDetails.release_date ? mediaDetails.release_date : mediaDetails.first_air_date) | tmdbDate:'YYYY' }}</div>
     <div class="media-details__duration"><strong i18n="@@media-details.duration">Duration:</strong> {{ mediaDetails.runtime ? mediaDetails.runtime : mediaDetails.episode_run_time }} minutes</div>
@@ -27,7 +30,7 @@
       </ng-container>
     </div>
     <p class="media-details__overview">{{ mediaDetails.overview }}</p>
-    <app-list-buttons class="media-details__buttons" [currentMedia]="this.mediaDetails"></app-list-buttons>
+    <app-list-buttons class="media-details__buttons" [mediaType]="mediaType" [currentMedia]="this.mediaDetails"></app-list-buttons>
   </div>
   <mat-icon class="media-details__close-icon" (click)="closeDialog()">close</mat-icon>
 </div>

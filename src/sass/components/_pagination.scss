@@ -5,7 +5,7 @@
   align-items: center;
   margin-top: 64px;
   font-size: 12px;
-  color: #505050;
+  color: $color-borders;
   margin-bottom: 77px;
 }
 
@@ -15,17 +15,17 @@
 }
 
 .pagination__page.active {
-  color: white;
+  color: $color-common-text;
 }
 
 .pagination__arrow.left {
-  border-right: solid 4px #4E4E4E;
+  border-right: solid 4px $color-arrows;
   border-bottom: solid 5px transparent;
   border-top: solid 5px transparent;
 }
 
 .pagination__arrow.right {
-  border-left: solid 4px #4E4E4E;
+  border-left: solid 4px $color-arrows;
   border-bottom: solid 5px transparent;
   border-top: solid 5px transparent;
 }

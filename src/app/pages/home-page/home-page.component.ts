@@ -1,6 +1,6 @@
 import { Subject, Observable, BehaviorSubject } from 'rxjs';
 import { switchMap, map, startWith, shareReplay } from 'rxjs/operators';
-import { Media, ComponentModel } from 'src/app/types';
+import { Media } from 'src/app/types';
 import { Component, AfterViewInit, ViewChild } from '@angular/core';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import { MainPageLayoutComponent } from 'src/app/components/main-page-layout/main-page-layout.component';
@@ -19,17 +19,18 @@ export class HomePageComponent implements AfterViewInit {
 
   private currentPage = 1;
   public totalPages = 0;
+  public hookMedia: Media;
 
   private changePage$ = new Subject<number>();
-  public changeType$ = new BehaviorSubject<ComponentModel>({value: 'movie', label: 'Movies'});
+  public changeType$ = new BehaviorSubject<string>('movie');
 
-  constructor(private  tmdbService: TmdbService) {}
+  constructor(private tmdbService: TmdbService) {}
 
   public ngAfterViewInit() {
     this.mediasList$ = this.changeType$
       .pipe(
         switchMap((type) => {
-          if (this.layoutComponent) {this.layoutComponent.reset(); }
+          if (this.layoutComponent) { this.layoutComponent.reset(); }
           return this.updateMediasListPage(type);
         }),
         shareReplay(1)
@@ -45,16 +46,16 @@ export class HomePageComponent implements AfterViewInit {
     this.changePage$.next(currentPageIndex);
   }
 
-  public changeType(type: ComponentModel) {
+  public changeType(type: string) {
     this.currentPage = 1;
     this.changeType$.next(type);
   }
 
-  public updateMediasListPage(type: ComponentModel): Observable<Media[]> {
+  public updateMediasListPage(type: string): Observable<Media[]> {
     return this.changePage$
       .pipe(
         startWith(1),
-        switchMap((currentPage) => this.getTrendingMedias(currentPage, type.value))
+        switchMap((currentPage) => this.getTrendingMedias(currentPage, type))
       );
   }
 
@@ -66,6 +67,9 @@ export class HomePageComponent implements AfterViewInit {
       .pipe(
         map(medias => {
           this.totalPages = medias.total_pages;
+          if (currentPage === 1) {
+            this.hookMedia = medias.results[0];
+          }
           return medias.results;
         })
       );

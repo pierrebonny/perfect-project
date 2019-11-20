@@ -27,7 +27,7 @@
 }
 
 .hook__media-view {
-  color: white;
+  color: $color-common-text;
   font-size: 13px;
   position: relative;
   width: 50%;
@@ -36,7 +36,7 @@
 }
 
 .hook__media-type {
-  color: #918E8E;
+  color: $color-media-type;
   font-size: 11px;
 }
 
