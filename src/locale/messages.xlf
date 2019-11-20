@@ -16,61 +16,82 @@
           <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="main-page-layout.no-result" datatype="html">
-        <source>No result found</source>
+      <trans-unit id="media-details.movies" datatype="html">
+        <source>Movies</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/main-page-layout/main-page-layout.component.html</context>
-          <context context-type="linenumber">29</context>
+          <context context-type="sourcefile">src/app/components/media-details-dialog/media-details-dialog.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="media-details.tv" datatype="html">
+        <source>TV Shows</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/media-details-dialog/media-details-dialog.component.html</context>
+          <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="media-details.release-date" datatype="html">
         <source>Released on:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/media-details-dialog/media-details-dialog.component.html</context>
-          <context context-type="linenumber">7</context>
+          <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
       <trans-unit id="media-details.duration" datatype="html">
         <source>Duration:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/media-details-dialog/media-details-dialog.component.html</context>
-          <context context-type="linenumber">8</context>
+          <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="hook.directorName" datatype="html">
         <source>Directed by:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/media-details-dialog/media-details-dialog.component.html</context>
-          <context context-type="linenumber">10</context>
+          <context context-type="linenumber">23</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/hook/hook.component.html</context>
-          <context context-type="linenumber">18</context>
+          <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="hook.with" datatype="html">
         <source>With:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/media-details-dialog/media-details-dialog.component.html</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">27</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/hook/hook.component.html</context>
-          <context context-type="linenumber">23</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="media.movies" datatype="html">
+        <source>Movies</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/media/media.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="media.tv" datatype="html">
+        <source>TV Shows</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/media/media.component.html</context>
+          <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit>
       <trans-unit id="media.release-date" datatype="html">
         <source>Released on</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/media/media.component.html</context>
-          <context context-type="linenumber">11</context>
+          <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
       <trans-unit id="media.details-link" datatype="html">
         <source>See details</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/media/media.component.html</context>
-          <context context-type="linenumber">13</context>
+          <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="list-buttons.ever-seen" datatype="html">
@@ -94,18 +115,46 @@
           <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="media-research.results" datatype="html">
+        <source>results</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/media-research-page/media-research-page.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="media-research.result" datatype="html">
+        <source>result</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/media-research-page/media-research-page.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="hook.movies" datatype="html">
+        <source>Movies</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/hook/hook.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="hook.tv" datatype="html">
+        <source>TV Shows</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/hook/hook.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="hook.release-date" datatype="html">
         <source>Released on:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/hook/hook.component.html</context>
-          <context context-type="linenumber">10</context>
+          <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
       <trans-unit id="hook.duration" datatype="html">
         <source>Duration:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/hook/hook.component.html</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="navbar.top-trending" datatype="html">
@@ -134,6 +183,62 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/navbar/navbar.component.html</context>
           <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="user-list.movies" datatype="html">
+        <source>movies</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/user-list-page/user-list-page.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="user-list.tvs" datatype="html">
+        <source>TV Shows</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/user-list-page/user-list-page.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="user-list.movie" datatype="html">
+        <source>movie</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/user-list-page/user-list-page.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="user-list.tv" datatype="html">
+        <source>TV Show</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/user-list-page/user-list-page.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="user-list.seen1" datatype="html">
+        <source>ever seen</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/user-list-page/user-list-page.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="user-list.toSee1" datatype="html">
+        <source>to see</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/user-list-page/user-list-page.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="user-list.seen2" datatype="html">
+        <source>ever seen</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/user-list-page/user-list-page.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="user-list.toSee2" datatype="html">
+        <source>to see</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/user-list-page/user-list-page.component.html</context>
+          <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit>
     </body>

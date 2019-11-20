@@ -32,7 +32,8 @@ import { MainPageLayoutComponent } from './components/main-page-layout/main-page
 import { ListButtonComponent } from './components/list-button/list-button.component';
 import { HookComponent } from './components/hook/hook.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { PaginationComponent } from './pagination/pagination.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { UserListPageComponent } from './pages/user-list-page/user-list-page.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { PaginationComponent } from './pagination/pagination.component';
     HookComponent,
     NavbarComponent,
     PaginationComponent,
+    UserListPageComponent,
   ],
   imports: [
     BrowserModule,

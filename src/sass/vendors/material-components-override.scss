@@ -1,11 +1,11 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 .mat-tab-label.mat-tab-label-active {
-  color: white;
+  color: $color-common-text;
   opacity: 1;
 }
 .mat-tab-label {
-  color: white;
+  color: $color-common-text;
   font-size: 16px;
   position: relative;
 }
@@ -40,6 +40,6 @@
 
 .mat-dialog-container {
   padding: 0!important;
-  border: 1px solid #505050!important;
+  border: 1px solid $color-borders!important;
   border-radius: 0!important;
 }

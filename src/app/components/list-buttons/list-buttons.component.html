@@ -6,7 +6,7 @@
   listName="seen"
   [mediaId]="currentMedia.id"
   (buttonClicked)="updateList($event)"
-  [isSelected]="seen"
+  [isSelected]="seen$ | async"
   ></app-list-button>
 <app-list-button
   class="list-buttons__button-component"
@@ -15,6 +15,6 @@
   listName="mustSee"
   (buttonClicked)="updateList($event)"
   [mediaId]="currentMedia.id"
-  [isSelected]="mustSee"
+  [isSelected]="mustSee$ | async"
 ></app-list-button>
 </div>

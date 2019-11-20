@@ -45,7 +45,7 @@ export  interface MediaBestCredits {
   actorsNames?: Array<string>;
 }
 
-export interface MovieCredits {
+export interface MediaCredits {
   cast?: Array<CastMember>;
   crew?: Array<CrewMember>;
   id?: number;
@@ -56,9 +56,4 @@ export interface APIResult {
   results: Array<Media>;
   total_pages: number;
   total_results: number;
-}
-
-export interface ComponentModel {
-  label: string;
-  value: string;
 }

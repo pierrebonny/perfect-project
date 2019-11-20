@@ -1,7 +1,7 @@
 .media-research-page__search-bar {
   width: 287px;
   height: 35px;
-  background-color: #000000;
+  background-color: $color-background;
   border: 1px solid $color-borders;
   border-radius: 25px;
   vertical-align: middle;
@@ -10,7 +10,7 @@
 
 .media-research-page__input {
   background-color: transparent;
-  color: white;
+  color: $color-common-text;
   border: none;
   width: calc(100% - 45px);
   height: 100%;
@@ -27,7 +27,7 @@
 }
 
 .media-research-page__search-icon {
-  color: whitesmoke;
+  color: $color-common-text;
   position: absolute;
   top: 5px;
   right: 5px;

@@ -2,14 +2,14 @@
     <div class="layout__media-type-selection" [ngClass]="additionalClass">
         <button
           class="layout__media-type-button"
-          [ngClass]="mediasType.value === 'movie' ? 'on' : ''"
-          (click)="mediaChange({ value: 'movie', label: 'Movies' })"
+          [ngClass]="mediasType === 'movie' ? 'on' : ''"
+          (click)="mediaChange('movie')"
           i18n="@@main-page-layout.movies"
         >Movies</button>
         <button
           class="layout__media-type-button"
-          [ngClass]="mediasType.value === 'tv' ? 'on' : ''"
-          (click)="mediaChange({ value: 'tv', label: 'TV Shows' })"
+          [ngClass]="mediasType === 'tv' ? 'on' : ''"
+          (click)="mediaChange('tv')"
           i18n="@@main-page-layout.tv"
         >TV Shows</button>
         <ng-content select="[search-bar]">
@@ -18,16 +18,15 @@
     <ng-content select="[hook]">
       </ng-content>
     <div class="layout__medias-list" [ngClass]="additionalClass">
-      <ng-container *ngIf="mediasList else warningDiv">
+      <ng-content select="[results-count]">
+      </ng-content>
+      <ng-container *ngIf="mediasList">
         <app-media-grid
-          *ngIf="mediasList && mediasList.length else warningDiv"
+          *ngIf="mediasList && mediasList.length"
           [mediasList]="mediasList"
           [mediasType]="this.mediasType"
           ></app-media-grid>
       </ng-container>
-      <ng-template #warningDiv>
-          <h2 class="layout__warning" i18n="@@main-page-layout.no-result">No result found</h2>
-      </ng-template>
       <app-pagination #paginator [totalPages]="totalPages" [currentPageIndex]="1" (pageChanged)="changePage($event)"></app-pagination>
     </div>
 </div>

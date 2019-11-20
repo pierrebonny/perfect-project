@@ -1,6 +1,6 @@
 import { Subject, Observable, of, combineLatest, BehaviorSubject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, map, startWith } from 'rxjs/operators';
-import { Media, ComponentModel } from 'src/app/types';
+import { Media } from 'src/app/types';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import { MainPageLayoutComponent } from 'src/app/components/main-page-layout/main-page-layout.component';
@@ -23,9 +23,10 @@ export class MediaResearchPageComponent implements OnInit {
 
   private currentPage = 1;
   public totalPages: number;
+  public totalResults: number;
 
   private changePage$ = new Subject<number>();
-  public changeType$ = new BehaviorSubject<ComponentModel>({value: 'movie', label: 'Movies'});
+  public changeType$ = new BehaviorSubject<string>('movie');
 
   constructor(private tmdbService: TmdbService) {}
 
@@ -39,7 +40,7 @@ export class MediaResearchPageComponent implements OnInit {
       ]).pipe(
         switchMap(([_, type]) => {
           this.layoutComponent.reset();
-          return this.updateMediasListPage(type.value);
+          return this.updateMediasListPage(type);
         }),
       );
   }
@@ -52,7 +53,7 @@ export class MediaResearchPageComponent implements OnInit {
     this.changePage$.next(currentPageIndex);
   }
 
-  public changeType(type: ComponentModel) {
+  public changeType(type: string) {
     this.currentPage = 1;
     this.changeType$.next(type);
   }
@@ -71,6 +72,7 @@ export class MediaResearchPageComponent implements OnInit {
   private filterMediasByUserEntry(currentPage: number, type: string): Observable<Media[]> {
     if (!(this.mediaResearch && this.mediaResearch.length)) {
       this.totalPages = 0;
+      this.totalResults = 0;
       return of([]);
     }
 
@@ -78,6 +80,7 @@ export class MediaResearchPageComponent implements OnInit {
       .pipe(
         map(medias => {
           this.totalPages = medias.total_pages;
+          this.totalResults = medias.total_results;
           return medias.results;
         })
       );

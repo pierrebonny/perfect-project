@@ -1,6 +1,6 @@
 import { Component, Input, EventEmitter, Output, ViewChild } from '@angular/core';
-import { Media, ComponentModel } from 'src/app/types';
-import { PaginationComponent } from 'src/app/pagination/pagination.component';
+import { Media } from 'src/app/types';
+import { PaginationComponent } from 'src/app/components/pagination/pagination.component';
 
 @Component({
   selector: 'app-main-page-layout',
@@ -15,14 +15,14 @@ export class MainPageLayoutComponent {
   @Input () additionalClass: string;
   @Input () totalPages: number;
 
-  public mediasType: ComponentModel = { value: 'movie', label: 'Movies' };
+  public mediasType = 'movie';
 
-  @Output() mediaChanged = new EventEmitter<ComponentModel>();
+  @Output() mediaChanged = new EventEmitter<string>();
   @Output() pageChanged = new EventEmitter<number>();
 
   constructor() {}
 
-  public mediaChange(type: ComponentModel ) {
+  public mediaChange(type: string ) {
     this.mediaChanged.emit(type);
     this.mediasType = type;
     this.reset();

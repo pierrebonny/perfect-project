@@ -1,0 +1,37 @@
+<app-main-page-layout
+  *ngIf="mediasList$ | async as mediasList"
+  [mediasList]="mediasList$ | async"
+  (mediaChanged)="changeType($event)"
+  (pageChanged)="changePage($event)"
+  [totalPages]="totalPages"
+  additionalClass="margin">
+  <div results-count class="results-count">
+    <span class="results-count__count">
+      {{ mediasList ? mediasList.length : 0 }}
+    </span>
+    <ng-container *ngIf="(this.changeType$ | async) as mediaType">
+      <div *ngIf="mediasList.length > 1; else result">
+        <span class="user-list__media-type" *ngIf="mediaType === 'movie'; else tvs" i18n="@@user-list.movies">movies</span>
+        <ng-template #tvs>
+          <span class="user-list__media-type" i18n="@@user-list.tvs">TV Shows</span>
+        </ng-template>
+        <span *ngIf="currentListName && currentListName === 'seen';else toSee" i18n="@@user-list.seen1">ever seen</span>
+        <ng-template #toSee>
+          <span *ngIf="currentListName && currentListName === 'seen'" i18n="@@user-list.toSee1">to see</span>
+        </ng-template>
+      </div>
+      <ng-template #result>
+        <div class="media-research-page__results_text">
+          <span class="user-list__media-type" *ngIf="mediaType === 'movie'; else tv" i18n="@@user-list.movie">movie</span>
+          <ng-template #tv>
+            <span class="user-list__media-type" i18n="@@user-list.tv">TV Show</span>
+          </ng-template>
+          <span *ngIf="currentListName && currentListName === 'seen';else toSee" i18n="@@user-list.seen2">ever seen</span>
+          <ng-template #toSee>
+            <span i18n="@@user-list.toSee2">to see</span>
+          </ng-template>
+        </div>
+      </ng-template>
+    </ng-container>
+  </div>
+</app-main-page-layout>

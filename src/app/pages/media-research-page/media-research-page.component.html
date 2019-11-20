@@ -12,6 +12,7 @@
     i18n-placeholder="@@media-research.research-placeHolder"
     [(ngModel)]="mediaResearch"
     type="text"
+    autocomplete="off"
     name="mediaResearch"
     id="mediaResearch"
     (ngModelChange)="this.mediaResearchUpdate.next($event)"
@@ -19,5 +20,14 @@
     onblur="this.placeholder = 'Search by title'"
     >
     <mat-icon class="media-research-page__search-icon" matSuffix>search</mat-icon>
+  </div>
+  <div results-count class="results-count">
+    <span class="results-count__count">
+      {{ totalResults ? totalResults : 0 }}
+    </span>
+    <span *ngIf="totalResults && totalResults > 1 else result" i18n="@@media-research.results">results</span>
+    <ng-template #result>
+      <span i18n="@@media-research.result">result</span>
+    </ng-template>
   </div>
 </app-main-page-layout>
