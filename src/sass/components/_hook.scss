@@ -8,12 +8,22 @@
   &::after {
     position: absolute;
     top: 0;
-    left: 0;
+    left: 187px;
     background: transparent linear-gradient(270deg, #00000000 0%, $color-background 100%) 0% 0% no-repeat padding-box;
     content: '';
-    width: 100%;
+    width: calc(100% - 187px);
     height: 100%;
     opacity: 1;
+  }
+  &::before {
+    content: '';
+    z-index: 1;
+    height: 100%;
+    width: 187px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: $color-background;
   }
 }
 

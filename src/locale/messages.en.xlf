@@ -27,16 +27,16 @@
         </context-group>
       </trans-unit>
       <trans-unit id="media-details.movies" datatype="html">
-        <source>Movies</source>
-        <target>Movies</target>
+        <source>MOVIES</source>
+        <target>MOVIES</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/media-details-dialog/media-details-dialog.component.html</context>
           <context context-type="linenumber">15</context>
         </context-group>
       </trans-unit>
       <trans-unit id="media-details.tv" datatype="html">
-        <source>TV Shows</source>
-        <target>TV Shows</target>
+        <source>TV SHOWS</source>
+        <target>TV SHOWS</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/media-details-dialog/media-details-dialog.component.html</context>
           <context context-type="linenumber">17</context>
@@ -91,16 +91,16 @@
         </context-group>
       </trans-unit>
       <trans-unit id="media.movies" datatype="html">
-        <source>Movies</source>
-        <target>Movies</target>
+        <source>MOVIES</source>
+        <target>MOVIES</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/media/media.component.html</context>
           <context context-type="linenumber">9</context>
         </context-group>
       </trans-unit>
       <trans-unit id="media.tv" datatype="html">
-        <source>TV Shows</source>
-        <target>TV Shows</target>
+        <source>TV SHOWS</source>
+        <target>TV SHOWS</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/media/media.component.html</context>
           <context context-type="linenumber">11</context>
@@ -147,16 +147,16 @@
         </context-group>
       </trans-unit>
       <trans-unit id="hook.movies" datatype="html">
-        <source>Movies</source>
-        <target>Movies</target>
+        <source>MOVIES</source>
+        <target>MOVIES</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/hook/hook.component.html</context>
           <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
       <trans-unit id="hook.tv" datatype="html">
-        <source>TV Shows</source>
-        <target>TV Shows</target>
+        <source>TV SHOWS</source>
+        <target>TV SHOWS</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/hook/hook.component.html</context>
           <context context-type="linenumber">8</context>

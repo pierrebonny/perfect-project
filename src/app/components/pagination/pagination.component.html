@@ -1,4 +1,4 @@
-<div *ngIf="totalPages > 0" class="pagination">
+<div *ngIf="totalPages > 1" class="pagination">
   <div class="pagination__arrow left" (click)="changePage(currentPageIndex - 1)"></div>
   <div [class]="'pagination__page ' + (currentPageIndex === 1 ? 'active' : '')" (click)="changePage(1)">1</div>
   <div *ngIf="totalPages > 2 && currentPageIndex > 6" class="pagination__three-points">...</div>

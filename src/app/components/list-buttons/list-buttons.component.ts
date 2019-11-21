@@ -1,7 +1,7 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Media } from '../../types';
 import { LocalStorageService } from 'src/app/services/localstorage/localStorage.service';
-import { Subscription, Observable, merge, of, empty } from 'rxjs';
+import { Observable, merge, of, EMPTY } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 @Component({
@@ -9,15 +9,13 @@ import { switchMap } from 'rxjs/operators';
   templateUrl: './list-buttons.component.html',
   styleUrls: ['./list-buttons.component.scss']
 })
-export class ListButtonsComponent implements OnInit, OnDestroy {
+export class ListButtonsComponent implements OnInit {
 
   @Input () currentMedia: Media;
   @Input () mediaType: string;
 
   public seen$: Observable<boolean>;
   public mustSee$: Observable<boolean>;
-
-  private subscriptions = new Subscription();
 
   constructor(private localStorageService: LocalStorageService) {}
 
@@ -41,13 +39,9 @@ export class ListButtonsComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnDestroy() {
-    this.subscriptions.unsubscribe();
-  }
-
   private updateButtonsState(buttonListName: string, event: { id: number, listName: string, isAdding: boolean }): Observable<boolean> {
     if (event.id !== this.currentMedia.id || event.listName !== buttonListName) {
-      return empty();
+      return EMPTY;
     }
     return of(event.isAdding);
   }

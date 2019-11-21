@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
 import { UserListPageComponent } from './user-list-page.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { of, BehaviorSubject } from 'rxjs';
 
 describe('UserListPageComponent', () => {
   let component: UserListPageComponent;
@@ -8,7 +11,12 @@ describe('UserListPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserListPageComponent ]
+      declarations: [ UserListPageComponent ],
+      schemas: [ NO_ERRORS_SCHEMA ],
+      imports: [ RouterTestingModule ],
+      providers: [
+        { provide: ActivatedRoute, useValue: { data: new BehaviorSubject({ listName: 'seen' })} }
+      ]
     })
     .compileComponents();
   }));
@@ -20,6 +28,7 @@ describe('UserListPageComponent', () => {
   });
 
   it('should create', () => {
+    const route = TestBed.get(ActivatedRoute);
     expect(component).toBeTruthy();
   });
 });
