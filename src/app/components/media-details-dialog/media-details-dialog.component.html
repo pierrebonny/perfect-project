@@ -1,4 +1,4 @@
-<div class="media-details">
+<div class="media-details" *ngIf="mediaDetails$ | async as mediaDetails">
   <img *ngIf="mediaDetails.backdrop_path" class="media-details__backdrop" [src]="mediaDetails.backdrop_path | tmdbImgPath">
   <img
     class="media-details__poster"
@@ -12,24 +12,26 @@
       </div>
     </ng-template>
   <div class="media-details__infos">
-      <div *ngIf="mediaType === 'movie'; else tvLabel" class="media-details__type" i18n="@@media-details.movies">Movies</div>
+      <div *ngIf="mediaType === 'movie'; else tvLabel" class="media-details__type" i18n="@@media-details.movies">MOVIES</div>
       <ng-template #tvLabel>
-          <div class="media-details__type" i18n="@@media-details.tv">TV Shows</div>
+          <div class="media-details__type" i18n="@@media-details.tv">TV SHOWS</div>
       </ng-template>
     <h1 class="media-details__title">{{ mediaDetails.title ? mediaDetails.title : mediaDetails.name }}<p *ngIf="mediaDetails.vote_average" class="media-details__popularity">{{ mediaDetails.vote_average }}</p></h1>
     <div class="media-details__release-date"><strong i18n="@@media-details.release-date">Released on:</strong> {{ (mediaDetails.release_date ? mediaDetails.release_date : mediaDetails.first_air_date) | tmdbDate:'YYYY' }}</div>
     <div class="media-details__duration"><strong i18n="@@media-details.duration">Duration:</strong> {{ mediaDetails.runtime ? mediaDetails.runtime : mediaDetails.episode_run_time }} minutes</div>
-    <div class="media-details__director-name" *ngIf="mediaBestCredits && mediaBestCredits.directorName">
-      <span class="media-details__info-label" i18n="@@hook.directorName" >Directed by:</span>
-      {{ mediaBestCredits.directorName }}
-    </div>
-    <div class="media-details__cast">
-      <span class="media-details__info-label" i18n="@@hook.with">With:</span>
-      <ng-container *ngIf="mediaBestCredits && mediaBestCredits.actorsNames as actorsNames">
-        <span class="media-details__actor" *ngFor="let actorName of actorsNames; let last = last">{{ actorName }}<ng-container *ngIf="!last">, </ng-container></span>
-      </ng-container>
-    </div>
-    <p class="media-details__overview">{{ mediaDetails.overview }}</p>
+    <ng-container *ngIf="mediaBestCredits$ | async as mediaBestCredits">
+      <div class="media-details__director-name" *ngIf="mediaBestCredits.directorName">
+        <span class="media-details__info-label" i18n="@@hook.directorName" >Directed by:</span>
+        {{ mediaBestCredits.directorName }}
+      </div>
+      <div class="media-details__cast">
+        <span class="media-details__info-label" i18n="@@hook.with">With:</span>
+        <ng-container *ngIf="mediaBestCredits.actorsNames as actorsNames">
+          <span class="media-details__actor" *ngFor="let actorName of actorsNames; let last = last">{{ actorName }}<ng-container *ngIf="!last">, </ng-container></span>
+        </ng-container>
+      </div>
+    </ng-container>
+    <p class="media-details__overview" *ngIf="mediaDetails.overview">{{ mediaDetails.overview }}</p>
     <app-list-buttons class="media-details__buttons" [mediaType]="mediaType" [currentMedia]="this.mediaDetails"></app-list-buttons>
   </div>
   <mat-icon class="media-details__close-icon" (click)="closeDialog()">close</mat-icon>

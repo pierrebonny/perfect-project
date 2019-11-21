@@ -6,8 +6,12 @@
 }
 .mat-tab-label {
   color: $color-common-text;
-  font-size: 16px;
+  font-size: 14px;
+  margin: 0 25px!important;
+  padding: 0!important;
   position: relative;
+  min-width: unset!important;
+  height: unset!important;
 }
 
 .mat-ink-bar {
@@ -18,7 +22,7 @@
 .mat-ink-bar:after {
   content: "";
   position: absolute;
-  top: 14px;
+  top: 29px;
   right: 0;
   left: 0;
   margin: 0 auto;

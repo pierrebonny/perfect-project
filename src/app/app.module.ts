@@ -25,7 +25,7 @@ import { FormsModule } from '@angular/forms';
 import { ListButtonsComponent } from './components/list-buttons/list-buttons.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MediaGridComponent } from './components/media-grid/media-grid.component';
-import { TmdbDatePipe } from './pipes/tmdb-date/tmdb -date.pipe';
+import { TmdbDatePipe } from './pipes/tmdb-date/tmdb-date.pipe';
 import { TmdbImgPathPipe } from './pipes/tmdb-img-path/tmdb-img-path.pipe';
 import { MediaResearchPageComponent } from './pages/media-research-page/media-research-page.component';
 import { MainPageLayoutComponent } from './components/main-page-layout/main-page-layout.component';

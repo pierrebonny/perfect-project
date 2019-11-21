@@ -20,6 +20,7 @@ export class LocalStorageService {
   }
 
   public getListAndFilterByMediaType(listName: string, mediaType: string): Media[] {
+    console.log(localStorage.getItem(listName));
     return JSON.parse(localStorage.getItem(listName)).filter(media => media.media_type === mediaType);
   }
 

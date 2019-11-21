@@ -1,6 +1,6 @@
 <app-main-page-layout
-  *ngIf="mediasList$ | async as mediasList"
-  [mediasList]="mediasList$ | async"
+  *ngIf="currentMediasList$ | async as mediasList"
+  [mediasList]="mediasList"
   (mediaChanged)="changeType($event)"
   (pageChanged)="changePage($event)"
   [totalPages]="totalPages"
@@ -17,7 +17,7 @@
         </ng-template>
         <span *ngIf="currentListName && currentListName === 'seen';else toSee" i18n="@@user-list.seen1">ever seen</span>
         <ng-template #toSee>
-          <span *ngIf="currentListName && currentListName === 'seen'" i18n="@@user-list.toSee1">to see</span>
+          <span i18n="@@user-list.toSee1">to see</span>
         </ng-template>
       </div>
       <ng-template #result>

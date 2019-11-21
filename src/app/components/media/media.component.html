@@ -6,9 +6,9 @@
   </div>
 </ng-template>
 <div class="media__infos">
-    <div *ngIf="mediaType === 'movie'; else tvLabel" class="media__type" i18n="@@media.movies">Movies</div>
+    <div *ngIf="mediaType === 'movie'; else tvLabel" class="media__type" i18n="@@media.movies">MOVIES</div>
     <ng-template #tvLabel>
-        <div class="media__type" i18n="@@media.tv">TV Shows</div>
+        <div class="media__type" i18n="@@media.tv">TV SHOWS</div>
     </ng-template>
   <h2 class="media__title">{{currentMedia.title ? currentMedia.title : currentMedia.name}}</h2>
   <p class="media__release-date"><strong i18n="@@media.release-date">Released on</strong> {{ (currentMedia.release_date ? currentMedia.release_date : currentMedia.first_air_date) | tmdbDate:'YYYY' }}</p>

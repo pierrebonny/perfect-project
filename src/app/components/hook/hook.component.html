@@ -3,9 +3,9 @@
   <ng-container *ngIf="currentMediaCredits$ | async as currentMediaCredits">
       <img class="hook__backdrop" *ngIf="currentMedia.backdrop_path" [src]="currentMedia.backdrop_path | tmdbImgPath">
       <div class="hook__media-view">
-        <div *ngIf="mediaType === 'movie'; else tvLabel" class="hook__media-type" i18n="@@hook.movies">Movies</div>
+        <div *ngIf="mediaType === 'movie'; else tvLabel" class="hook__media-type" i18n="@@hook.movies">MOVIES</div>
         <ng-template #tvLabel>
-          <div class="hook__media-type" i18n="@@hook.tv">TV Shows</div>
+          <div class="hook__media-type" i18n="@@hook.tv">TV SHOWS</div>
         </ng-template>
         <h1 class="hook__title">{{ currentMedia.title ? currentMedia.title : currentMedia.name }}<p class="hook__popularity">{{ currentMedia.vote_average }}</p></h1>
         <p class="hook__overview">{{ currentMedia.overview }}</p>
