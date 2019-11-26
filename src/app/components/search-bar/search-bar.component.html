@@ -1,0 +1,17 @@
+<div search-bar color="primary" class="media-research-page__search-bar">
+  <input
+  class="media-research-page__input"
+  matInput
+  placeholder="Search by title"
+  i18n-placeholder="@@media-research.research-placeHolder"
+  [(ngModel)]="research"
+  type="text"
+  autocomplete="off"
+  name="research"
+  id="research"
+  (ngModelChange)="this.onResearchUpdate($event)"
+  onfocus="this.placeholder = ''"
+  onblur="this.placeholder = 'Search by title'"
+  >
+  <mat-icon class="media-research-page__search-icon" matSuffix>search</mat-icon>
+</div>

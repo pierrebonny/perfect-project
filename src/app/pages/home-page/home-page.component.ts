@@ -49,6 +49,11 @@ export class HomePageComponent implements AfterViewInit {
   public changeType(type: string) {
     this.currentPage = 1;
     this.changeType$.next(type);
+    this.layoutComponent.reset();
+  }
+
+  public getCurrentPage() {
+    return this.currentPage;
   }
 
   public updateMediasListPage(type: string): Observable<Media[]> {

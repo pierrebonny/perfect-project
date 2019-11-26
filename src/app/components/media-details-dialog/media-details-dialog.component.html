@@ -16,7 +16,7 @@
       <ng-template #tvLabel>
           <div class="media-details__type" i18n="@@media-details.tv">TV SHOWS</div>
       </ng-template>
-    <h1 class="media-details__title">{{ mediaDetails.title ? mediaDetails.title : mediaDetails.name }}<p *ngIf="mediaDetails.vote_average" class="media-details__popularity">{{ mediaDetails.vote_average }}</p></h1>
+    <h1 class="media-details__title">{{ (mediaDetails.title ? mediaDetails.title : mediaDetails.name).toUpperCase() }}<p *ngIf="mediaDetails.vote_average" class="media-details__popularity">{{ mediaDetails.vote_average }}</p></h1>
     <div class="media-details__release-date"><strong i18n="@@media-details.release-date">Released on:</strong> {{ (mediaDetails.release_date ? mediaDetails.release_date : mediaDetails.first_air_date) | tmdbDate:'YYYY' }}</div>
     <div class="media-details__duration"><strong i18n="@@media-details.duration">Duration:</strong> {{ mediaDetails.runtime ? mediaDetails.runtime : mediaDetails.episode_run_time }} minutes</div>
     <ng-container *ngIf="mediaBestCredits$ | async as mediaBestCredits">

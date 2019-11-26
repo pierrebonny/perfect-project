@@ -1,12 +1,17 @@
 <ng-container *ngIf="mediasList$ | async as mediasList">
     <app-main-page-layout
+      class="home-page__main-page-layout"
       [mediasList]="mediasList"
-      (mediaChanged)="changeType($event)"
       (pageChanged)="changePage($event)"
       [totalPages]="totalPages"
+      [mediasType]="this.changeType$ | async"
       additionalClass="">
       <ng-container hook>
           <app-hook  [mediaType]="this.changeType$ | async" [topMedia]="hookMedia"></app-hook>
+      </ng-container>
+      <ng-container media-type-selection>
+        <app-media-type-selection additionalClass="" (mediaChanged)="changeType($event)">
+        </app-media-type-selection>
       </ng-container>
     </app-main-page-layout>
 </ng-container>

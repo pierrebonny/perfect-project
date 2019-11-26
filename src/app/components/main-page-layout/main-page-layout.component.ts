@@ -12,21 +12,13 @@ export class MainPageLayoutComponent {
   @ViewChild('paginator', { static: false }) paginator: PaginationComponent;
 
   @Input () mediasList: Media[];
-  @Input () additionalClass: string;
   @Input () totalPages: number;
+  @Input () mediasType: string;
+  @Input () additionalClass: string;
 
-  public mediasType = 'movie';
-
-  @Output() mediaChanged = new EventEmitter<string>();
   @Output() pageChanged = new EventEmitter<number>();
 
   constructor() {}
-
-  public mediaChange(type: string ) {
-    this.mediaChanged.emit(type);
-    this.mediasType = type;
-    this.reset();
-  }
 
   public changePage(pageIndex: number) {
     this.pageChanged.emit(pageIndex);

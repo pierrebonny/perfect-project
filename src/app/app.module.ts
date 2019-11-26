@@ -34,6 +34,8 @@ import { HookComponent } from './components/hook/hook.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { UserListPageComponent } from './pages/user-list-page/user-list-page.component';
+import { MediaTypeSelectionComponent } from './components/media-type-selection/media-type-selection.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { UserListPageComponent } from './pages/user-list-page/user-list-page.com
     NavbarComponent,
     PaginationComponent,
     UserListPageComponent,
+    MediaTypeSelectionComponent,
+    SearchBarComponent,
   ],
   imports: [
     BrowserModule,

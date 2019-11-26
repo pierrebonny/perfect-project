@@ -16,18 +16,26 @@ export class LocalStorageService {
    * Getting list from localstorage
    */
   public getList(listName: string): Media[] {
+    if (!localStorage.getItem(listName)) {
+      return [];
+    }
     return JSON.parse(localStorage.getItem(listName));
   }
 
   public getListAndFilterByMediaType(listName: string, mediaType: string): Media[] {
-    console.log(localStorage.getItem(listName));
-    return JSON.parse(localStorage.getItem(listName)).filter(media => media.media_type === mediaType);
+    if (!mediaType) {
+      return this.getList(listName);
+    }
+    return this.getList(listName).filter(media => media.media_type === mediaType);
   }
 
   /**
    * Removing current media id from localstorage list
    */
   public removeItem(listName: string, currentMedia: Media): void {
+    if (!localStorage.getItem(listName) || !currentMedia) {
+      return;
+    }
     const list = this.getList(listName);
     const index = list.findIndex(media => (media.media_type === currentMedia.media_type && media.id === currentMedia.id));
     if (index >= 0) {
@@ -41,10 +49,10 @@ export class LocalStorageService {
    * Looking for current media id in localstorage list
    */
   public isInList(listName: string, mediaId: number): boolean {
-    const list = this.getList(listName);
-    if (!list) {
-      localStorage.setItem(listName, JSON.stringify([]));
+    if (!localStorage.getItem(listName) || !mediaId) {
+      return false;
     }
+    const list = this.getList(listName);
     return list && list.find(media => media.id === mediaId) !== undefined;
   }
 
@@ -52,6 +60,9 @@ export class LocalStorageService {
    * Adding current media id from localstorage list
    */
   public addItem(listName: string, media: Media): void {
+    if (!media) {
+      return;
+    }
     const list = this.getList(listName);
     list.push(media);
     localStorage.setItem(listName, JSON.stringify(list));

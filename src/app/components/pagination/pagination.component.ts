@@ -21,7 +21,10 @@ export class PaginationComponent implements OnChanges {
     if (!changes.totalPages) {
       return;
     }
-
+    if (changes.pageIndex && this.currentPageIndex < 0) {
+      this.currentPageIndex = 0;
+    }
+    this.totalPages = changes.totalPages.currentValue;
     this.pagesIndex = new Array(this.totalPages).fill(1).map((x, i) => i + 1);
     this.displayedPagesIndex = this.pagesIndex.slice(1, Math.min(6, this.pagesIndex.length - 1));
   }

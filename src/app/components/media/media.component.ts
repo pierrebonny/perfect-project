@@ -19,7 +19,7 @@ export class MediaComponent {
   /**
    * open new dialog with media cast, crew and overview
    */
-  openDetailsDialog() {
+  public openDetailsDialog() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.width = '80%';
     dialogConfig.data = {

@@ -1,5 +1,5 @@
 import { Subject, Observable, of, combineLatest, BehaviorSubject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap, map, startWith } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap, map, startWith, tap } from 'rxjs/operators';
 import { Media } from 'src/app/types';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
@@ -16,8 +16,9 @@ export class MediaResearchPageComponent implements OnInit {
   @ViewChild(MainPageLayoutComponent, { static: false }) layoutComponent: MainPageLayoutComponent;
 
   // research bar model
-  public mediaResearch: string;
   public mediaResearchUpdate = new Subject<string>();
+
+  private mediaResearch: string;
 
   public mediasList$: Observable<Media[]>;
 
@@ -35,6 +36,9 @@ export class MediaResearchPageComponent implements OnInit {
         this.mediaResearchUpdate.pipe(
           debounceTime(500),
           distinctUntilChanged(),
+          tap((mediaResearch) => {
+            this.mediaResearch = mediaResearch;
+          })
         ),
         this.changeType$,
       ]).pipe(
@@ -58,6 +62,10 @@ export class MediaResearchPageComponent implements OnInit {
     this.changeType$.next(type);
   }
 
+  public getCurrentPage() {
+    return this.currentPage;
+  }
+
   public updateMediasListPage(type: string): Observable<Media[]> {
     return this.changePage$
       .pipe(
@@ -76,7 +84,7 @@ export class MediaResearchPageComponent implements OnInit {
       return of([]);
     }
 
-    return this.tmdbService.getMediaByName(this.mediaResearch, type, currentPage)
+    return this.tmdbService.getMediasByName(this.mediaResearch, type, currentPage)
       .pipe(
         map(medias => {
           this.totalPages = medias.total_pages;

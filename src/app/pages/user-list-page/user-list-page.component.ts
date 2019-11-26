@@ -1,5 +1,5 @@
 import { Subject, BehaviorSubject, Observable, combineLatest, of, merge } from 'rxjs';
-import { switchMap, pluck, tap, map, startWith } from 'rxjs/operators';
+import { switchMap, pluck, tap, map, startWith, distinctUntilChanged, filter } from 'rxjs/operators';
 import { Media } from 'src/app/types';
 import { Component, ViewChild } from '@angular/core';
 import { LocalStorageService } from 'src/app/services/localstorage/localStorage.service';
@@ -30,32 +30,33 @@ export class UserListPageComponent {
   public changeType$ = new BehaviorSubject<string>('movie');
 
   constructor(private localStorageService: LocalStorageService, private route: ActivatedRoute) {
+    const listName$ = this.route.data.pipe(
+      pluck('listName'),
+      distinctUntilChanged(),
+      tap(listName => this.currentListName = listName)
+    );
 
-    const listName$ = merge(
-      this.route.data.pipe(pluck('listName')),
-      this.localStorageService.localStorageNotifier.pipe(pluck('listName'))
+    const listChange$ = this.localStorageService.localStorageNotifier.pipe(
+      pluck('listName'),
+      filter(listName => listName === this.currentListName)
     );
-    this.mediasList$ = combineLatest([listName$, this.changeType$]).pipe(
-      switchMap(([listName, type]) => {
-        if (!this.currentListName) {
-          this.currentListName = listName;
-        } else if (this.currentListName !== listName) {
-          return;
-        }
-        this.currentListName = listName;
-        return of(this.localStorageService.getListAndFilterByMediaType(listName, type));
-      })
+
+    const mediaChange$ = merge([ listName$, listChange$ ]);
+
+    this.mediasList$ = combineLatest([this.changeType$, mediaChange$]).pipe(
+      map(([type]) => this.localStorageService.getListAndFilterByMediaType(this.currentListName, type))
     );
+
     this.currentMediasList$ = combineLatest([
       this.changePage$.pipe(startWith(1)),
-      this.mediasList$
+      this.mediasList$,
     ]).pipe(
-        switchMap(([page, mediasList]) => {
+        map(([page, mediasList]) => {
           this.totalPages = Math.trunc(mediasList.length / this.pagesSize)  + ((mediasList.length % this.pagesSize) > 0 ? 1 : 0);
-          return of(mediasList.slice(
+          return mediasList.slice(
             (page - 1) * this.pagesSize,
             Math.min(((page - 1) * this.pagesSize) + this.pagesSize, mediasList.length)
-          ));
+          );
         }),
       );
   }
@@ -71,5 +72,9 @@ export class UserListPageComponent {
   public changeType(type: string) {
     this.currentPage = 1;
     this.changeType$.next(type);
+  }
+
+  public getCurrentPage() {
+    return this.currentPage;
   }
 }

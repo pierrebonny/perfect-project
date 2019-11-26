@@ -5,6 +5,9 @@ import { HookComponent } from './hook.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HttpClient } from '@angular/common/http';
+import { Media, MediaBestCredits } from 'src/app/types';
+import { Subscription, of } from 'rxjs';
+import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 
 describe('HookComponent', () => {
   let component: HookComponent;
@@ -25,6 +28,9 @@ describe('HookComponent', () => {
     fixture = TestBed.createComponent(HookComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    component.mediaType = 'tv';
+    component.topMedia = { media_type: 'tv', title: 'South Park', id: 42 };
+    component.updateComponent();
   });
 
   it('should create', () => {

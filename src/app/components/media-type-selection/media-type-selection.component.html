@@ -1,0 +1,14 @@
+<div class="media-type-selection" [ngClass]="additionalClass">
+  <button
+    class="media-type-selection__button"
+    [ngClass]="mediasType === 'movie' ? 'on' : ''"
+    (click)="mediaChange('movie')"
+    i18n="@@main-page-layout.movies"
+  >Movies</button>
+  <button
+    class="media-type-selection__button"
+    [ngClass]="mediasType === 'tv' ? 'on' : ''"
+    (click)="mediaChange('tv')"
+    i18n="@@main-page-layout.tv"
+  >TV Shows</button>
+</div>
