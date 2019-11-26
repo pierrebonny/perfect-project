@@ -7,15 +7,19 @@ describe('TmdbService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.get(LocalStorageService);
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    localStorage.clear();
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  describe('getList', () => {
+  describe('#getList', () => {
     it('should return empty list on unknown listName', () => {
-      localStorage.removeItem('test');
       const list = service.getList('test');
       expect(list).toEqual([]);
     });
@@ -24,12 +28,10 @@ describe('TmdbService', () => {
       localStorage.setItem('seen', JSON.stringify([{ media_type: 'movie', title: 'Angel Has Fallen' }]));
       const list = service.getList('seen');
       expect(list).toEqual([{ media_type: 'movie', title: 'Angel Has Fallen' }]);
-      localStorage.removeItem('seen');
     });
   });
-  describe('getListAndFilterByMediaType', () => {
+  describe('#getListAndFilterByMediaType', () => {
     it('should return empty list on unknown listName', () => {
-      localStorage.removeItem('test');
       const list = service.getListAndFilterByMediaType('test', 'tv');
       expect(list).toEqual([]);
     });
@@ -41,7 +43,6 @@ describe('TmdbService', () => {
       ]));
       const list = service.getListAndFilterByMediaType('seen', 'movie');
       expect(list).toEqual([{ media_type: 'movie', title: 'Angel Has Fallen' }]);
-      localStorage.removeItem('seen');
     });
   });
 
@@ -51,30 +52,28 @@ describe('TmdbService', () => {
       expect(() => service.removeItem('test', { id: 111 })).not.toThrowError();
     });
 
-    it('should not throw error on invalid media', () => {
-      localStorage.setItem('seen', JSON.stringify([
-        { media_type: 'movie', title: 'Angel Has Fallen' },
-        { media_type: 'tv', title: 'South Park' }
-      ]));
-      expect(() => service.removeItem('seen', undefined)).not.toThrowError();
-      localStorage.removeItem('seen');
-    });
+    describe('with a value', () => {
+      beforeEach(() => {
+        localStorage.setItem('seen', JSON.stringify([
+          { media_type: 'movie', title: 'Angel Has Fallen' },
+          { media_type: 'tv', title: 'South Park' }
+        ]));
+      });
 
-    it('should remove item from localStorage on valid params', () => {
-      localStorage.setItem('seen', JSON.stringify([
-        { media_type: 'movie', title: 'Angel Has Fallen' },
-        { media_type: 'tv', title: 'South Park', id: 42 }
-      ]));
-      service.removeItem('seen', { media_type: 'tv', title: 'South Park', id: 42 });
-      const list = JSON.parse(localStorage.getItem('seen'));
-      expect(list).toEqual([{ media_type: 'movie', title: 'Angel Has Fallen' }]);
-      localStorage.removeItem('seen');
+      it('should not throw error on invalid media', () => {
+        expect(() => service.removeItem('seen', undefined)).not.toThrowError();
+      });
+
+      it('should remove item from localStorage on valid params', () => {
+        service.removeItem('seen', { media_type: 'tv', title: 'South Park', id: 42 });
+        const list = JSON.parse(localStorage.getItem('seen'));
+        expect(list).toEqual([{ media_type: 'movie', title: 'Angel Has Fallen' }]);
+      });
     });
   });
 
   describe('isInList', () => {
     it('should not throw error on unknown listName', () => {
-      localStorage.removeItem('test');
       expect(() => service.isInList('test', 111 )).not.toThrowError();
       expect(service.isInList('test', 111)).toEqual(false);
     });
@@ -86,7 +85,6 @@ describe('TmdbService', () => {
       ]));
       expect(() => service.isInList('seen', undefined )).not.toThrowError();
       expect(service.isInList('seen', undefined)).toEqual(false);
-      localStorage.removeItem('seen');
     });
 
     it('should return true if any object with given id is in localstorage list', () => {
@@ -95,7 +93,6 @@ describe('TmdbService', () => {
         { media_type: 'tv', title: 'South Park', id: 42 }
       ]));
       expect(service.isInList('seen', 42 )).toEqual(true);
-      localStorage.removeItem('seen');
     });
   });
 
@@ -110,14 +107,12 @@ describe('TmdbService', () => {
         { media_type: 'movie', title: 'Angel Has Fallen' },
         { media_type: 'tv', title: 'South Park', id: 42 }
       ]);
-      localStorage.removeItem('seen');
     });
 
     it('should create list on unknown listname', () => {
       localStorage.removeItem('test');
       expect(() => service.addItem('test', { media_type: 'tv', title: 'South Park', id: 42 } )).not.toThrowError();
       expect(JSON.parse(localStorage.getItem('test'))).toEqual([{ media_type: 'tv', title: 'South Park', id: 42 }]);
-      localStorage.removeItem('test');
     });
 
     it('should add item to localstorage list on valid params', () => {
@@ -131,7 +126,6 @@ describe('TmdbService', () => {
         { media_type: 'tv', title: 'South Park', id: 42 },
         { media_type: 'tv', title: 'breaking bad', id: 4242 },
       ]);
-      localStorage.removeItem('seen');
     });
   });
 });

@@ -23,8 +23,13 @@ describe('TmdbService', () => {
   });
 
   describe('getTrendingMedias', () => {
+    let spy: jasmine.Spy;
+
+    beforeEach(() => {
+      spy = jasmine.createSpy('trendingMedias');
+    });
+
     it('should return an object with page as 0 when mediaType is undefined', () => {
-      const spy = jasmine.createSpy('trendingMedias');
       service.getTrendingMedias(undefined, 0).subscribe(spy);
       expect(spy).toHaveBeenCalledWith(jasmine.objectContaining({
         page: 0
@@ -32,14 +37,13 @@ describe('TmdbService', () => {
     });
 
     it('should return an object with empty results when mediaType is undefined', () => {
-      const spy = jasmine.createSpy('trendingMedias');
       service.getTrendingMedias(undefined, 0).subscribe(spy);
       expect(spy).toHaveBeenCalledWith(jasmine.objectContaining({
         results: []
       }));
     });
 
-    it('should return the elements from the API when mediaType is defined', () => {
+    it('should return the elements from the API when mediaType is defined', done => {
       spyOn(http, 'get').and.returnValue(of([
         {
           page: 0,
@@ -50,16 +54,18 @@ describe('TmdbService', () => {
           total_results: 1
         }
       ]));
-      const spy = jasmine.createSpy('trendingMedias');
-      service.getTrendingMedias('movie', 0).subscribe(spy);
-      expect(spy).toHaveBeenCalledWith([
-        {
-          page: 0,
-          results: [{ id: 'test-media' }],
-          total_pages: 1,
-          total_results: 1
-        }
-      ]);
+      service.getTrendingMedias('movie', 0)
+        .subscribe(() => {
+          expect(spy).toHaveBeenCalledWith([
+            {
+              page: 0,
+              results: [{ id: 'test-media' }],
+              total_pages: 1,
+              total_results: 1
+            }
+          ]);
+          done();
+        });
     });
   });
 

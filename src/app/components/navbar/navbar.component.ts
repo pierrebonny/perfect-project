@@ -9,7 +9,7 @@ import { MatTabChangeEvent } from '@angular/material';
 })
 export class NavbarComponent implements OnInit {
 
-  private avalaibleRoutes = ['topTrendingMedias', 'mediaResearch', 'seenMedias', 'mustSeeMedias'];
+  private avalaibleRoutes = ['topTrendingMedias', 'mediaResearch', 'userList/seenMedias', 'userList/mustSeeMedias'];
 
   public currentTabIndex: number;
 
@@ -20,10 +20,10 @@ export class NavbarComponent implements OnInit {
       case '/mediaResearch':
         this.currentTabIndex = 1;
         break;
-      case '/seenMedias':
+      case '/userList/seenMedias':
         this.currentTabIndex = 2;
         break;
-      case '/mustSeeMedias':
+      case '/userList/mustSeeMedias':
         this.currentTabIndex = 3;
         break;
       default:

@@ -1,5 +1,5 @@
-import { Subject, BehaviorSubject, Observable, combineLatest, of, merge } from 'rxjs';
-import { switchMap, pluck, tap, map, startWith, distinctUntilChanged, filter } from 'rxjs/operators';
+import { Subject, BehaviorSubject, Observable, combineLatest, merge, of } from 'rxjs';
+import { pluck, tap, map, startWith, distinctUntilChanged, filter } from 'rxjs/operators';
 import { Media } from 'src/app/types';
 import { Component, ViewChild } from '@angular/core';
 import { LocalStorageService } from 'src/app/services/localstorage/localStorage.service';
@@ -30,10 +30,11 @@ export class UserListPageComponent {
   public changeType$ = new BehaviorSubject<string>('movie');
 
   constructor(private localStorageService: LocalStorageService, private route: ActivatedRoute) {
+
     const listName$ = this.route.data.pipe(
       pluck('listName'),
       distinctUntilChanged(),
-      tap(listName => this.currentListName = listName)
+      tap(listName => this.currentListName = listName),
     );
 
     const listChange$ = this.localStorageService.localStorageNotifier.pipe(
@@ -41,7 +42,7 @@ export class UserListPageComponent {
       filter(listName => listName === this.currentListName)
     );
 
-    const mediaChange$ = merge([ listName$, listChange$ ]);
+    const mediaChange$ = merge(listName$, listChange$);
 
     this.mediasList$ = combineLatest([this.changeType$, mediaChange$]).pipe(
       map(([type]) => this.localStorageService.getListAndFilterByMediaType(this.currentListName, type))
