@@ -46,7 +46,7 @@ describe('TmdbService', () => {
     });
   });
 
-  describe('removeItem', () => {
+  describe('#removeItem', () => {
     it('should not throw error on unknown listName', () => {
       localStorage.removeItem('test');
       expect(() => service.removeItem('test', { id: 111 })).not.toThrowError();
@@ -56,7 +56,7 @@ describe('TmdbService', () => {
       beforeEach(() => {
         localStorage.setItem('seen', JSON.stringify([
           { media_type: 'movie', title: 'Angel Has Fallen' },
-          { media_type: 'tv', title: 'South Park' }
+          { media_type: 'tv', title: 'South Park', id: 42 }
         ]));
       });
 
@@ -72,7 +72,7 @@ describe('TmdbService', () => {
     });
   });
 
-  describe('isInList', () => {
+  describe('#isInList', () => {
     it('should not throw error on unknown listName', () => {
       expect(() => service.isInList('test', 111 )).not.toThrowError();
       expect(service.isInList('test', 111)).toEqual(false);
@@ -96,7 +96,7 @@ describe('TmdbService', () => {
     });
   });
 
-  describe('addItem', () => {
+  describe('#addItem', () => {
     it('should not throw error on undefined media and not modify localstorage list', () => {
       localStorage.setItem('seen', JSON.stringify([
         { media_type: 'movie', title: 'Angel Has Fallen' },

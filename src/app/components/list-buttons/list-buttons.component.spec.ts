@@ -38,7 +38,7 @@ describe('ListButtonsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('updateList', () => {
+  describe('#updateList', () => {
     it('should remove current media from localstorage list if already in it and not modify other list', () => {
       localStorage.setItem('seen', JSON.stringify([
         { media_type: 'movie', title: 'Angel Has Fallen' },
