@@ -83,8 +83,8 @@
         </context-group>
       </trans-unit>
       <trans-unit id="media.details-link" datatype="html">
-        <source>See details</source>
-        <target>Voir les détails</target>
+        <source>See more</source>
+        <target>Voir plus</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/media/media.component.html</context>
           <context context-type="linenumber">13</context>

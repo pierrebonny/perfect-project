@@ -7,7 +7,7 @@
         <ng-template #tvLabel>
           <div class="hook__media-type" i18n="@@hook.tv">TV SHOWS</div>
         </ng-template>
-        <h1 class="hook__title">{{ currentMedia.title ? currentMedia.title : currentMedia.name }}<p class="hook__popularity">{{ currentMedia.vote_average }}</p></h1>
+        <h1 class="hook__title">{{ (currentMedia.title ? currentMedia.title : currentMedia.name).toUpperCase() }}<p class="hook__popularity">{{ currentMedia.vote_average }}</p></h1>
         <p class="hook__overview">{{ currentMedia.overview }}</p>
         <div class="hook__release-date">
           <span class="hook__info-label" i18n="@@hook.release-date">Released on:</span>

@@ -19,7 +19,7 @@ describe('MediaDetailsDialogComponent', () => {
       imports: [ HttpClientTestingModule ],
       providers: [
         { provide: MatDialogRef, useValue: {} },
-        { provide: MAT_DIALOG_DATA, useValue: [] }
+        { provide: MAT_DIALOG_DATA, useValue: { mediaId: 2190, mediaType: 'tv' } }
       ],
     })
     .compileComponents();

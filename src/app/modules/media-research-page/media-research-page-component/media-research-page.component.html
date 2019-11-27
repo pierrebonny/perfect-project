@@ -1,0 +1,23 @@
+<app-main-page-layout
+  [mediasList]="mediasList$ | async"
+  (pageChanged)="changePage($event)"
+  [totalPages]="totalPages"
+  [mediasType]="this.changeType$ | async"
+  additionalClass="margin">
+  <ng-container media-type-selection>
+    <app-media-type-selection additionalClass="margin" (mediaChanged)="changeType($event)">
+    </app-media-type-selection>
+  </ng-container>
+  <ng-container search-bar>
+    <app-search-bar (researchUpdated)="this.mediaResearchUpdate.next($event)"></app-search-bar>
+  </ng-container>
+  <div results-count class="results-count">
+    <span class="results-count__count">
+      {{ totalResults ? totalResults : 0 }}
+    </span>
+    <span *ngIf="totalResults && totalResults > 1 else result" i18n="@@media-research.results">results</span>
+    <ng-template #result>
+      <span i18n="@@media-research.result">result</span>
+    </ng-template>
+  </div>
+</app-main-page-layout>

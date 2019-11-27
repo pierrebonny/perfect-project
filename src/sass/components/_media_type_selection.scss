@@ -1,0 +1,30 @@
+.media-type-selection {
+  z-index: 10;
+  position: absolute;
+  top: 16px;
+  left: 138px;
+  font-size: 16px;
+}
+
+.media-type-selection.margin {
+  top: -77px;
+}
+
+.media-type-selection__button {
+  height: 35px;
+  z-index: 10;
+  border-radius: 4px;
+  background-color: transparent;
+  color: $color-common-text;
+  border: 1px solid $color-borders;
+  margin-right: 11px;
+  cursor: pointer;
+}
+
+.media-type-selection__button:focus {
+  outline: none;
+}
+
+.media-type-selection__button.on {
+  border: 1px solid $color-common-text;
+}

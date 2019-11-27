@@ -25,10 +25,39 @@ describe('UserListPageComponent', () => {
     fixture = TestBed.createComponent(UserListPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    const layoutComponent = jasmine.createSpyObj('MainPageLayoutComponent', ['reset']);
+    component.layoutComponent = layoutComponent;
   });
 
-  it('should create', () => {
+  it('should create with empty listname', () => {
+    const route = TestBed.get(ActivatedRoute);
+    route.data.next({ listName: ''});
+    expect(component).toBeTruthy();
+  });
+
+  it('should create without listname field', () => {
+    const route = TestBed.get(ActivatedRoute);
+    route.data.next({});
+    expect(component).toBeTruthy();
+  });
+
+  it('should create with valid listname', () => {
     const route = TestBed.get(ActivatedRoute);
     expect(component).toBeTruthy();
+  });
+
+  describe('changeType', () => {
+    it('should reset page index to 1', () => {
+      component.changePage(5);
+      expect(component.getCurrentPage()).toEqual(5);
+      component.changeType('tv');
+      expect(component.getCurrentPage()).toEqual(1);
+    });
+    it('should change component media type', () => {
+      component.changePage(5);
+      expect(component.getCurrentPage()).toEqual(5);
+      component.changeType('tv');
+      expect(component.changeType$.value).toEqual('tv');
+    });
   });
 });

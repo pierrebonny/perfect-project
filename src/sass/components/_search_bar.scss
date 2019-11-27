@@ -1,0 +1,38 @@
+.media-research-page__search-bar {
+  width: 287px;
+  height: 33px;
+  background-color: #000000;
+  border: 1px solid $color-borders;
+  border-radius: 25px;
+  vertical-align: middle;
+  display: inline-block;
+  position: absolute;
+  left: 300px;
+  top: -77px;
+}
+
+.media-research-page__input {
+  background-color: transparent;
+  color: $color-common-text;
+  border: none;
+  width: calc(100% - 45px);
+  height: 100%;
+  border-radius: 25px;
+  margin-left: 15px;
+  caret-color: $color-common-text;
+}
+
+.media-research-page__input:focus {
+  outline: none;
+}
+
+.media-research-page__input::placeholder {
+  color: $color-borders;
+}
+
+.media-research-page__search-icon {
+  color: $color-common-text;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}

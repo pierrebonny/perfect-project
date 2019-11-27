@@ -1,8 +1,9 @@
 import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { APIResult, Media, MediaCredits, MediaBestCredits } from '../../types';
 import { of, Observable } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators'
 
 /**
  * Service dedicated to communicate with the media DB API
@@ -20,7 +21,7 @@ export class TmdbService {
   /**
    * Recovering weekly trending movies from TMDB to display home screen list
    */
-  public getTrendingMedias(mediaType: string, currentPage: number): Observable<APIResult> {
+  public getTrendingMedias(mediaType: string, currentPage: number = 1): Observable<APIResult> {
     if (!mediaType) {
       return of({
         page: 0,
@@ -30,20 +31,31 @@ export class TmdbService {
       });
     }
 
-    return this.http.get<APIResult>(`${this.baseURL}/trending/${mediaType}/week?api_key=${this.apiKey}&page=${currentPage}`);
+    return this.http
+      .get<APIResult>(`${this.baseURL}/trending/${mediaType}/week?api_key=${this.apiKey}&page=${currentPage}`)
+      .pipe(
+        retry(2),
+        catchError(this.handleHttpError)
+      );
   }
 
   /**
    * Get media details from TMDB thanks to media ID
    */
-  public getMediaById(id: number, mediaType: string) {
+  public getMediaById(id: number, mediaType: string): Observable<Media> {
+    if (!id || !mediaType) {
+      return of({});
+    }
     return this.http.get<Media>(`${this.baseURL}/${mediaType}/${id}?api_key=${this.apiKey}`);
   }
 
   /**
    * Get media director and 10 best actors names
    */
-  public getMediaBestCredits(id: number, mediaType: string) {
+  public getMediaBestCredits(id: number, mediaType: string): Observable<MediaBestCredits> {
+    if (!id || !mediaType) {
+      return of({});
+    }
     return this.http.get<MediaCredits>(`${this.baseURL}/${mediaType}/${id}/credits?api_key=${this.apiKey}`)
       .pipe(
         map((mediaCredits: MediaCredits) => {
@@ -55,9 +67,20 @@ export class TmdbService {
   /**
    * Find any media by it's name
    */
-  public getMediaByName(mediaName: string, mediaType: string, page: number = 1) {
+  public getMediasByName(mediaName: string, mediaType: string, page: number = 1): Observable<APIResult> {
+    if (!mediaName || !mediaType) {
+      return of({
+        page: 0,
+        results: [],
+        total_pages: 0,
+        total_results: 0,
+      });
+    }
     return this.http.get<APIResult>(
       `${this.baseURL}/search/${mediaType}?api_key=${this.apiKey}&page=${page}&include_adult=false&query=${mediaName}`
+    ).pipe(
+      retry(2),
+      catchError(this.handleHttpError)
     );
   }
 
@@ -79,5 +102,14 @@ export class TmdbService {
       .map(actorName => actorName.name); // getting actors names only
     }
     return result;
+  }
+
+  private handleHttpError(error: HttpErrorResponse): Observable<APIResult> {
+    return of({
+      page: 0,
+      results: [],
+      total_pages: 0,
+      total_results: 0,
+    });
   }
 }

@@ -1,22 +1,10 @@
 <div class="layout">
-    <div class="layout__media-type-selection" [ngClass]="additionalClass">
-        <button
-          class="layout__media-type-button"
-          [ngClass]="mediasType === 'movie' ? 'on' : ''"
-          (click)="mediaChange('movie')"
-          i18n="@@main-page-layout.movies"
-        >Movies</button>
-        <button
-          class="layout__media-type-button"
-          [ngClass]="mediasType === 'tv' ? 'on' : ''"
-          (click)="mediaChange('tv')"
-          i18n="@@main-page-layout.tv"
-        >TV Shows</button>
-        <ng-content select="[search-bar]">
-        </ng-content>
-    </div>
+    <ng-content select="[media-type-selection]">
+    </ng-content>
+    <ng-content select="[search-bar]">
+    </ng-content>
     <ng-content select="[hook]">
-      </ng-content>
+    </ng-content>
     <div class="layout__medias-list" [ngClass]="additionalClass">
       <ng-content select="[results-count]">
       </ng-content>

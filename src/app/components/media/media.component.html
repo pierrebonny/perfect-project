@@ -10,9 +10,9 @@
     <ng-template #tvLabel>
         <div class="media__type" i18n="@@media.tv">TV SHOWS</div>
     </ng-template>
-  <h2 class="media__title">{{currentMedia.title ? currentMedia.title : currentMedia.name}}</h2>
+  <h2 class="media__title">{{ (currentMedia.title ? currentMedia.title : currentMedia.name).toUpperCase() }}</h2>
   <p class="media__release-date"><strong i18n="@@media.release-date">Released on</strong> {{ (currentMedia.release_date ? currentMedia.release_date : currentMedia.first_air_date) | tmdbDate:'YYYY' }}</p>
   <div class="media__overview" *ngIf="currentMedia.overview">{{currentMedia.overview}}</div>
-  <a class="media__details-link" (click)="openDetailsDialog()" i18n="@@media.details-link">See details</a>
+  <a class="media__details-link" (click)="openDetailsDialog()" i18n="@@media.details-link">See more</a>
   <app-list-buttons class="media__buttons" [mediaType]="mediaType" [currentMedia]="currentMedia"></app-list-buttons>
 </div>

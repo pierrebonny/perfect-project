@@ -5,6 +5,10 @@
   (pageChanged)="changePage($event)"
   [totalPages]="totalPages"
   additionalClass="margin">
+  <ng-container media-type-selection>
+    <app-media-type-selection additionalClass="margin" (mediaChanged)="changeType($event)">
+    </app-media-type-selection>
+  </ng-container>
   <div results-count class="results-count">
     <span class="results-count__count">
       {{ mediasList ? mediasList.length : 0 }}

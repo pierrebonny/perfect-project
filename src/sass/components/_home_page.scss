@@ -1,0 +1,9 @@
+.home-page__main-page-layout::before {
+  position: absolute;
+  z-index: 1;
+  left: 187px;
+  background: transparent linear-gradient(175deg, #12121200 0%, #121212F2 100%) 0% 0% no-repeat padding-box;
+  content: '';
+  width: calc(100% - 187px);
+  height: 769px;
+}
