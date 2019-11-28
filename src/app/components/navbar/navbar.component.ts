@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    switch (window.location.pathname) {
+    switch (this.router.url) {
       case '/mediaResearch':
         this.currentTabIndex = 1;
         break;

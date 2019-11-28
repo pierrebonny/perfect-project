@@ -25,7 +25,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     NavbarComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
