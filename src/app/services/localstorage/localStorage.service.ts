@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable,Inject, PLATFORM_ID } from '@angular/core';
 import { Subject } from 'rxjs';
+import { isPlatformBrowser } from '@angular/common';
 import { Media } from 'src/app/types';
 
 /**
@@ -10,13 +11,21 @@ import { Media } from 'src/app/types';
 })
 export class LocalStorageService {
 
+  private store: Storage;
+
+  constructor(@Inject(PLATFORM_ID) private platformID: any) {
+    if (isPlatformBrowser(this.platformID)) {
+      this.store = window.localStorage;
+    }
+  }
+
   public localStorageNotifier = new Subject<{ id: number, listName: string, isAdding: boolean }>();
 
   /**
    * Getting list from localstorage
    */
   public getList(listName: string): Media[] {
-    if (!localStorage.getItem(listName)) {
+    if (!this.store || !this.store.getItem(listName)) {
       return [];
     }
     return JSON.parse(localStorage.getItem(listName));
@@ -33,7 +42,7 @@ export class LocalStorageService {
    * Removing current media id from localstorage list
    */
   public removeItem(listName: string, currentMedia: Media): void {
-    if (!localStorage.getItem(listName) || !currentMedia) {
+    if (!this.store || !this.store.getItem(listName) || !currentMedia) {
       return;
     }
     const list = this.getList(listName);
@@ -41,7 +50,7 @@ export class LocalStorageService {
     if (index >= 0) {
       list.splice(index, 1);
     }
-    localStorage.setItem(listName, JSON.stringify(list));
+    this.store.setItem(listName, JSON.stringify(list));
     this.localStorageNotifier.next({id: currentMedia.id, listName, isAdding: false});
   }
 
@@ -49,7 +58,7 @@ export class LocalStorageService {
    * Looking for current media id in localstorage list
    */
   public isInList(listName: string, mediaId: number): boolean {
-    if (!localStorage.getItem(listName) || !mediaId) {
+    if (!this.store || !this.store.getItem(listName) || !mediaId) {
       return false;
     }
     const list = this.getList(listName);
@@ -60,12 +69,12 @@ export class LocalStorageService {
    * Adding current media id from localstorage list
    */
   public addItem(listName: string, media: Media): void {
-    if (!media) {
+    if (!this.store || !media) {
       return;
     }
     const list = this.getList(listName);
     list.push(media);
-    localStorage.setItem(listName, JSON.stringify(list));
+    this.store.setItem(listName, JSON.stringify(list));
     this.localStorageNotifier.next({id: media.id, listName, isAdding: true});
   }
 
