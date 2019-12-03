@@ -9,6 +9,10 @@ import {
 
 declare const require: any;
 
+// Imports custom helpers
+import { importHelpers } from '@pm/tests/dist/lib/spec-helpers/index';
+importHelpers();
+
 // First, initialize the Angular testing environment.
 getTestBed().initTestEnvironment(
   BrowserDynamicTestingModule,
