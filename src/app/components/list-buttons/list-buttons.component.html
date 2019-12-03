@@ -1,4 +1,6 @@
-<div class="list-buttons__buttons">
+<div
+  *ngIf="currentMedia"
+  class="list-buttons__buttons">
   <app-list-button
   class="list-buttons__button-component"
   i18n-label="@@list-buttons.ever-seen"

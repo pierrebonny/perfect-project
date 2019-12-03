@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { Media } from '../../types';
 import { LocalStorageService } from 'src/app/services/localstorage/localStorage.service';
 import { Observable, merge, of, EMPTY } from 'rxjs';
@@ -9,7 +9,7 @@ import { switchMap } from 'rxjs/operators';
   templateUrl: './list-buttons.component.html',
   styleUrls: ['./list-buttons.component.scss']
 })
-export class ListButtonsComponent implements OnInit {
+export class ListButtonsComponent implements OnChanges {
 
   @Input () currentMedia: Media;
   @Input () mediaType: string;
@@ -19,24 +19,26 @@ export class ListButtonsComponent implements OnInit {
 
   constructor(private localStorageService: LocalStorageService) {}
 
-  ngOnInit() {
-    // Setting buttons state depending on localstorage lists
-    this.seen$ = merge(
-      of(this.localStorageService.isInList('seen', this.currentMedia.id)),
-      this.localStorageService.localStorageNotifier.pipe(
-        switchMap((value: { id: number, listName: string, isAdding: boolean }) => {
-          return this.updateButtonsState('seen', value);
-        })
-      )
-    );
-    this.mustSee$ = merge(
-      of(this.localStorageService.isInList('mustSee', this.currentMedia.id)),
-      this.localStorageService.localStorageNotifier.pipe(
-        switchMap((value: { id: number, listName: string, isAdding: boolean }) => {
-          return this.updateButtonsState('mustSee', value);
-        })
-      )
-    );
+  ngOnChanges() {
+    if (this.currentMedia !== undefined) {
+      // Setting buttons state depending on localstorage lists
+      this.seen$ = merge(
+        of(this.localStorageService.isInList('seen', this.currentMedia.id)),
+        this.localStorageService.localStorageNotifier.pipe(
+          switchMap((value: { id: number, listName: string, isAdding: boolean }) => {
+            return this.updateButtonsState('seen', value);
+          })
+        )
+      );
+      this.mustSee$ = merge(
+        of(this.localStorageService.isInList('mustSee', this.currentMedia.id)),
+        this.localStorageService.localStorageNotifier.pipe(
+          switchMap((value: { id: number, listName: string, isAdding: boolean }) => {
+            return this.updateButtonsState('mustSee', value);
+          })
+        )
+      );
+    }
   }
 
   private updateButtonsState(buttonListName: string, event: { id: number, listName: string, isAdding: boolean }): Observable<boolean> {
