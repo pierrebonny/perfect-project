@@ -1,20 +1,22 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectorRef, AfterViewChecked, ChangeDetectionStrategy } from '@angular/core';
 import { Media } from '../../types';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MediaDetailsDialogComponent } from '../media-details-dialog/media-details-dialog.component';
-import { TmdbService } from '../../services/tmdb/tmdb.service';
 
 @Component({
   selector: 'app-media',
   templateUrl: './media.component.html',
-  styleUrls: ['./media.component.scss']
+  styleUrls: ['./media.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MediaComponent {
+export class MediaComponent implements AfterViewChecked {
 
   @Input () currentMedia: Media;
   @Input () mediaType: string;
 
-  constructor(private dialog: MatDialog, private  tmdbService: TmdbService) {}
+  public overviewOverflow: boolean;
+
+  constructor(private dialog: MatDialog, private cdRef: ChangeDetectorRef) {}
 
   /**
    * open new dialog with media cast, crew and overview
@@ -27,5 +29,15 @@ export class MediaComponent {
       mediaId: this.currentMedia.id,
     };
     this.dialog.open(MediaDetailsDialogComponent, dialogConfig);
+  }
+
+  public isOverflow(elementId: string) {
+    const element = document.getElementById(elementId);
+    return element && element.clientHeight < element.scrollHeight;
+  }
+
+  ngAfterViewChecked() {
+    this.overviewOverflow = this.isOverflow('ov_' + this.currentMedia.id);
+    this.cdRef.detectChanges();
   }
 }

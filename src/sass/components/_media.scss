@@ -65,7 +65,7 @@
   margin-bottom: 15px;
   margin-top: 15px;
   position: relative;
-  &::before {
+  &.overflow::before {
     content: '';
     position: absolute;
     width: 100%;
