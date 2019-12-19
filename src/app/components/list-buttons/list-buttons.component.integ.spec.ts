@@ -7,7 +7,7 @@ import { ListButtonsComponent } from './list-buttons.component';
 import { ListButtonComponent } from '../list-button/list-button.component';
 import { LocalStorageService } from '../../services/localstorage/localStorage.service';
 
-fdescribe('Component: ListButtonsComponent', () => {
+describe('Component: ListButtonsComponent', () => {
   let createHost: HostComponentFactory<ListButtonsComponent>;
   let host: SpectatorWithHost<ListButtonsComponent>;
 

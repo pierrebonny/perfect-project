@@ -25,7 +25,7 @@ describe('MediaTypeSelectionComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('mediaChange', () => {
+  describe('#mediaChange', () => {
     it('should change current media type', () => {
       expect(component.mediasType).toEqual('movie');
       component.mediaChange('tv');

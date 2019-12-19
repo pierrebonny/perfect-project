@@ -32,7 +32,7 @@ describe('HomePageComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('changeType', () => {
+  describe('#changeType', () => {
     it('should reset page index to 1', () => {
       component.changePage(5);
       expect(component.getCurrentPage()).toEqual(5);

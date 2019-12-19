@@ -78,54 +78,55 @@ describe('TmdbService', () => {
       expect(service.isInList('test', 111)).toEqual(false);
     });
 
-    it('should not throw error on undefined id', () => {
-      localStorage.setItem('seen', JSON.stringify([
-        { media_type: 'movie', title: 'Angel Has Fallen' },
-        { media_type: 'tv', title: 'South Park', id: 42 }
-      ]));
-      expect(() => service.isInList('seen', undefined )).not.toThrowError();
-      expect(service.isInList('seen', undefined)).toEqual(false);
-    });
+    describe('with a value', () => {
+      beforeEach(() => {
+        localStorage.setItem('seen', JSON.stringify([
+          { media_type: 'movie', title: 'Angel Has Fallen' },
+          { media_type: 'tv', title: 'South Park', id: 42 }
+        ]));
+      });
 
-    it('should return true if any object with given id is in localstorage list', () => {
-      localStorage.setItem('seen', JSON.stringify([
-        { media_type: 'movie', title: 'Angel Has Fallen' },
-        { media_type: 'tv', title: 'South Park', id: 42 }
-      ]));
-      expect(service.isInList('seen', 42 )).toEqual(true);
+      it('should not throw error on undefined id', () => {
+        expect(() => service.isInList('seen', undefined )).not.toThrowError();
+        expect(service.isInList('seen', undefined)).toEqual(false);
+      });
+
+      it('should return true if any object with given id is in localstorage list', () => {
+        expect(service.isInList('seen', 42 )).toEqual(true);
+      });
     });
   });
 
   describe('#addItem', () => {
-    it('should not throw error on undefined media and not modify localstorage list', () => {
-      localStorage.setItem('seen', JSON.stringify([
-        { media_type: 'movie', title: 'Angel Has Fallen' },
-        { media_type: 'tv', title: 'South Park', id: 42 }
-      ]));
-      expect(() => service.addItem('seen', undefined )).not.toThrowError();
-      expect(JSON.parse(localStorage.getItem('seen'))).toEqual([
-        { media_type: 'movie', title: 'Angel Has Fallen' },
-        { media_type: 'tv', title: 'South Park', id: 42 }
-      ]);
+
+    describe('with a value', () => {
+      beforeEach(() => {
+        localStorage.setItem('seen', JSON.stringify([
+          { media_type: 'movie', title: 'Angel Has Fallen' },
+          { media_type: 'tv', title: 'South Park', id: 42 }
+        ]));
+      });
+      it('should not throw error on undefined media and not modify localstorage list', () => {
+        expect(() => service.addItem('seen', undefined )).not.toThrowError();
+        expect(JSON.parse(localStorage.getItem('seen'))).toEqual([
+          { media_type: 'movie', title: 'Angel Has Fallen' },
+          { media_type: 'tv', title: 'South Park', id: 42 }
+        ]);
+      });
+
+      it('should add item to localstorage list on valid params', () => {
+        service.addItem('seen', { media_type: 'tv', title: 'breaking bad', id: 4242 });
+        expect(JSON.parse(localStorage.getItem('seen'))).toEqual([
+          { media_type: 'movie', title: 'Angel Has Fallen' },
+          { media_type: 'tv', title: 'South Park', id: 42 },
+          { media_type: 'tv', title: 'breaking bad', id: 4242 },
+        ]);
+      });
     });
 
     it('should create list on unknown listname', () => {
-      localStorage.removeItem('test');
       expect(() => service.addItem('test', { media_type: 'tv', title: 'South Park', id: 42 } )).not.toThrowError();
       expect(JSON.parse(localStorage.getItem('test'))).toEqual([{ media_type: 'tv', title: 'South Park', id: 42 }]);
-    });
-
-    it('should add item to localstorage list on valid params', () => {
-      localStorage.setItem('seen', JSON.stringify([
-        { media_type: 'movie', title: 'Angel Has Fallen' },
-        { media_type: 'tv', title: 'South Park', id: 42 }
-      ]));
-      service.addItem('seen', { media_type: 'tv', title: 'breaking bad', id: 4242 });
-      expect(JSON.parse(localStorage.getItem('seen'))).toEqual([
-        { media_type: 'movie', title: 'Angel Has Fallen' },
-        { media_type: 'tv', title: 'South Park', id: 42 },
-        { media_type: 'tv', title: 'breaking bad', id: 4242 },
-      ]);
     });
   });
 });

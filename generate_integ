@@ -1,0 +1,103 @@
+#!/bin/bash
+CLASS_TYPE="component"
+
+SELECTOR="$1"
+OUTPUT_DIR="$2"
+PM="pm"
+
+COMP_DIR="$OUTPUT_DIR/$SELECTOR"
+FILE_NAME="$SELECTOR.$CLASS_TYPE"
+
+if [ -z "$1" ]; then
+  echo "Error: Please provide selector."
+  exit 1
+fi
+
+if [ -z "$2" ]; then
+  echo "Error: Please provide output directory."
+  exit 1
+fi
+
+capitalize () {
+  local word=($1)
+  echo $word | tr [a-z] [A-Z]
+}
+
+toTitle () {
+  local word=($1)
+  echo ${word[*]^}
+}
+
+getClassTypeTitle () {
+  local classType=($CLASS_TYPE)
+  echo $(toTitle $classType)
+}
+
+getClassName () {
+  className=""
+  words=$(echo "$SELECTOR" | tr "-" "\n")
+
+  for word in $words
+  do
+    if [ $word == $PM ]
+    then
+      w=($word)
+      className+=$(capitalize $word)
+    else
+      w=($word)
+      className+="${w[*]^}"
+    fi
+  done
+
+  echo $className$CLASS_TYPE_TITLE
+}
+
+createFolder () {
+  if [ ! -d $COMP_DIR ]; then
+    mkdir $COMP_DIR
+  fi
+}
+
+generateFiles () {
+  CLASS_TYPE_TITLE=$(getClassTypeTitle)
+  CLASS_NAME=$(getClassName)
+  generateSpec
+}
+
+
+generateSpec () {
+  echo "import {
+  createHostComponentFactory,
+  HostComponentFactory,
+  SpectatorWithHost,
+} from '@pm/spectator';
+import { $CLASS_NAME } from './$FILE_NAME';
+
+describe('$CLASS_TYPE_TITLE: $CLASS_NAME', () => {
+  let createHost: HostComponentFactory<$CLASS_NAME>;
+  let host: SpectatorWithHost<$CLASS_NAME>;
+
+  beforeEach(() => {
+    createHost = createHostComponentFactory({
+      component: $CLASS_NAME,
+      shallow: true,
+    });
+
+    host = createHost('<$SELECTOR></$SELECTOR>');
+  });
+
+  it('should render', () => {
+    expect(host.getDirectiveInstance('$SELECTOR')).toExist();
+  });
+});" >> "$COMP_DIR/$FILE_NAME.integ.spec.ts"
+}
+
+
+#
+# Generate *.component.integ.spec.ts in designated directory.
+# Create directory if not existing.
+#
+createFolder
+generateFiles
+
+echo "Successfully created integration spec file $FILE_NAME.integ.spec.ts";

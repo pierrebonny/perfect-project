@@ -41,7 +41,7 @@ describe('PaginationComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('changePage', () => {
+  describe('#changePage', () => {
     it('should not throw error and do nothing on invalid page index param', () => {
       expect(() => component.changePage(undefined)).not.toThrowError();
     });

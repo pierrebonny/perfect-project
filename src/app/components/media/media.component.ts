@@ -26,7 +26,7 @@ export class MediaComponent implements AfterViewChecked {
     dialogConfig.width = '80%';
     dialogConfig.data = {
       mediaType: this.mediaType,
-      mediaId: this.currentMedia.id,
+      mediaId: (this.currentMedia && this.currentMedia.id) ? this.currentMedia.id : Math.floor(Math.random() * (1000000)),
     };
     this.dialog.open(MediaDetailsDialogComponent, dialogConfig);
   }
@@ -37,7 +37,8 @@ export class MediaComponent implements AfterViewChecked {
   }
 
   ngAfterViewChecked() {
-    this.overviewOverflow = this.isOverflow('ov_' + this.currentMedia.id);
+    this.overviewOverflow = this.isOverflow('ov_' + (this.currentMedia && this.currentMedia.id ?
+      this.currentMedia.id : Math.floor(Math.random() * (1000000))));
     this.cdRef.detectChanges();
   }
 }
