@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { TmdbDatePipe } from '../../pipes/tmdb-date/tmdb-date.pipe';
 import { TmdbImgPathPipe } from '../../pipes/tmdb-img-path/tmdb-img-path.pipe';
 import { MediaDetailsDialogComponent } from './media-details-dialog.component';
@@ -12,7 +12,7 @@ describe('MediaDetailsDialogComponent', () => {
   let fixture: ComponentFixture<MediaDetailsDialogComponent>;
   let http: HttpClient;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ MediaDetailsDialogComponent, TmdbDatePipe, TmdbImgPathPipe ],
       schemas: [ NO_ERRORS_SCHEMA ],

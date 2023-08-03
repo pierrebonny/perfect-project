@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { HomePageComponent } from './home-page.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -10,7 +10,7 @@ describe('HomePageComponent', () => {
   let fixture: ComponentFixture<HomePageComponent>;
   let http: HttpClient;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ HomePageComponent ],
       schemas: [ NO_ERRORS_SCHEMA ],
