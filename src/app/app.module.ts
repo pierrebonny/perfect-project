@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 
 import {
   MatTabsModule,
-} from '@angular/material';
+} from '@angular/material/tabs';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserListModule } from './modules/user-list/user-list.module';

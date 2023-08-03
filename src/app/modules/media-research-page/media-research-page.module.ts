@@ -8,9 +8,7 @@ import { MainLayoutModule } from '../main-layout/main-layout.module';
 import { MediaTypeSelectionModule } from '../media-type-selection/media-type-selection.module';
 import { SearchBarComponent } from '../../components/search-bar/search-bar.component';
 
-import {
-  MatIconModule,
-} from '@angular/material';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [

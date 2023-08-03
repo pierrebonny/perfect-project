@@ -9,16 +9,15 @@ import { TmdbImgPathPipe } from '../../pipes/tmdb-img-path/tmdb-img-path.pipe';
 import { MainPageLayoutComponent } from '../../components/main-page-layout/main-page-layout.component';
 import { ListButtonComponent } from '../../components/list-button/list-button.component';
 import { PaginationComponent } from '../../components/pagination/pagination.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
-import {
-  MatCardModule,
-  MatGridListModule,
-  MatIconModule,
-  MatListModule,
-  MatDialogModule,
-  MatFormFieldModule,
-  MatInputModule,
-} from '@angular/material';
+
 
 
 @NgModule({
