@@ -9,7 +9,7 @@ import { PaginationComponent } from 'src/app/components/pagination/pagination.co
 })
 export class MainPageLayoutComponent {
 
-  @ViewChild('paginator', { static: false }) paginator: PaginationComponent;
+  @ViewChild('paginator') paginator: PaginationComponent;
 
   @Input () mediasList: Media[];
   @Input () totalPages: number;

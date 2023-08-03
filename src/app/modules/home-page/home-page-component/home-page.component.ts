@@ -13,7 +13,7 @@ import { MainPageLayoutComponent } from 'src/app/components/main-page-layout/mai
 
 export class HomePageComponent implements AfterViewInit {
 
-  @ViewChild(MainPageLayoutComponent, { static: false }) layoutComponent: MainPageLayoutComponent;
+  @ViewChild(MainPageLayoutComponent) layoutComponent: MainPageLayoutComponent;
 
   public mediasList$: Observable<Media[]>;
 

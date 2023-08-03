@@ -4,6 +4,18 @@
   "newProjectRoot": "projects",
   "projects": {
     "perfect-project": {
+      "i18n": {
+        "locales": {
+          "fr": {
+            "translation": "src/locale/messages.fr.xlf",
+            "baseHref": ""
+          },
+          "en": {
+            "translation": "src/locale/messages.en.xlf",
+            "baseHref": ""
+          }
+        }
+      },
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -18,7 +30,7 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -41,7 +53,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -59,18 +70,14 @@
               ]
             },
             "fr": {
-              "aot": true,
               "outputPath": "dist/perfect-project-fr/",
               "i18nFile": "src/locale/messages.fr.xlf",
-              "i18nFormat": "xlf",
               "i18nLocale": "fr",
               "i18nMissingTranslation": "error"
             },
             "de": {
-              "aot": true,
               "outputPath": "dist/perfect-project-en/",
               "i18nFile": "src/locale/messages.en.xlf",
-              "i18nFormat": "xlf",
               "i18nLocale": "en",
               "i18nMissingTranslation": "error"
             }

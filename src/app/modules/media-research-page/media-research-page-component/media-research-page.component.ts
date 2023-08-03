@@ -13,7 +13,7 @@ import { MainPageLayoutComponent } from 'src/app/components/main-page-layout/mai
 
 export class MediaResearchPageComponent implements OnInit {
 
-  @ViewChild(MainPageLayoutComponent, { static: false }) layoutComponent: MainPageLayoutComponent;
+  @ViewChild(MainPageLayoutComponent) layoutComponent: MainPageLayoutComponent;
 
   // research bar model
   public mediaResearchUpdate = new Subject<string>();

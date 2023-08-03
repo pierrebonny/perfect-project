@@ -14,7 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 
 export class UserListPageComponent {
 
-  @ViewChild(MainPageLayoutComponent, { static: false }) layoutComponent: MainPageLayoutComponent;
+  @ViewChild(MainPageLayoutComponent) layoutComponent: MainPageLayoutComponent;
 
   private mediasList$: Observable<Media[]>;
   public currentMediasList$: Observable<Media[]>;
